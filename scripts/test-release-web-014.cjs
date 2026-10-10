@@ -15,6 +15,11 @@ async function main() {
     server = http.createServer(async (req, res) => {
       try {
         const pathname = new URL(req.url, "http://localhost").pathname;
+        if (pathname === "/downloads/release.json") {
+          res.writeHead(200, { "content-type": "application/json" });
+          res.end(await fs.readFile("infra/public/release.json"));
+          return;
+        }
         if (
           pathname.startsWith("/api/") ||
           pathname.startsWith("/downloads/")
@@ -93,7 +98,7 @@ async function main() {
         await page
           .locator("#release-metadata")
           .textContent()
-          .then((t) => t.includes("e5432a9ab5f0fa91")),
+          .then((t) => t.includes("00bef67b704165ccc1")),
       );
       assert(
         !(await page.locator("#live-status").innerText()).includes(
@@ -148,7 +153,7 @@ async function main() {
       );
       assert.equal(
         await page
-          .locator('a[href="/downloads/yet-another-cat-0.13.3.apk"]')
+          .locator('a[href="/downloads/yet-another-cat-0.13.4.apk"]')
           .count(),
         2,
       );

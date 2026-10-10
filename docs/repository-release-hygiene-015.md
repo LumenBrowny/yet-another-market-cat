@@ -35,4 +35,4 @@ Original code has no selected open-source license. Bundled media is not covered 
 
 An online npm audit reported 48 existing dependency advisories (19 moderate, 28 high, 1 critical). The critical `shell-quote` finding is in the React Native development-tool dependency chain. This is not a full security review or a claim that every advisory is unreachable. Dependency modernization is a separate task; no forced upgrades were applied.
 
-The website still distributes 0.13.3 until a separate release is deployed; source and the tested replacement APK are 0.13.4. Publisher, economics, on-chain program and verification trust model were not changed. The source-cleanliness check does not imply a production security audit or mainnet readiness.
+The website and release source now distribute 0.13.4; see [release notes](release-0.13.4.md). Publisher, economics, on-chain program and verification trust model were not changed. The source-cleanliness check does not imply a production security audit or mainnet readiness.

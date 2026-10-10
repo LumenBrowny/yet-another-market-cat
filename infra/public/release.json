@@ -1,0 +1,13 @@
+{
+  "version": "0.13.4",
+  "versionCode": 26,
+  "bytes": 118315611,
+  "sha256": "00bef67b704165ccc16891bf0d4afb432e34073557410b05f30b9ebd1ad72d00",
+  "certificateSha256": "58256a313d800ebf0b9b68e2f415eaeb77ad4dd6a418440e0b62eac506d1ab36",
+  "demo": true,
+  "builtAt": "2026-10-10T08:50:23.6576107+00:00",
+  "filename": "yet-another-cat-0.13.4.apk",
+  "url": "/downloads/yet-another-cat-0.13.4.apk",
+  "network": "devnet",
+  "buildType": "release"
+}

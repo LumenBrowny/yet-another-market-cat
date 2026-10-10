@@ -11,6 +11,9 @@
     request_body {
         max_size 1MB
     }
+    @releaseMetadata path /downloads/release.json
+    header @releaseMetadata Cache-Control "no-cache"
+    redir /downloads/yet-another-cat-0.13.3.apk /downloads/yet-another-cat-0.13.4.apk 302
     handle_path /downloads/* {
         root * /srv/downloads
         file_server
