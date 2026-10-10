@@ -1,0 +1,38 @@
+{
+  "left-purr": {
+    "rearAnchor": {
+      "x": 0.87,
+      "y": 0.7
+    },
+    "centerAnchor": {
+      "x": 0.55,
+      "y": 0.61
+    },
+    "shadowAnchor": {
+      "x": 0.55,
+      "y": 0.61
+    },
+    "mouthAnchor": {
+      "x": 0.1,
+      "y": 0.53
+    }
+  },
+  "right-purr": {
+    "rearAnchor": {
+      "x": 0.25,
+      "y": 0.77
+    },
+    "centerAnchor": {
+      "x": 0.57,
+      "y": 0.61
+    },
+    "shadowAnchor": {
+      "x": 0.57,
+      "y": 0.61
+    },
+    "mouthAnchor": {
+      "x": 0.94,
+      "y": 0.54
+    }
+  }
+}

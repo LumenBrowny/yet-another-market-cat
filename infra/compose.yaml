@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: yac005
+      POSTGRES_USER: yac
+      POSTGRES_PASSWORD: ${YAC_POSTGRES_PASSWORD:?Set ignored services env file}
+    ports: ["127.0.0.1:5435:5432"]
+    volumes: ["yac-postgres-005:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U yac -d yac005"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  minio:
+    image: quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z
+    command: server /data --console-address :9001
+    environment:
+      MINIO_ROOT_USER: ${YAC_S3_ACCESS_KEY:?Set ignored services env file}
+      MINIO_ROOT_PASSWORD: ${YAC_S3_SECRET_KEY:?Set ignored services env file}
+    ports: ["127.0.0.1:9005:9000", "127.0.0.1:9006:9001"]
+    volumes: ["yac-manifests-005:/data"]
+volumes:
+  yac-postgres-005:
+  yac-manifests-005:

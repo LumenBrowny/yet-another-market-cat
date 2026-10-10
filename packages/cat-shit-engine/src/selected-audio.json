@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "assets": {
+    "bonk-1": {
+      "duration": 0.25253968253968256,
+      "file": "bonk-1.wav",
+      "source": "bonk-1.wav",
+      "sourceSha256": "971de2cf9f4d08e0c2a833141e871372fa6057b578d91afd8bfcf40143254a20",
+      "sha256": "3ff5d2d5aba575277f5bbdb6218fe0ff0368034685075f7080e23fcc64337e4a"
+    },
+    "fart-1": {
+      "duration": 1.6022222222222222,
+      "file": "fart-1.wav",
+      "source": "farts/fart-1.mp3",
+      "sourceSha256": "3f836539c872cdf805775210a5ee15f2066dc393a568dec3ab35f1cf56b4709d",
+      "sha256": "60ec63868aae6ed3f766c6e28ec8279a6f4bd6e4c66d1318ba12501b8b4a65e1"
+    },
+    "fart-2": {
+      "duration": 1.7043083900226756,
+      "file": "fart-2.wav",
+      "source": "farts/fart-2.mp3",
+      "sourceSha256": "0545db9aff37363e51e95f5b06de5c369462493bcfe98733cb6e863badab8a4e",
+      "sha256": "c88d25c78276937d48b428e9c180ce2d2a49d7ac80ca47fa04373b9fcbacbfcb"
+    },
+    "fart-3": {
+      "duration": 0.5995011337868481,
+      "file": "fart-3.wav",
+      "source": "farts/fart-3.mp3",
+      "sourceSha256": "2c6d3494f2c1fd99e8313d613b7304e1669df304c4b93def0638f7287ad62c4c",
+      "sha256": "70d9abf861a522aae98600a2bfe31af819a3e17ee219db24585a950f000e99c4"
+    },
+    "fart-4": {
+      "duration": 5.412562358276644,
+      "file": "fart-4.wav",
+      "source": "farts/fart-4.mp3",
+      "sourceSha256": "eb3dd768ef5c8c46d04dc00f3d9b80e52a0d42f5d969eb973454034338b8f326",
+      "sha256": "d4d095fa00af62eff24fc7b50d51a31b5549a0c09353ed57bcc57e0329d0ce19"
+    },
+    "fart-5": {
+      "duration": 0.33598639455782314,
+      "file": "fart-5.wav",
+      "source": "farts/fart-5.mp3",
+      "sourceSha256": "913e217fd47cf698ee71a724cd142abef61a0a04b80e5ab6f816cd09b2f27930",
+      "sha256": "758942945b5f35259fa0d95e6c56c45fe3825c06aa980d9986d99c5cfbed3372"
+    },
+    "fart-6": {
+      "duration": 1.977641723356009,
+      "file": "fart-6.wav",
+      "source": "farts/fart-6.mp3",
+      "sourceSha256": "70bc2e42363f4fdaf190438bd8de1e8df1c4912334d607b77f09d80a25355e02",
+      "sha256": "21a3333812e4eaa802b4df928cb89d61710f3a58c0a64ce6f494930a20a24fe0"
+    },
+    "fart-7": {
+      "duration": 0.7880952380952381,
+      "file": "fart-7.wav",
+      "source": "farts/fart-7.wav",
+      "sourceSha256": "f6e4ec40a681c30e9bfee51cee6c8136f08b481c7bd3a3127004e9b86b42eed9",
+      "sha256": "6020b03ba8f2396fda31a7369d5404ebc49c37b7acc524a3339cc39b4b8d04a9",
+      "discardedIncompleteFrameBytes": 1
+    },
+    "fart-8": {
+      "duration": 3.286984126984127,
+      "file": "fart-8.wav",
+      "source": "farts/fart-8.wav",
+      "sourceSha256": "b294412bedf093c082c69fdc06e8c733b77841d8a26be6c804bf29fccc6699ff",
+      "sha256": "544f0977a3555a6049929ad40c7502451b15444ee2cc8d5af791360fd7df78e6"
+    },
+    "farting-loop": {
+      "duration": 9.349478458049887,
+      "file": "farting-loop.wav",
+      "source": "farts/farting-loop.wav",
+      "sourceSha256": "b3b328d9817ecd80f403aae91e2adc4ad3d11efc8e9a45ef5ad8b33c47c04855",
+      "sha256": "59f621d80d7a6658e5686203b9343daebcc7564c0d76c4e1dfd15984558cfd8e"
+    },
+    "short-fart-1": {
+      "duration": 0.19639455782312926,
+      "file": "short-fart-1.wav",
+      "source": "farts/short-fart-1.wav",
+      "sourceSha256": "84f6e4b200666b79bc1a2429ea7c462c3674bc81380af8ec6cf47b39eaf92d91",
+      "sha256": "5d2ac7dd650423720e942ae8c3954012f7de3a0f919bdb099ca90c804de118ca"
+    },
+    "short-fart-2": {
+      "duration": 0.20417233560090703,
+      "file": "short-fart-2.wav",
+      "source": "farts/short-fart-2.wav",
+      "sourceSha256": "b834419499ace3e2a6ebd899c031d16acdfbb808eb8b1b7c936a7cfe770e600f",
+      "sha256": "4a2fc162ae1ab3a38471900d31f5e6b5042fb5edc934b8a74204787d18434e49"
+    },
+    "short-fart-3": {
+      "duration": 0.18600907029478458,
+      "file": "short-fart-3.wav",
+      "source": "farts/short-fart-3.wav",
+      "sourceSha256": "b59fbb103d290c604b519cd0708563d7f2b90bcce676f806587d7d3bb4697bc2",
+      "sha256": "a3ceea53caac97cd8335d4b69c1a721c8869952300a09002bedde4deb73414b9"
+    },
+    "short-fart-4": {
+      "duration": 0.269297052154195,
+      "file": "short-fart-4.wav",
+      "source": "farts/short-fart-4.wav",
+      "sourceSha256": "d68486f5e4782b76fec58bbeb169abd0868dff8c778cae3c1f8df94780e8c475",
+      "sha256": "4e852d269d4310790b2d9ee3fb9b272eb0eb96ddf1ac8127978a62a652c5454a"
+    },
+    "short-fart-5": {
+      "duration": 0.3202721088435374,
+      "file": "short-fart-5.wav",
+      "source": "farts/short-fart-5.wav",
+      "sourceSha256": "cf4878c4d8342c599f11b334991034ca36224a46a8f7e13fa5d36fe9d5d92bb0",
+      "sha256": "fadd310a74e4580497cbfe7f8005c765f02d79e0ceb89acc86ded5c6e2faa13d"
+    },
+    "cat-purring": {
+      "duration": 15.247528344671203,
+      "file": "cat-purring.wav",
+      "source": "meows/cat-purring.wav",
+      "sourceSha256": "0887bba1e14e53a9688efa71a567c38c10edef568bc3724c59bcbf8617028915",
+      "sha256": "98955b69309044b8b063914288c04ac8ebeab84a8709f0ad0c0536d40ccbf569"
+    },
+    "meow-1": {
+      "duration": 0.96,
+      "file": "meow-1.wav",
+      "source": "meows/meow-1.mp3",
+      "sourceSha256": "e74318e7eb9376f5e83f955c15f4e9288e65ddee20964de809574556df753c48",
+      "sha256": "ec453dde49b8ceb2841c0c40055d854e2b87044b64a475334e2f6af29de271b9"
+    },
+    "meow-2": {
+      "duration": 1.6457142857142857,
+      "file": "meow-2.wav",
+      "source": "meows/meow-2.mp3",
+      "sourceSha256": "217fba5b43a519a8afe07731da9c787da5d2becb94b859590a1d8afdeebf5b0b",
+      "sha256": "f8a283ed21f17145987638c8b306f31bf71d1a8657f43b894a40509c18da320c"
+    },
+    "meow-3": {
+      "duration": 0.7518367346938776,
+      "file": "meow-3.wav",
+      "source": "meows/meow-3.wav",
+      "sourceSha256": "4dbf13408d8cc871207b94db8f6b5ee6083a87cec294ee448acef2af1f09e7a6",
+      "sha256": "806b6388267de5a8205e2f977f4db4558060524b74edcd5ff85d402bc856e184"
+    },
+    "meowow-0": {
+      "duration": 24.60734693877551,
+      "file": "meowow-0.wav",
+      "source": "meows/meowow-0.mp3",
+      "sourceSha256": "92d8d6442710e7ac8dc843e8c3901e05abb0272e8bf05cebdc73c5866701cf09",
+      "sha256": "0b59fe67e83097522326a0f1109bc6eb4d6a8b510025ab365e2bd29ec3d9f627"
+    },
+    "meowow-1": {
+      "duration": 7.3723356009070296,
+      "file": "meowow-1.wav",
+      "source": "meows/meowow-1.mp3",
+      "sourceSha256": "733d0138d25bf6ace93712fbd3dd85b5b4bd19220fe5e4ca30768b0ee3083693",
+      "sha256": "f49fa9707b4b0a7f134d2a0387f4f691ef364d3cecba46d347a205f86b86f485"
+    },
+    "meowow-2": {
+      "duration": 6.896326530612245,
+      "file": "meowow-2.wav",
+      "source": "meows/meowow-2.mp3",
+      "sourceSha256": "c00700f95f0cd540180c88346ba025db1aa611c7250fd98659a4638f5cb73e39",
+      "sha256": "cb0e0fa6ac14f1e4cfb7b73ef079bbdd1ab587f1854e969bd92295f7abeba0d1"
+    },
+    "meowow-3": {
+      "duration": 2.594829931972789,
+      "file": "meowow-3.wav",
+      "source": "meows/meowow-3.wav",
+      "sourceSha256": "2a6fc53ec3c33f454eb6dd64be1e038352bafaf53f009be78d5340139602dcef",
+      "sha256": "fcb6afb876a61069d09bf72d9ebd4ba41cb93b429260bb4d819eb1ae7c92512d"
+    }
+  },
+  "tiers": {
+    "DEAD_INSIDE": {
+      "farts": {
+        "min": 0,
+        "max": 0,
+        "voices": 0,
+        "clips": []
+      },
+      "meows": {
+        "min": 0.0,
+        "max": 0.0,
+        "voices": 1,
+        "clips": []
+      },
+      "loop": "cat-purring"
+    },
+    "CALM": {
+      "farts": {
+        "min": 1.0,
+        "max": 1.0,
+        "voices": 1,
+        "clips": [
+          "short-fart-1",
+          "short-fart-2",
+          "short-fart-3",
+          "short-fart-4",
+          "short-fart-5"
+        ]
+      },
+      "meows": {
+        "min": 7.0,
+        "max": 10.0,
+        "voices": 1,
+        "clips": [
+          "meow-1",
+          "meow-2",
+          "meow-3"
+        ]
+      },
+      "loop": null
+    },
+    "SUSPICIOUS": {
+      "farts": {
+        "min": 0.67,
+        "max": 0.67,
+        "voices": 1,
+        "clips": [
+          "short-fart-1",
+          "short-fart-2",
+          "short-fart-3",
+          "short-fart-4",
+          "short-fart-5"
+        ]
+      },
+      "meows": {
+        "min": 6.0,
+        "max": 9.0,
+        "voices": 1,
+        "clips": [
+          "meow-1",
+          "meow-2",
+          "meow-3"
+        ]
+      },
+      "loop": null
+    },
+    "ACTIVE": {
+      "farts": {
+        "min": 0.5,
+        "max": 0.5,
+        "voices": 1,
+        "clips": [
+          "short-fart-1",
+          "short-fart-2",
+          "short-fart-3",
+          "short-fart-4",
+          "short-fart-5"
+        ]
+      },
+      "meows": {
+        "min": 5.0,
+        "max": 8.0,
+        "voices": 1,
+        "clips": [
+          "meow-1",
+          "meow-2",
+          "meow-3"
+        ]
+      },
+      "loop": null
+    },
+    "CONCERNED": {
+      "farts": {
+        "min": 0.33,
+        "max": 0.33,
+        "voices": 1,
+        "clips": [
+          "short-fart-1",
+          "short-fart-2",
+          "short-fart-3",
+          "short-fart-4",
+          "short-fart-5"
+        ]
+      },
+      "meows": {
+        "min": 4.0,
+        "max": 7.0,
+        "voices": 1,
+        "clips": [
+          "meow-1",
+          "meow-2",
+          "meow-3"
+        ]
+      },
+      "loop": null
+    },
+    "DISTRESSED": {
+      "farts": {
+        "min": 1.0,
+        "max": 3.0,
+        "voices": 2,
+        "clips": [
+          "fart-1",
+          "fart-2",
+          "fart-3",
+          "fart-4",
+          "fart-5",
+          "fart-6",
+          "fart-7",
+          "fart-8"
+        ]
+      },
+      "meows": {
+        "min": 3.0,
+        "max": 5.0,
+        "voices": 1,
+        "clips": [
+          "meow-1",
+          "meow-2",
+          "meow-3"
+        ]
+      },
+      "loop": null
+    },
+    "AIRBORNE": {
+      "farts": {
+        "min": 2.0,
+        "max": 3.0,
+        "voices": 1,
+        "clips": [
+          "fart-1",
+          "fart-2",
+          "fart-3",
+          "fart-4",
+          "fart-5",
+          "fart-6",
+          "fart-7",
+          "fart-8"
+        ]
+      },
+      "meows": {
+        "min": 2.0,
+        "max": 3.0,
+        "voices": 1,
+        "clips": [
+          "meowow-0"
+        ]
+      },
+      "loop": "farting-loop"
+    },
+    "PANIC": {
+      "farts": {
+        "min": 1.5,
+        "max": 3.0,
+        "voices": 2,
+        "clips": [
+          "fart-1",
+          "fart-2",
+          "fart-3",
+          "fart-4",
+          "fart-5",
+          "fart-6",
+          "fart-7",
+          "fart-8"
+        ]
+      },
+      "meows": {
+        "min": 5.0,
+        "max": 7.0,
+        "voices": 1,
+        "clips": [
+          "meowow-1",
+          "meowow-2",
+          "meowow-3"
+        ]
+      },
+      "loop": "farting-loop"
+    },
+    "OVERDRIVE": {
+      "farts": {
+        "min": 1.0,
+        "max": 2.0,
+        "voices": 2,
+        "clips": [
+          "fart-1",
+          "fart-2",
+          "fart-3",
+          "fart-4",
+          "fart-5",
+          "fart-6",
+          "fart-7",
+          "fart-8"
+        ]
+      },
+      "meows": {
+        "min": 3.0,
+        "max": 5.0,
+        "voices": 1,
+        "clips": [
+          "meowow-1",
+          "meowow-2",
+          "meowow-3"
+        ]
+      },
+      "loop": "farting-loop"
+    },
+    "TRANSCENDENT": {
+      "farts": {
+        "min": 0.5,
+        "max": 1.0,
+        "voices": 3,
+        "clips": [
+          "fart-1",
+          "fart-2",
+          "fart-3",
+          "fart-4",
+          "fart-5",
+          "fart-6",
+          "fart-7",
+          "fart-8"
+        ]
+      },
+      "meows": {
+        "min": 1.0,
+        "max": 3.0,
+        "voices": 1,
+        "clips": [
+          "meowow-1",
+          "meowow-2",
+          "meowow-3"
+        ]
+      },
+      "loop": "farting-loop"
+    }
+  }
+}

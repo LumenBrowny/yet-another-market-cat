@@ -1,0 +1,290 @@
+{
+  "front": {
+    "id": "front",
+    "imagePath": "yamc/front.png",
+    "direction": "front",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.54,
+      "y": 0.69
+    },
+    "centerAnchor": {
+      "x": 0.53,
+      "y": 0.56
+    },
+    "shadowAnchor": {
+      "x": 0.53,
+      "y": 0.56
+    },
+    "mouthAnchor": {
+      "x": 0.58,
+      "y": 0.45
+    },
+    "rotationBias": 0
+  },
+  "front-left": {
+    "id": "front-left",
+    "imagePath": "yamc/front-left.png",
+    "direction": "front-left",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.78,
+      "y": 0.6
+    },
+    "centerAnchor": {
+      "x": 0.54,
+      "y": 0.58
+    },
+    "shadowAnchor": {
+      "x": 0.54,
+      "y": 0.58
+    },
+    "mouthAnchor": {
+      "x": 0.3,
+      "y": 0.43
+    },
+    "rotationBias": 0
+  },
+  "left": {
+    "id": "left",
+    "imagePath": "yamc/left.png",
+    "direction": "left",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.84,
+      "y": 0.6
+    },
+    "centerAnchor": {
+      "x": 0.55,
+      "y": 0.55
+    },
+    "shadowAnchor": {
+      "x": 0.55,
+      "y": 0.55
+    },
+    "mouthAnchor": {
+      "x": 0.1,
+      "y": 0.46
+    },
+    "rotationBias": 0
+  },
+  "back-left": {
+    "id": "back-left",
+    "imagePath": "yamc/back-left.png",
+    "direction": "back-left",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.72,
+      "y": 0.64
+    },
+    "centerAnchor": {
+      "x": 0.52,
+      "y": 0.53
+    },
+    "shadowAnchor": {
+      "x": 0.52,
+      "y": 0.53
+    },
+    "mouthAnchor": {
+      "x": 0.22,
+      "y": 0.42
+    },
+    "rotationBias": 0
+  },
+  "back": {
+    "id": "back",
+    "imagePath": "yamc/back.png",
+    "direction": "back",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.51,
+      "y": 0.63
+    },
+    "centerAnchor": {
+      "x": 0.56,
+      "y": 0.51
+    },
+    "shadowAnchor": {
+      "x": 0.56,
+      "y": 0.51
+    },
+    "mouthAnchor": {
+      "x": 0.61,
+      "y": 0.3
+    },
+    "rotationBias": 0
+  },
+  "back-right": {
+    "id": "back-right",
+    "imagePath": "yamc/back-right.png",
+    "direction": "back-right",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.3,
+      "y": 0.6
+    },
+    "centerAnchor": {
+      "x": 0.55,
+      "y": 0.54
+    },
+    "shadowAnchor": {
+      "x": 0.55,
+      "y": 0.54
+    },
+    "mouthAnchor": {
+      "x": 0.89,
+      "y": 0.41
+    },
+    "rotationBias": 0
+  },
+  "right": {
+    "id": "right",
+    "imagePath": "yamc/right.png",
+    "direction": "right",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.23,
+      "y": 0.59
+    },
+    "centerAnchor": {
+      "x": 0.53,
+      "y": 0.56
+    },
+    "shadowAnchor": {
+      "x": 0.53,
+      "y": 0.56
+    },
+    "mouthAnchor": {
+      "x": 0.92,
+      "y": 0.45
+    },
+    "rotationBias": 0
+  },
+  "front-right": {
+    "id": "front-right",
+    "imagePath": "yamc/front-right.png",
+    "direction": "front-right",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.21,
+      "y": 0.53
+    },
+    "centerAnchor": {
+      "x": 0.53,
+      "y": 0.58
+    },
+    "shadowAnchor": {
+      "x": 0.53,
+      "y": 0.58
+    },
+    "mouthAnchor": {
+      "x": 0.74,
+      "y": 0.49
+    },
+    "rotationBias": 0
+  },
+  "upward-thrust": {
+    "id": "upward-thrust",
+    "imagePath": "yamc/upward-thrust.png",
+    "direction": "front",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.39,
+      "y": 0.69
+    },
+    "centerAnchor": {
+      "x": 0.57,
+      "y": 0.53
+    },
+    "shadowAnchor": {
+      "x": 0.57,
+      "y": 0.53
+    },
+    "mouthAnchor": {
+      "x": 0.74,
+      "y": 0.33
+    },
+    "rotationBias": 0
+  },
+  "falling": {
+    "id": "falling",
+    "imagePath": "yamc/falling.png",
+    "direction": "front",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.42,
+      "y": 0.78
+    },
+    "centerAnchor": {
+      "x": 0.54,
+      "y": 0.56
+    },
+    "shadowAnchor": {
+      "x": 0.54,
+      "y": 0.56
+    },
+    "mouthAnchor": {
+      "x": 0.66,
+      "y": 0.49
+    },
+    "rotationBias": 0
+  },
+  "bonk-impact": {
+    "id": "bonk-impact",
+    "imagePath": "yamc/bonk-impact.png",
+    "direction": "front",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.52,
+      "y": 0.76
+    },
+    "centerAnchor": {
+      "x": 0.55,
+      "y": 0.54
+    },
+    "shadowAnchor": {
+      "x": 0.55,
+      "y": 0.54
+    },
+    "mouthAnchor": {
+      "x": 0.64,
+      "y": 0.38
+    },
+    "rotationBias": 0
+  },
+  "transcendent-panic": {
+    "id": "transcendent-panic",
+    "imagePath": "yamc/transcendent-panic.png",
+    "direction": "front",
+    "defaultScale": 0.82,
+    "zScaleBias": 0,
+    "rearAnchor": {
+      "x": 0.4,
+      "y": 0.75
+    },
+    "centerAnchor": {
+      "x": 0.51,
+      "y": 0.53
+    },
+    "shadowAnchor": {
+      "x": 0.51,
+      "y": 0.53
+    },
+    "mouthAnchor": {
+      "x": 0.62,
+      "y": 0.45
+    },
+    "rotationBias": 0
+  }
+}

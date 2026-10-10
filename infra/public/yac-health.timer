@@ -1,0 +1,7 @@
+[Unit]
+Description=YAC health every five minutes (failures recorded in journal)
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=5min
+[Install]
+WantedBy=timers.target

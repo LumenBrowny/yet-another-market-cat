@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="YetAnotherCat.Accounting/YetAnotherCat.Accounting.csproj" />
+  <Project Path="YetAnotherCat.Api/YetAnotherCat.Api.csproj" />
+  <Project Path="YetAnotherCat.Infrastructure/YetAnotherCat.Infrastructure.csproj" />
+  <Project Path="YetAnotherCat.Tests/YetAnotherCat.Tests.csproj" />
+</Solution>

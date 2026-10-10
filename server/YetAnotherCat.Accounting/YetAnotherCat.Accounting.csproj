@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <EmbeddedResource Include="../../protocol/mining-tiers.json" Link="mining-tiers.json" />
+  </ItemGroup>
+</Project>

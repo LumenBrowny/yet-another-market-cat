@@ -1,0 +1,1643 @@
+[
+  {
+    "manifest": {
+      "version": 1,
+      "project": "yet-another-cat",
+      "programId": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "mint": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "genesisHash": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "cycleId": "42",
+      "startTime": "1000",
+      "endTime": "1100",
+      "pointScale": "1000",
+      "totalPointUnits": "0",
+      "rewardBudgetBaseUnits": "10001",
+      "totalAllocatedBaseUnits": "0",
+      "leafCount": 0,
+      "merkleRoot": "8977d056482ac9d23115bcc9540e0b08857503c0d4ba7dca0740034703b42855",
+      "miners": []
+    },
+    "canonical": "{\"version\":1,\"project\":\"yet-another-cat\",\"programId\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"mint\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"genesisHash\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"cycleId\":\"42\",\"startTime\":\"1000\",\"endTime\":\"1100\",\"pointScale\":\"1000\",\"totalPointUnits\":\"0\",\"rewardBudgetBaseUnits\":\"10001\",\"totalAllocatedBaseUnits\":\"0\",\"leafCount\":0,\"merkleRoot\":\"8977d056482ac9d23115bcc9540e0b08857503c0d4ba7dca0740034703b42855\",\"miners\":[]}",
+    "manifestHash": "4ffb42ada51d0bf1b878fe787f2bf157979d7e450d2823ee73b9b57877c8d118",
+    "leaves": []
+  },
+  {
+    "manifest": {
+      "version": 1,
+      "project": "yet-another-cat",
+      "programId": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "mint": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "genesisHash": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "cycleId": "42",
+      "startTime": "1000",
+      "endTime": "1100",
+      "pointScale": "1000",
+      "totalPointUnits": "1500",
+      "rewardBudgetBaseUnits": "10001",
+      "totalAllocatedBaseUnits": "10001",
+      "leafCount": 1,
+      "merkleRoot": "a240ba63c1b2c1ba4c6a4af174146e4c70927c67c4d0b61847708ec88e5fcce5",
+      "miners": [
+        {
+          "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+          "pointUnits": "1500",
+          "rewardBaseUnits": "10001"
+        }
+      ]
+    },
+    "canonical": "{\"version\":1,\"project\":\"yet-another-cat\",\"programId\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"mint\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"genesisHash\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"cycleId\":\"42\",\"startTime\":\"1000\",\"endTime\":\"1100\",\"pointScale\":\"1000\",\"totalPointUnits\":\"1500\",\"rewardBudgetBaseUnits\":\"10001\",\"totalAllocatedBaseUnits\":\"10001\",\"leafCount\":1,\"merkleRoot\":\"a240ba63c1b2c1ba4c6a4af174146e4c70927c67c4d0b61847708ec88e5fcce5\",\"miners\":[{\"wallet\":\"4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi\",\"pointUnits\":\"1500\",\"rewardBaseUnits\":\"10001\"}]}",
+    "manifestHash": "64c47a27ed768e3b5696be5047336c44b91b95bc8f7305ca673a1a2c11db658b",
+    "leaves": [
+      {
+        "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+        "pointUnits": "1500",
+        "rewardBaseUnits": "10001",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000005dc1127000000000000",
+        "hash": "a240ba63c1b2c1ba4c6a4af174146e4c70927c67c4d0b61847708ec88e5fcce5",
+        "proof": []
+      }
+    ]
+  },
+  {
+    "manifest": {
+      "version": 1,
+      "project": "yet-another-cat",
+      "programId": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "mint": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "genesisHash": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "cycleId": "42",
+      "startTime": "1000",
+      "endTime": "1100",
+      "pointScale": "1000",
+      "totalPointUnits": "4500",
+      "rewardBudgetBaseUnits": "10001",
+      "totalAllocatedBaseUnits": "10001",
+      "leafCount": 2,
+      "merkleRoot": "ee422efca0637a5f94989be1fff06463c239a0376253cd2ce81ef08008f0fff5",
+      "miners": [
+        {
+          "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+          "pointUnits": "1500",
+          "rewardBaseUnits": "3334"
+        },
+        {
+          "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+          "pointUnits": "3000",
+          "rewardBaseUnits": "6667"
+        }
+      ]
+    },
+    "canonical": "{\"version\":1,\"project\":\"yet-another-cat\",\"programId\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"mint\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"genesisHash\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"cycleId\":\"42\",\"startTime\":\"1000\",\"endTime\":\"1100\",\"pointScale\":\"1000\",\"totalPointUnits\":\"4500\",\"rewardBudgetBaseUnits\":\"10001\",\"totalAllocatedBaseUnits\":\"10001\",\"leafCount\":2,\"merkleRoot\":\"ee422efca0637a5f94989be1fff06463c239a0376253cd2ce81ef08008f0fff5\",\"miners\":[{\"wallet\":\"4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi\",\"pointUnits\":\"1500\",\"rewardBaseUnits\":\"3334\"},{\"wallet\":\"8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR\",\"pointUnits\":\"3000\",\"rewardBaseUnits\":\"6667\"}]}",
+    "manifestHash": "e745007288d0b003b43fef12575c567c74c194f1d5a8357a3636f28404b0c33b",
+    "leaves": [
+      {
+        "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+        "pointUnits": "1500",
+        "rewardBaseUnits": "3334",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000005dc060d000000000000",
+        "hash": "8fd6a9908731fcfdb5c5e97d348e86894882b11fa8fd22b30e9ff422f1d2a268",
+        "proof": [
+          {
+            "hash": "687bae2c0a38bf86469c6bac2422fa960548e70982305860be2cb193e8d90438",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+        "pointUnits": "3000",
+        "rewardBaseUnits": "6667",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000002020202020202020202020202020202020202020202020202020202020202020000000000000000000000000000000000000000000000000000000000000bb80b1a000000000000",
+        "hash": "687bae2c0a38bf86469c6bac2422fa960548e70982305860be2cb193e8d90438",
+        "proof": [
+          {
+            "hash": "8fd6a9908731fcfdb5c5e97d348e86894882b11fa8fd22b30e9ff422f1d2a268",
+            "left": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "manifest": {
+      "version": 1,
+      "project": "yet-another-cat",
+      "programId": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "mint": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "genesisHash": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "cycleId": "42",
+      "startTime": "1000",
+      "endTime": "1100",
+      "pointScale": "1000",
+      "totalPointUnits": "9000",
+      "rewardBudgetBaseUnits": "10001",
+      "totalAllocatedBaseUnits": "10001",
+      "leafCount": 3,
+      "merkleRoot": "7f04a2ecb9a841b5f43d9a5392a5bfd79ffe998ef91da53bc5452311f62b29ee",
+      "miners": [
+        {
+          "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+          "pointUnits": "1500",
+          "rewardBaseUnits": "1667"
+        },
+        {
+          "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+          "pointUnits": "3000",
+          "rewardBaseUnits": "3334"
+        },
+        {
+          "wallet": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+          "pointUnits": "4500",
+          "rewardBaseUnits": "5000"
+        }
+      ]
+    },
+    "canonical": "{\"version\":1,\"project\":\"yet-another-cat\",\"programId\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"mint\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"genesisHash\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"cycleId\":\"42\",\"startTime\":\"1000\",\"endTime\":\"1100\",\"pointScale\":\"1000\",\"totalPointUnits\":\"9000\",\"rewardBudgetBaseUnits\":\"10001\",\"totalAllocatedBaseUnits\":\"10001\",\"leafCount\":3,\"merkleRoot\":\"7f04a2ecb9a841b5f43d9a5392a5bfd79ffe998ef91da53bc5452311f62b29ee\",\"miners\":[{\"wallet\":\"4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi\",\"pointUnits\":\"1500\",\"rewardBaseUnits\":\"1667\"},{\"wallet\":\"8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR\",\"pointUnits\":\"3000\",\"rewardBaseUnits\":\"3334\"},{\"wallet\":\"CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8\",\"pointUnits\":\"4500\",\"rewardBaseUnits\":\"5000\"}]}",
+    "manifestHash": "ad35f43f74fda6420b2358fa36f8aaec0d655d9f59bdcc2a747328051e79802b",
+    "leaves": [
+      {
+        "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+        "pointUnits": "1500",
+        "rewardBaseUnits": "1667",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000005dc8306000000000000",
+        "hash": "10368063e3e9bd128be173cbb94aeba4b2d0575e881089c38c344c89e2951781",
+        "proof": [
+          {
+            "hash": "ec2d85c6fa5c014a1ab0b65e67f3bb1b2fd9228265fe8325b88855591db2c14e",
+            "left": false
+          },
+          {
+            "hash": "cdb70369d2d480c6a16f1c9fab6d5c7f5999243d0c6db624dd19fac4f9c6b76f",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+        "pointUnits": "3000",
+        "rewardBaseUnits": "3334",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000002020202020202020202020202020202020202020202020202020202020202020000000000000000000000000000000000000000000000000000000000000bb8060d000000000000",
+        "hash": "ec2d85c6fa5c014a1ab0b65e67f3bb1b2fd9228265fe8325b88855591db2c14e",
+        "proof": [
+          {
+            "hash": "10368063e3e9bd128be173cbb94aeba4b2d0575e881089c38c344c89e2951781",
+            "left": true
+          },
+          {
+            "hash": "cdb70369d2d480c6a16f1c9fab6d5c7f5999243d0c6db624dd19fac4f9c6b76f",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+        "pointUnits": "4500",
+        "rewardBaseUnits": "5000",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000030303030303030303030303030303030303030303030303030303030303030300000000000000000000000000000000000000000000000000000000000011948813000000000000",
+        "hash": "2f4cef97c7ea4053e32a041963ab832edc37535d6eeb0a6f62c3646f942bde55",
+        "proof": [
+          {
+            "hash": "2f4cef97c7ea4053e32a041963ab832edc37535d6eeb0a6f62c3646f942bde55",
+            "left": false
+          },
+          {
+            "hash": "77a82e14c221ee51e276a25137ae18556a85082a926c8762a99a545d73e7664b",
+            "left": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "manifest": {
+      "version": 1,
+      "project": "yet-another-cat",
+      "programId": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "mint": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "genesisHash": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "cycleId": "42",
+      "startTime": "1000",
+      "endTime": "1100",
+      "pointScale": "1000",
+      "totalPointUnits": "22500",
+      "rewardBudgetBaseUnits": "10001",
+      "totalAllocatedBaseUnits": "10001",
+      "leafCount": 5,
+      "merkleRoot": "64777077cca3fff93d7500ce6e35c192c3a4a9c7c6e389e0cf53bf2be8a1ae06",
+      "miners": [
+        {
+          "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+          "pointUnits": "1500",
+          "rewardBaseUnits": "667"
+        },
+        {
+          "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+          "pointUnits": "3000",
+          "rewardBaseUnits": "1333"
+        },
+        {
+          "wallet": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+          "pointUnits": "4500",
+          "rewardBaseUnits": "2000"
+        },
+        {
+          "wallet": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+          "pointUnits": "6000",
+          "rewardBaseUnits": "2667"
+        },
+        {
+          "wallet": "LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY",
+          "pointUnits": "7500",
+          "rewardBaseUnits": "3334"
+        }
+      ]
+    },
+    "canonical": "{\"version\":1,\"project\":\"yet-another-cat\",\"programId\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"mint\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"genesisHash\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"cycleId\":\"42\",\"startTime\":\"1000\",\"endTime\":\"1100\",\"pointScale\":\"1000\",\"totalPointUnits\":\"22500\",\"rewardBudgetBaseUnits\":\"10001\",\"totalAllocatedBaseUnits\":\"10001\",\"leafCount\":5,\"merkleRoot\":\"64777077cca3fff93d7500ce6e35c192c3a4a9c7c6e389e0cf53bf2be8a1ae06\",\"miners\":[{\"wallet\":\"4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi\",\"pointUnits\":\"1500\",\"rewardBaseUnits\":\"667\"},{\"wallet\":\"8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR\",\"pointUnits\":\"3000\",\"rewardBaseUnits\":\"1333\"},{\"wallet\":\"CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8\",\"pointUnits\":\"4500\",\"rewardBaseUnits\":\"2000\"},{\"wallet\":\"GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq\",\"pointUnits\":\"6000\",\"rewardBaseUnits\":\"2667\"},{\"wallet\":\"LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY\",\"pointUnits\":\"7500\",\"rewardBaseUnits\":\"3334\"}]}",
+    "manifestHash": "aa5b3e301880a868ad22b612d2c8809d571077a0945366e0dc9af8007be6e4be",
+    "leaves": [
+      {
+        "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+        "pointUnits": "1500",
+        "rewardBaseUnits": "667",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000005dc9b02000000000000",
+        "hash": "970c77c88ba6a97969d54eed741b4bce2b13f41f445f6ea849e6d4ac25ad5fac",
+        "proof": [
+          {
+            "hash": "a36b7245077e3617878a213678031bdb69e4a19c117079c4048f2e2017fd51d7",
+            "left": false
+          },
+          {
+            "hash": "b4b992775c87bc4d40cfacbd41f0d274d78849e24f2638bd74e3275a9b360cf6",
+            "left": false
+          },
+          {
+            "hash": "c6643df21896eec72c5622c907c1f201418ad251c6be35d6cc5f6d78bbdfc893",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+        "pointUnits": "3000",
+        "rewardBaseUnits": "1333",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000002020202020202020202020202020202020202020202020202020202020202020000000000000000000000000000000000000000000000000000000000000bb83505000000000000",
+        "hash": "a36b7245077e3617878a213678031bdb69e4a19c117079c4048f2e2017fd51d7",
+        "proof": [
+          {
+            "hash": "970c77c88ba6a97969d54eed741b4bce2b13f41f445f6ea849e6d4ac25ad5fac",
+            "left": true
+          },
+          {
+            "hash": "b4b992775c87bc4d40cfacbd41f0d274d78849e24f2638bd74e3275a9b360cf6",
+            "left": false
+          },
+          {
+            "hash": "c6643df21896eec72c5622c907c1f201418ad251c6be35d6cc5f6d78bbdfc893",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+        "pointUnits": "4500",
+        "rewardBaseUnits": "2000",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000003030303030303030303030303030303030303030303030303030303030303030000000000000000000000000000000000000000000000000000000000001194d007000000000000",
+        "hash": "ed828e6f538a9b96a4b9e3adab99823cf4695156a937c2c1d25288e96f995431",
+        "proof": [
+          {
+            "hash": "0e87dab228ddb34bf305c9204a3dc17572eb96718adfa4d3fd49f46e04c404b5",
+            "left": false
+          },
+          {
+            "hash": "e7227a668ed2574c6687e494508f33c363c0cb744d5c873b114b33b48ce1ead7",
+            "left": true
+          },
+          {
+            "hash": "c6643df21896eec72c5622c907c1f201418ad251c6be35d6cc5f6d78bbdfc893",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+        "pointUnits": "6000",
+        "rewardBaseUnits": "2667",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000040404040404040404040404040404040404040404040404040404040404040400000000000000000000000000000000000000000000000000000000000017706b0a000000000000",
+        "hash": "0e87dab228ddb34bf305c9204a3dc17572eb96718adfa4d3fd49f46e04c404b5",
+        "proof": [
+          {
+            "hash": "ed828e6f538a9b96a4b9e3adab99823cf4695156a937c2c1d25288e96f995431",
+            "left": true
+          },
+          {
+            "hash": "e7227a668ed2574c6687e494508f33c363c0cb744d5c873b114b33b48ce1ead7",
+            "left": true
+          },
+          {
+            "hash": "c6643df21896eec72c5622c907c1f201418ad251c6be35d6cc5f6d78bbdfc893",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY",
+        "pointUnits": "7500",
+        "rewardBaseUnits": "3334",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000005050505050505050505050505050505050505050505050505050505050505050000000000000000000000000000000000000000000000000000000000001d4c060d000000000000",
+        "hash": "cfcec554573d0419a4f6547d106e41cd64ea3b6abab778e5783f3116c26a3c87",
+        "proof": [
+          {
+            "hash": "cfcec554573d0419a4f6547d106e41cd64ea3b6abab778e5783f3116c26a3c87",
+            "left": false
+          },
+          {
+            "hash": "9ef0f90a9b04f1b467abadf89245d4a5688b69089a966988a48f892b0156128c",
+            "left": false
+          },
+          {
+            "hash": "8a26a7c6c60b9a3dd9362fe44fb115f3dcb23487341dc8891fa7591899d25e46",
+            "left": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "manifest": {
+      "version": 1,
+      "project": "yet-another-cat",
+      "programId": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "mint": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "genesisHash": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+      "cycleId": "42",
+      "startTime": "1000",
+      "endTime": "1100",
+      "pointScale": "1000",
+      "totalPointUnits": "841500",
+      "rewardBudgetBaseUnits": "10001",
+      "totalAllocatedBaseUnits": "10001",
+      "leafCount": 33,
+      "merkleRoot": "b1884f0f5d08fb16e06230d74144968dfde39c190a8acec026e6e4ae5b108186",
+      "miners": [
+        {
+          "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+          "pointUnits": "1500",
+          "rewardBaseUnits": "18"
+        },
+        {
+          "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+          "pointUnits": "3000",
+          "rewardBaseUnits": "36"
+        },
+        {
+          "wallet": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+          "pointUnits": "4500",
+          "rewardBaseUnits": "53"
+        },
+        {
+          "wallet": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+          "pointUnits": "6000",
+          "rewardBaseUnits": "71"
+        },
+        {
+          "wallet": "LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY",
+          "pointUnits": "7500",
+          "rewardBaseUnits": "89"
+        },
+        {
+          "wallet": "QWmroo4YnnMqYW3cnxWkFdaTxGD3P7vMSzwMHGbUzwF",
+          "pointUnits": "9000",
+          "rewardBaseUnits": "107"
+        },
+        {
+          "wallet": "US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx",
+          "pointUnits": "10500",
+          "rewardBaseUnits": "125"
+        },
+        {
+          "wallet": "YMN9Qj5jPNp7j14VPcML1B6xGgcPWVZUGLFU3Mnyfaf",
+          "pointUnits": "12000",
+          "rewardBaseUnits": "143"
+        },
+        {
+          "wallet": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+          "pointUnits": "13500",
+          "rewardBaseUnits": "160"
+        },
+        {
+          "wallet": "gBxS1f6uyyGPuW5MzGBukidSb71jdsCb5fZaoSzULE5",
+          "pointUnits": "15000",
+          "rewardBaseUnits": "178"
+        },
+        {
+          "wallet": "k7FaK87WHGVXzkaoHb7CdVPgkKDQhZ29VLDeBVbDfYn",
+          "pointUnits": "16500",
+          "rewardBaseUnits": "196"
+        },
+        {
+          "wallet": "p2Yicb86aZig616Eav2VWG9vuXR5mEqhtzshZYBxzsV",
+          "pointUnits": "18000",
+          "rewardBaseUnits": "214"
+        },
+        {
+          "wallet": "swqrv48gsrwpBFbftEwnP2vB4jckpvfGJfXkwaniLCC",
+          "pointUnits": "19500",
+          "rewardBaseUnits": "232"
+        },
+        {
+          "wallet": "ws91DX9HBAAxGW77BZs5FogRDwpRtcUpiLBpKdPTfWu",
+          "pointUnits": "21000",
+          "rewardBaseUnits": "250"
+        },
+        {
+          "wallet": "21nS9Wz9sUTQ6MkcYUtnN8aSfPA26xJJP7zqshfzCzqc",
+          "pointUnits": "22500",
+          "rewardBaseUnits": "267"
+        },
+        {
+          "wallet": "25hjHpTATmkdET17ynDhf1MCuYNDn1z7wXfVw5iaxLAK",
+          "pointUnits": "24000",
+          "rewardBaseUnits": "285"
+        },
+        {
+          "wallet": "29d2S7vB453rNYFdR5Ycwt7y9haRT5fwVwL9zTmBhfV2",
+          "pointUnits": "25500",
+          "rewardBaseUnits": "303"
+        },
+        {
+          "wallet": "2DYKaRPBeNM5WdW8rNsYEktjPrnd89Mm4Lzp3qonSzoj",
+          "pointUnits": "27000",
+          "rewardBaseUnits": "321"
+        },
+        {
+          "wallet": "2HTciirCEfeJeikeHgCTXdfVe1zpoD3ackfU7DrPCL8S",
+          "pointUnits": "28500",
+          "rewardBaseUnits": "339"
+        },
+        {
+          "wallet": "2MNus2KCpxwXnp19iyXNpWSFtBD2UGjQBAL8AbtywfT9",
+          "pointUnits": "30000",
+          "rewardBaseUnits": "357"
+        },
+        {
+          "wallet": "2RJD1KnDRGEkvuFfAGrJ7PD28LRE9LRDjZznDywagzmr",
+          "pointUnits": "31500",
+          "rewardBaseUnits": "374"
+        },
+        {
+          "wallet": "2VDW9dFE1ZXz4zWAbaBDQFynNVdRpQ73HyfSHMzBSL6Z",
+          "pointUnits": "33000",
+          "rewardBaseUnits": "392"
+        },
+        {
+          "wallet": "2Z8oHviEbrqDD5kg2sW8h8kYceqdVTnrrPL6Lk2nBfRG",
+          "pointUnits": "34500",
+          "rewardBaseUnits": "410"
+        },
+        {
+          "wallet": "2d46SEBFCA8SMB1BUAq3z1XJrp3qAXUgQnzkQ85Nvzjy",
+          "pointUnits": "36000",
+          "rewardBaseUnits": "428"
+        },
+        {
+          "wallet": "2gyPaXeFnTRfVGFguU9yGtJ56yG2qbAVyCfQTW7ygL4g",
+          "pointUnits": "37500",
+          "rewardBaseUnits": "446"
+        },
+        {
+          "wallet": "2ktgiq7GNkitdMWCLmUtZm4qM8UEWerKXcL4WtAaRfPP",
+          "pointUnits": "39000",
+          "rewardBaseUnits": "464"
+        },
+        {
+          "wallet": "2poys8aGy427mSkhn4oordqbbHgSBiY961ziaGDBAzi6",
+          "pointUnits": "40500",
+          "rewardBaseUnits": "481"
+        },
+        {
+          "wallet": "2tjH1S3HZMKLuY1DDN8j9WcMqStdrnDxeRfNdeFmvL2o",
+          "pointUnits": "42000",
+          "rewardBaseUnits": "499"
+        },
+        {
+          "wallet": "2xea9jWJ9eca3dFiefTeSPP85c6qXqunCqL2h2JNffMW",
+          "pointUnits": "43500",
+          "rewardBaseUnits": "517"
+        },
+        {
+          "wallet": "32ZsJ2yJjwuoBiWE5xnZjG9tKmK3CubbmEzgkQLyQzgD",
+          "pointUnits": "45000",
+          "rewardBaseUnits": "535"
+        },
+        {
+          "wallet": "36VASLSKLFD2KokjXG7V28veZvXEsyHRKefLonPaAKzv",
+          "pointUnits": "46500",
+          "rewardBaseUnits": "553"
+        },
+        {
+          "wallet": "3AQTaduKvYWFTu1ExZSQK1hQp5jSZ2yEt4KzsASAufKd",
+          "pointUnits": "48000",
+          "rewardBaseUnits": "570"
+        },
+        {
+          "wallet": "3EKkiwNLWqoUbzFkPrmKbtUB4EweE6f4STzevYUmezeL",
+          "pointUnits": "49500",
+          "rewardBaseUnits": "588"
+        }
+      ]
+    },
+    "canonical": "{\"version\":1,\"project\":\"yet-another-cat\",\"programId\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"mint\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"genesisHash\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"cycleId\":\"42\",\"startTime\":\"1000\",\"endTime\":\"1100\",\"pointScale\":\"1000\",\"totalPointUnits\":\"841500\",\"rewardBudgetBaseUnits\":\"10001\",\"totalAllocatedBaseUnits\":\"10001\",\"leafCount\":33,\"merkleRoot\":\"b1884f0f5d08fb16e06230d74144968dfde39c190a8acec026e6e4ae5b108186\",\"miners\":[{\"wallet\":\"4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi\",\"pointUnits\":\"1500\",\"rewardBaseUnits\":\"18\"},{\"wallet\":\"8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR\",\"pointUnits\":\"3000\",\"rewardBaseUnits\":\"36\"},{\"wallet\":\"CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8\",\"pointUnits\":\"4500\",\"rewardBaseUnits\":\"53\"},{\"wallet\":\"GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq\",\"pointUnits\":\"6000\",\"rewardBaseUnits\":\"71\"},{\"wallet\":\"LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY\",\"pointUnits\":\"7500\",\"rewardBaseUnits\":\"89\"},{\"wallet\":\"QWmroo4YnnMqYW3cnxWkFdaTxGD3P7vMSzwMHGbUzwF\",\"pointUnits\":\"9000\",\"rewardBaseUnits\":\"107\"},{\"wallet\":\"US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx\",\"pointUnits\":\"10500\",\"rewardBaseUnits\":\"125\"},{\"wallet\":\"YMN9Qj5jPNp7j14VPcML1B6xGgcPWVZUGLFU3Mnyfaf\",\"pointUnits\":\"12000\",\"rewardBaseUnits\":\"143\"},{\"wallet\":\"cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN\",\"pointUnits\":\"13500\",\"rewardBaseUnits\":\"160\"},{\"wallet\":\"gBxS1f6uyyGPuW5MzGBukidSb71jdsCb5fZaoSzULE5\",\"pointUnits\":\"15000\",\"rewardBaseUnits\":\"178\"},{\"wallet\":\"k7FaK87WHGVXzkaoHb7CdVPgkKDQhZ29VLDeBVbDfYn\",\"pointUnits\":\"16500\",\"rewardBaseUnits\":\"196\"},{\"wallet\":\"p2Yicb86aZig616Eav2VWG9vuXR5mEqhtzshZYBxzsV\",\"pointUnits\":\"18000\",\"rewardBaseUnits\":\"214\"},{\"wallet\":\"swqrv48gsrwpBFbftEwnP2vB4jckpvfGJfXkwaniLCC\",\"pointUnits\":\"19500\",\"rewardBaseUnits\":\"232\"},{\"wallet\":\"ws91DX9HBAAxGW77BZs5FogRDwpRtcUpiLBpKdPTfWu\",\"pointUnits\":\"21000\",\"rewardBaseUnits\":\"250\"},{\"wallet\":\"21nS9Wz9sUTQ6MkcYUtnN8aSfPA26xJJP7zqshfzCzqc\",\"pointUnits\":\"22500\",\"rewardBaseUnits\":\"267\"},{\"wallet\":\"25hjHpTATmkdET17ynDhf1MCuYNDn1z7wXfVw5iaxLAK\",\"pointUnits\":\"24000\",\"rewardBaseUnits\":\"285\"},{\"wallet\":\"29d2S7vB453rNYFdR5Ycwt7y9haRT5fwVwL9zTmBhfV2\",\"pointUnits\":\"25500\",\"rewardBaseUnits\":\"303\"},{\"wallet\":\"2DYKaRPBeNM5WdW8rNsYEktjPrnd89Mm4Lzp3qonSzoj\",\"pointUnits\":\"27000\",\"rewardBaseUnits\":\"321\"},{\"wallet\":\"2HTciirCEfeJeikeHgCTXdfVe1zpoD3ackfU7DrPCL8S\",\"pointUnits\":\"28500\",\"rewardBaseUnits\":\"339\"},{\"wallet\":\"2MNus2KCpxwXnp19iyXNpWSFtBD2UGjQBAL8AbtywfT9\",\"pointUnits\":\"30000\",\"rewardBaseUnits\":\"357\"},{\"wallet\":\"2RJD1KnDRGEkvuFfAGrJ7PD28LRE9LRDjZznDywagzmr\",\"pointUnits\":\"31500\",\"rewardBaseUnits\":\"374\"},{\"wallet\":\"2VDW9dFE1ZXz4zWAbaBDQFynNVdRpQ73HyfSHMzBSL6Z\",\"pointUnits\":\"33000\",\"rewardBaseUnits\":\"392\"},{\"wallet\":\"2Z8oHviEbrqDD5kg2sW8h8kYceqdVTnrrPL6Lk2nBfRG\",\"pointUnits\":\"34500\",\"rewardBaseUnits\":\"410\"},{\"wallet\":\"2d46SEBFCA8SMB1BUAq3z1XJrp3qAXUgQnzkQ85Nvzjy\",\"pointUnits\":\"36000\",\"rewardBaseUnits\":\"428\"},{\"wallet\":\"2gyPaXeFnTRfVGFguU9yGtJ56yG2qbAVyCfQTW7ygL4g\",\"pointUnits\":\"37500\",\"rewardBaseUnits\":\"446\"},{\"wallet\":\"2ktgiq7GNkitdMWCLmUtZm4qM8UEWerKXcL4WtAaRfPP\",\"pointUnits\":\"39000\",\"rewardBaseUnits\":\"464\"},{\"wallet\":\"2poys8aGy427mSkhn4oordqbbHgSBiY961ziaGDBAzi6\",\"pointUnits\":\"40500\",\"rewardBaseUnits\":\"481\"},{\"wallet\":\"2tjH1S3HZMKLuY1DDN8j9WcMqStdrnDxeRfNdeFmvL2o\",\"pointUnits\":\"42000\",\"rewardBaseUnits\":\"499\"},{\"wallet\":\"2xea9jWJ9eca3dFiefTeSPP85c6qXqunCqL2h2JNffMW\",\"pointUnits\":\"43500\",\"rewardBaseUnits\":\"517\"},{\"wallet\":\"32ZsJ2yJjwuoBiWE5xnZjG9tKmK3CubbmEzgkQLyQzgD\",\"pointUnits\":\"45000\",\"rewardBaseUnits\":\"535\"},{\"wallet\":\"36VASLSKLFD2KokjXG7V28veZvXEsyHRKefLonPaAKzv\",\"pointUnits\":\"46500\",\"rewardBaseUnits\":\"553\"},{\"wallet\":\"3AQTaduKvYWFTu1ExZSQK1hQp5jSZ2yEt4KzsASAufKd\",\"pointUnits\":\"48000\",\"rewardBaseUnits\":\"570\"},{\"wallet\":\"3EKkiwNLWqoUbzFkPrmKbtUB4EweE6f4STzevYUmezeL\",\"pointUnits\":\"49500\",\"rewardBaseUnits\":\"588\"}]}",
+    "manifestHash": "cd9ba1bc3fcc8f7ba5f9f994bdb770d4ed20eff72768849a4dcd57e7c6691098",
+    "leaves": [
+      {
+        "wallet": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+        "pointUnits": "1500",
+        "rewardBaseUnits": "18",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000005dc1200000000000000",
+        "hash": "1c85f9fd518f80601f9261fe792b252ba8699bf7a1a12b1b6afbf607d6815a52",
+        "proof": [
+          {
+            "hash": "f0b07108d4e332018e24399e7dfeeb2333ecac90646626154b6f8926f39aaf40",
+            "left": false
+          },
+          {
+            "hash": "7761070756c3f13f85d36537db7cb981d92d33c94ed3aed43718623a0749d5b8",
+            "left": false
+          },
+          {
+            "hash": "2aa3722fd55947bab9781be1b23a1fbe0c317a81cd4e05ef87877b2324d4583a",
+            "left": false
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+        "pointUnits": "3000",
+        "rewardBaseUnits": "36",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000002020202020202020202020202020202020202020202020202020202020202020000000000000000000000000000000000000000000000000000000000000bb82400000000000000",
+        "hash": "f0b07108d4e332018e24399e7dfeeb2333ecac90646626154b6f8926f39aaf40",
+        "proof": [
+          {
+            "hash": "1c85f9fd518f80601f9261fe792b252ba8699bf7a1a12b1b6afbf607d6815a52",
+            "left": true
+          },
+          {
+            "hash": "7761070756c3f13f85d36537db7cb981d92d33c94ed3aed43718623a0749d5b8",
+            "left": false
+          },
+          {
+            "hash": "2aa3722fd55947bab9781be1b23a1fbe0c317a81cd4e05ef87877b2324d4583a",
+            "left": false
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+        "pointUnits": "4500",
+        "rewardBaseUnits": "53",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000030303030303030303030303030303030303030303030303030303030303030300000000000000000000000000000000000000000000000000000000000011943500000000000000",
+        "hash": "d2bb492eaca252b4ffd20409d4a3ab8833c3c169f4fbb0283b46f8ba54bc3281",
+        "proof": [
+          {
+            "hash": "e220f195d4598eb3518ca3a3df2db4384c2ac0cb5ae367ac342e8556d3483111",
+            "left": false
+          },
+          {
+            "hash": "70ba23cdc1b043000e169e498c05b256996986f61cb3f1b5bdf3b33333c345f5",
+            "left": true
+          },
+          {
+            "hash": "2aa3722fd55947bab9781be1b23a1fbe0c317a81cd4e05ef87877b2324d4583a",
+            "left": false
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+        "pointUnits": "6000",
+        "rewardBaseUnits": "71",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000040404040404040404040404040404040404040404040404040404040404040400000000000000000000000000000000000000000000000000000000000017704700000000000000",
+        "hash": "e220f195d4598eb3518ca3a3df2db4384c2ac0cb5ae367ac342e8556d3483111",
+        "proof": [
+          {
+            "hash": "d2bb492eaca252b4ffd20409d4a3ab8833c3c169f4fbb0283b46f8ba54bc3281",
+            "left": true
+          },
+          {
+            "hash": "70ba23cdc1b043000e169e498c05b256996986f61cb3f1b5bdf3b33333c345f5",
+            "left": true
+          },
+          {
+            "hash": "2aa3722fd55947bab9781be1b23a1fbe0c317a81cd4e05ef87877b2324d4583a",
+            "left": false
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY",
+        "pointUnits": "7500",
+        "rewardBaseUnits": "89",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000005050505050505050505050505050505050505050505050505050505050505050000000000000000000000000000000000000000000000000000000000001d4c5900000000000000",
+        "hash": "537f083fb20521218e967687b19ff9d49fe564c3cac629ebaa5445377df075b7",
+        "proof": [
+          {
+            "hash": "fd359cc495471912547f486227bc169b568d41523ad90e1939bd478b6bc61fb4",
+            "left": false
+          },
+          {
+            "hash": "520059401b9830244a596320e87339bf803aea60796516be48cff1ffb2539bc7",
+            "left": false
+          },
+          {
+            "hash": "af06e9d7895395945500f1e34e891ef06502b2a69ebd013a558025bb330f0116",
+            "left": true
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "QWmroo4YnnMqYW3cnxWkFdaTxGD3P7vMSzwMHGbUzwF",
+        "pointUnits": "9000",
+        "rewardBaseUnits": "107",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000060606060606060606060606060606060606060606060606060606060606060600000000000000000000000000000000000000000000000000000000000023286b00000000000000",
+        "hash": "fd359cc495471912547f486227bc169b568d41523ad90e1939bd478b6bc61fb4",
+        "proof": [
+          {
+            "hash": "537f083fb20521218e967687b19ff9d49fe564c3cac629ebaa5445377df075b7",
+            "left": true
+          },
+          {
+            "hash": "520059401b9830244a596320e87339bf803aea60796516be48cff1ffb2539bc7",
+            "left": false
+          },
+          {
+            "hash": "af06e9d7895395945500f1e34e891ef06502b2a69ebd013a558025bb330f0116",
+            "left": true
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx",
+        "pointUnits": "10500",
+        "rewardBaseUnits": "125",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000070707070707070707070707070707070707070707070707070707070707070700000000000000000000000000000000000000000000000000000000000029047d00000000000000",
+        "hash": "9d053896e2c91d543a268acd180ae6fddea2c046464565dcc769b23801b85498",
+        "proof": [
+          {
+            "hash": "d1692dcfd58ec6fa52481cf368c4022a3cc496be677a915b466006bd8a691e99",
+            "left": false
+          },
+          {
+            "hash": "6ab3ee239f04a35f9bbd97562961288b1a33ea78f6d969fc3f4f83644c7e2692",
+            "left": true
+          },
+          {
+            "hash": "af06e9d7895395945500f1e34e891ef06502b2a69ebd013a558025bb330f0116",
+            "left": true
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "YMN9Qj5jPNp7j14VPcML1B6xGgcPWVZUGLFU3Mnyfaf",
+        "pointUnits": "12000",
+        "rewardBaseUnits": "143",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000008080808080808080808080808080808080808080808080808080808080808080000000000000000000000000000000000000000000000000000000000002ee08f00000000000000",
+        "hash": "d1692dcfd58ec6fa52481cf368c4022a3cc496be677a915b466006bd8a691e99",
+        "proof": [
+          {
+            "hash": "9d053896e2c91d543a268acd180ae6fddea2c046464565dcc769b23801b85498",
+            "left": true
+          },
+          {
+            "hash": "6ab3ee239f04a35f9bbd97562961288b1a33ea78f6d969fc3f4f83644c7e2692",
+            "left": true
+          },
+          {
+            "hash": "af06e9d7895395945500f1e34e891ef06502b2a69ebd013a558025bb330f0116",
+            "left": true
+          },
+          {
+            "hash": "79851636e7e684e0b08e7dff6a650b5c411e79e8fdd575ead9bf0f0ef3863b45",
+            "left": false
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "cGfHiC6Kgg3FpFZvgwGcswsCRtp4aBP2fzuXRQPizuN",
+        "pointUnits": "13500",
+        "rewardBaseUnits": "160",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000090909090909090909090909090909090909090909090909090909090909090900000000000000000000000000000000000000000000000000000000000034bca000000000000000",
+        "hash": "eff25dc6e594d653dc216546fc2bdab1bd11df0c575041abc3ccd0018252fb29",
+        "proof": [
+          {
+            "hash": "3482167f8737e15e2485d195f5d0f0743f9260140dec20e424ad867ec949b0a6",
+            "left": false
+          },
+          {
+            "hash": "32b69c0deb5a4ba8d0c8c96c7765bd37afca7c1b2526f54bd4097f2d96bc5213",
+            "left": false
+          },
+          {
+            "hash": "5a5dfeb3611785be04edad20b99835c8480379073f806bad1f9485da0966f01f",
+            "left": false
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "gBxS1f6uyyGPuW5MzGBukidSb71jdsCb5fZaoSzULE5",
+        "pointUnits": "15000",
+        "rewardBaseUnits": "178",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000000a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0000000000000000000000000000000000000000000000000000000000003a98b200000000000000",
+        "hash": "3482167f8737e15e2485d195f5d0f0743f9260140dec20e424ad867ec949b0a6",
+        "proof": [
+          {
+            "hash": "eff25dc6e594d653dc216546fc2bdab1bd11df0c575041abc3ccd0018252fb29",
+            "left": true
+          },
+          {
+            "hash": "32b69c0deb5a4ba8d0c8c96c7765bd37afca7c1b2526f54bd4097f2d96bc5213",
+            "left": false
+          },
+          {
+            "hash": "5a5dfeb3611785be04edad20b99835c8480379073f806bad1f9485da0966f01f",
+            "left": false
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "k7FaK87WHGVXzkaoHb7CdVPgkKDQhZ29VLDeBVbDfYn",
+        "pointUnits": "16500",
+        "rewardBaseUnits": "196",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000000b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0000000000000000000000000000000000000000000000000000000000004074c400000000000000",
+        "hash": "c796dad49205ffebcc817a4d302a924c9e3a8cbedfd296d5ed3170f03aa9cf0a",
+        "proof": [
+          {
+            "hash": "951ffe4709cf26246ba2c5308c8f2195475ff31a26af4b5a2742d72c4a87adf1",
+            "left": false
+          },
+          {
+            "hash": "accf7973707ab523c9d23bb757d39a63ea1c3220b2dfd7d3414c912930cd2696",
+            "left": true
+          },
+          {
+            "hash": "5a5dfeb3611785be04edad20b99835c8480379073f806bad1f9485da0966f01f",
+            "left": false
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "p2Yicb86aZig616Eav2VWG9vuXR5mEqhtzshZYBxzsV",
+        "pointUnits": "18000",
+        "rewardBaseUnits": "214",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000000c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0000000000000000000000000000000000000000000000000000000000004650d600000000000000",
+        "hash": "951ffe4709cf26246ba2c5308c8f2195475ff31a26af4b5a2742d72c4a87adf1",
+        "proof": [
+          {
+            "hash": "c796dad49205ffebcc817a4d302a924c9e3a8cbedfd296d5ed3170f03aa9cf0a",
+            "left": true
+          },
+          {
+            "hash": "accf7973707ab523c9d23bb757d39a63ea1c3220b2dfd7d3414c912930cd2696",
+            "left": true
+          },
+          {
+            "hash": "5a5dfeb3611785be04edad20b99835c8480379073f806bad1f9485da0966f01f",
+            "left": false
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "swqrv48gsrwpBFbftEwnP2vB4jckpvfGJfXkwaniLCC",
+        "pointUnits": "19500",
+        "rewardBaseUnits": "232",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000000d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0000000000000000000000000000000000000000000000000000000000004c2ce800000000000000",
+        "hash": "1b8b6a14870a840bd19174e64ba7074a3789ae15189091bbcc7ac73fb73dfe4d",
+        "proof": [
+          {
+            "hash": "1e2a41c05f47aa4a302d893bbb8b460691a4746878c008c0c6cfb368766eacae",
+            "left": false
+          },
+          {
+            "hash": "4eaf67a6c41ff26c341a3234ed1706bac39c629d25c7bc75bcceb9624ae7704b",
+            "left": false
+          },
+          {
+            "hash": "42f4c2bfbf468d52bbaae95fb91ba21000853be525f51f3594dc001b35eea5fd",
+            "left": true
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "ws91DX9HBAAxGW77BZs5FogRDwpRtcUpiLBpKdPTfWu",
+        "pointUnits": "21000",
+        "rewardBaseUnits": "250",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000000e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0000000000000000000000000000000000000000000000000000000000005208fa00000000000000",
+        "hash": "1e2a41c05f47aa4a302d893bbb8b460691a4746878c008c0c6cfb368766eacae",
+        "proof": [
+          {
+            "hash": "1b8b6a14870a840bd19174e64ba7074a3789ae15189091bbcc7ac73fb73dfe4d",
+            "left": true
+          },
+          {
+            "hash": "4eaf67a6c41ff26c341a3234ed1706bac39c629d25c7bc75bcceb9624ae7704b",
+            "left": false
+          },
+          {
+            "hash": "42f4c2bfbf468d52bbaae95fb91ba21000853be525f51f3594dc001b35eea5fd",
+            "left": true
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "21nS9Wz9sUTQ6MkcYUtnN8aSfPA26xJJP7zqshfzCzqc",
+        "pointUnits": "22500",
+        "rewardBaseUnits": "267",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000000f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f00000000000000000000000000000000000000000000000000000000000057e40b01000000000000",
+        "hash": "00f5a2d9b44ee31ca6f20e25c573d0919b5ea5e3b53d90956021f343708db9cc",
+        "proof": [
+          {
+            "hash": "4ac4f2beb2f0372dd150d50d9a25ee7e66d7e96a3c1cd559a81b0aa573aab922",
+            "left": false
+          },
+          {
+            "hash": "82a520725b340f0088152371c3d19d9626c69fce2df0b0c609ae6e710fa6ce34",
+            "left": true
+          },
+          {
+            "hash": "42f4c2bfbf468d52bbaae95fb91ba21000853be525f51f3594dc001b35eea5fd",
+            "left": true
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "25hjHpTATmkdET17ynDhf1MCuYNDn1z7wXfVw5iaxLAK",
+        "pointUnits": "24000",
+        "rewardBaseUnits": "285",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000005dc01d01000000000000",
+        "hash": "4ac4f2beb2f0372dd150d50d9a25ee7e66d7e96a3c1cd559a81b0aa573aab922",
+        "proof": [
+          {
+            "hash": "00f5a2d9b44ee31ca6f20e25c573d0919b5ea5e3b53d90956021f343708db9cc",
+            "left": true
+          },
+          {
+            "hash": "82a520725b340f0088152371c3d19d9626c69fce2df0b0c609ae6e710fa6ce34",
+            "left": true
+          },
+          {
+            "hash": "42f4c2bfbf468d52bbaae95fb91ba21000853be525f51f3594dc001b35eea5fd",
+            "left": true
+          },
+          {
+            "hash": "d1393e9e469a382af2f925da8765eecf5d112542f7c2b86314789ba5b8015541",
+            "left": true
+          },
+          {
+            "hash": "185a2958aa0d9c473bea1c4a6497731a7d4db7e4a94d4acc5b6ddcac200c9da9",
+            "left": false
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "29d2S7vB453rNYFdR5Ycwt7y9haRT5fwVwL9zTmBhfV2",
+        "pointUnits": "25500",
+        "rewardBaseUnits": "303",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000000000000000000000000000639c2f01000000000000",
+        "hash": "94abc5297c7c8b114b88b8e52c6c5df9ad90f258c3c71d5e1af217fa98f82cf9",
+        "proof": [
+          {
+            "hash": "4fd257dc658f7e06b956162d1b37f4d0df55db91477746296bd08d629d20699a",
+            "left": false
+          },
+          {
+            "hash": "e9d93434499a937bade46eacb4c385ccbcd7deb85a780fd25f90d7e7db0063e5",
+            "left": false
+          },
+          {
+            "hash": "129f4a8763170bd3025b95b70b379f53eaf81c5c5e0bd222fef6483027d1dc79",
+            "left": false
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2DYKaRPBeNM5WdW8rNsYEktjPrnd89Mm4Lzp3qonSzoj",
+        "pointUnits": "27000",
+        "rewardBaseUnits": "321",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000121212121212121212121212121212121212121212121212121212121212121200000000000000000000000000000000000000000000000000000000000069784101000000000000",
+        "hash": "4fd257dc658f7e06b956162d1b37f4d0df55db91477746296bd08d629d20699a",
+        "proof": [
+          {
+            "hash": "94abc5297c7c8b114b88b8e52c6c5df9ad90f258c3c71d5e1af217fa98f82cf9",
+            "left": true
+          },
+          {
+            "hash": "e9d93434499a937bade46eacb4c385ccbcd7deb85a780fd25f90d7e7db0063e5",
+            "left": false
+          },
+          {
+            "hash": "129f4a8763170bd3025b95b70b379f53eaf81c5c5e0bd222fef6483027d1dc79",
+            "left": false
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2HTciirCEfeJeikeHgCTXdfVe1zpoD3ackfU7DrPCL8S",
+        "pointUnits": "28500",
+        "rewardBaseUnits": "339",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000013131313131313131313131313131313131313131313131313131313131313130000000000000000000000000000000000000000000000000000000000006f545301000000000000",
+        "hash": "72a064503070ce495f07338128d4548a5573c7c7c457ca67fca8c45c54a09044",
+        "proof": [
+          {
+            "hash": "97daa086582d2d84c2dad2f6eb15abaf7578a88bfad5ea4e0d4da26cb4984d0d",
+            "left": false
+          },
+          {
+            "hash": "e63ce1d934d11d02b3f2c91faba9d00c26497a9a9205ac2dee84e0f1c866fe80",
+            "left": true
+          },
+          {
+            "hash": "129f4a8763170bd3025b95b70b379f53eaf81c5c5e0bd222fef6483027d1dc79",
+            "left": false
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2MNus2KCpxwXnp19iyXNpWSFtBD2UGjQBAL8AbtywfT9",
+        "pointUnits": "30000",
+        "rewardBaseUnits": "357",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000141414141414141414141414141414141414141414141414141414141414141400000000000000000000000000000000000000000000000000000000000075306501000000000000",
+        "hash": "97daa086582d2d84c2dad2f6eb15abaf7578a88bfad5ea4e0d4da26cb4984d0d",
+        "proof": [
+          {
+            "hash": "72a064503070ce495f07338128d4548a5573c7c7c457ca67fca8c45c54a09044",
+            "left": true
+          },
+          {
+            "hash": "e63ce1d934d11d02b3f2c91faba9d00c26497a9a9205ac2dee84e0f1c866fe80",
+            "left": true
+          },
+          {
+            "hash": "129f4a8763170bd3025b95b70b379f53eaf81c5c5e0bd222fef6483027d1dc79",
+            "left": false
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2RJD1KnDRGEkvuFfAGrJ7PD28LRE9LRDjZznDywagzmr",
+        "pointUnits": "31500",
+        "rewardBaseUnits": "374",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000015151515151515151515151515151515151515151515151515151515151515150000000000000000000000000000000000000000000000000000000000007b0c7601000000000000",
+        "hash": "967689f8255fbd26d54bb488a028a141a5c255b8d2fc68a87ae1b05dea5e5ab3",
+        "proof": [
+          {
+            "hash": "811bc4c2705a22a8093786d0df9aa1965a93d8086964d127fffd4f4a9a079783",
+            "left": false
+          },
+          {
+            "hash": "b229a6665441568c9d406cb39d9a6bc6246176eeaa7ded80f64571a89f104b03",
+            "left": false
+          },
+          {
+            "hash": "542de9bf7370793468861732f46e8d63004b4c941829358373744050fb1ffedf",
+            "left": true
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2VDW9dFE1ZXz4zWAbaBDQFynNVdRpQ73HyfSHMzBSL6Z",
+        "pointUnits": "33000",
+        "rewardBaseUnits": "392",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000161616161616161616161616161616161616161616161616161616161616161600000000000000000000000000000000000000000000000000000000000080e88801000000000000",
+        "hash": "811bc4c2705a22a8093786d0df9aa1965a93d8086964d127fffd4f4a9a079783",
+        "proof": [
+          {
+            "hash": "967689f8255fbd26d54bb488a028a141a5c255b8d2fc68a87ae1b05dea5e5ab3",
+            "left": true
+          },
+          {
+            "hash": "b229a6665441568c9d406cb39d9a6bc6246176eeaa7ded80f64571a89f104b03",
+            "left": false
+          },
+          {
+            "hash": "542de9bf7370793468861732f46e8d63004b4c941829358373744050fb1ffedf",
+            "left": true
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2Z8oHviEbrqDD5kg2sW8h8kYceqdVTnrrPL6Lk2nBfRG",
+        "pointUnits": "34500",
+        "rewardBaseUnits": "410",
+        "preimage": "005941435f4359434c455f5245574152445f56312a00000000000000171717171717171717171717171717171717171717171717171717171717171700000000000000000000000000000000000000000000000000000000000086c49a01000000000000",
+        "hash": "e7b85b1678eac55d37bef4464b5f4dd9df5ea02aca78f73565d57f0db19397e6",
+        "proof": [
+          {
+            "hash": "4994782d471388b6554cc058390601671de0257f1019c4429fef798a213376bb",
+            "left": false
+          },
+          {
+            "hash": "bcd3075f474cdefdf04f8149ae84bdc70b0475b0e5196136b6b8681a27b5e68d",
+            "left": true
+          },
+          {
+            "hash": "542de9bf7370793468861732f46e8d63004b4c941829358373744050fb1ffedf",
+            "left": true
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2d46SEBFCA8SMB1BUAq3z1XJrp3qAXUgQnzkQ85Nvzjy",
+        "pointUnits": "36000",
+        "rewardBaseUnits": "428",
+        "preimage": "005941435f4359434c455f5245574152445f56312a0000000000000018181818181818181818181818181818181818181818181818181818181818180000000000000000000000000000000000000000000000000000000000008ca0ac01000000000000",
+        "hash": "4994782d471388b6554cc058390601671de0257f1019c4429fef798a213376bb",
+        "proof": [
+          {
+            "hash": "e7b85b1678eac55d37bef4464b5f4dd9df5ea02aca78f73565d57f0db19397e6",
+            "left": true
+          },
+          {
+            "hash": "bcd3075f474cdefdf04f8149ae84bdc70b0475b0e5196136b6b8681a27b5e68d",
+            "left": true
+          },
+          {
+            "hash": "542de9bf7370793468861732f46e8d63004b4c941829358373744050fb1ffedf",
+            "left": true
+          },
+          {
+            "hash": "6bb2ec32c28e69838ef6505d25b4a8aa7c1ad04f4810b650972b3d6f9165b25c",
+            "left": false
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2gyPaXeFnTRfVGFguU9yGtJ56yG2qbAVyCfQTW7ygL4g",
+        "pointUnits": "37500",
+        "rewardBaseUnits": "446",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001919191919191919191919191919191919191919191919191919191919191919000000000000000000000000000000000000000000000000000000000000927cbe01000000000000",
+        "hash": "777eb1cbc8963e0f7e666a4397e488676c745602abc7e95a6883898a6969f28f",
+        "proof": [
+          {
+            "hash": "e2b25e995bbdd9b8f80a6e31cc8c88bd36e04acaab9813229f7d3aec446c1d92",
+            "left": false
+          },
+          {
+            "hash": "c043cc9463acdfebeadbbda878f5cb0cec7e3a34ab81b177e78e95dfa761c07a",
+            "left": false
+          },
+          {
+            "hash": "0179da09f401787607d3ee3a3cc7fff58a86518d2af745be4ce6469c7075d5b5",
+            "left": false
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2ktgiq7GNkitdMWCLmUtZm4qM8UEWerKXcL4WtAaRfPP",
+        "pointUnits": "39000",
+        "rewardBaseUnits": "464",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a0000000000000000000000000000000000000000000000000000000000009858d001000000000000",
+        "hash": "e2b25e995bbdd9b8f80a6e31cc8c88bd36e04acaab9813229f7d3aec446c1d92",
+        "proof": [
+          {
+            "hash": "777eb1cbc8963e0f7e666a4397e488676c745602abc7e95a6883898a6969f28f",
+            "left": true
+          },
+          {
+            "hash": "c043cc9463acdfebeadbbda878f5cb0cec7e3a34ab81b177e78e95dfa761c07a",
+            "left": false
+          },
+          {
+            "hash": "0179da09f401787607d3ee3a3cc7fff58a86518d2af745be4ce6469c7075d5b5",
+            "left": false
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2poys8aGy427mSkhn4oordqbbHgSBiY961ziaGDBAzi6",
+        "pointUnits": "40500",
+        "rewardBaseUnits": "481",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b0000000000000000000000000000000000000000000000000000000000009e34e101000000000000",
+        "hash": "8a200dfda358bb5deee67be12082d5d05754f2ce5e159bb93639cb4c6521a9f1",
+        "proof": [
+          {
+            "hash": "c069dfa4d1521914c4c314d0f5bd3ea4b9eb34ebee1cfdbef97ecaa68ced0fb6",
+            "left": false
+          },
+          {
+            "hash": "2b6861642c76e318a90f7133e5fb351df5a2f3587e23fd6cfd85bced08cf0a43",
+            "left": true
+          },
+          {
+            "hash": "0179da09f401787607d3ee3a3cc7fff58a86518d2af745be4ce6469c7075d5b5",
+            "left": false
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2tjH1S3HZMKLuY1DDN8j9WcMqStdrnDxeRfNdeFmvL2o",
+        "pointUnits": "42000",
+        "rewardBaseUnits": "499",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c000000000000000000000000000000000000000000000000000000000000a410f301000000000000",
+        "hash": "c069dfa4d1521914c4c314d0f5bd3ea4b9eb34ebee1cfdbef97ecaa68ced0fb6",
+        "proof": [
+          {
+            "hash": "8a200dfda358bb5deee67be12082d5d05754f2ce5e159bb93639cb4c6521a9f1",
+            "left": true
+          },
+          {
+            "hash": "2b6861642c76e318a90f7133e5fb351df5a2f3587e23fd6cfd85bced08cf0a43",
+            "left": true
+          },
+          {
+            "hash": "0179da09f401787607d3ee3a3cc7fff58a86518d2af745be4ce6469c7075d5b5",
+            "left": false
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "2xea9jWJ9eca3dFiefTeSPP85c6qXqunCqL2h2JNffMW",
+        "pointUnits": "43500",
+        "rewardBaseUnits": "517",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d000000000000000000000000000000000000000000000000000000000000a9ec0502000000000000",
+        "hash": "aae30af9bdd250d75531a4d917974fff0790582986b3e4b65074cc1bc2e5f572",
+        "proof": [
+          {
+            "hash": "3fd3ae360081e94ccbf1cde9760948ee7cb7a43108f169a6099a86b6d1e36788",
+            "left": false
+          },
+          {
+            "hash": "14c5483a04ba26bc23a7958f984e87705a4721f01a978747e942b1aae9d054cc",
+            "left": false
+          },
+          {
+            "hash": "391245849c7ef40f31f46305037f501d1819beb44cb9bd3e0dba12dfca893c21",
+            "left": true
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "32ZsJ2yJjwuoBiWE5xnZjG9tKmK3CubbmEzgkQLyQzgD",
+        "pointUnits": "45000",
+        "rewardBaseUnits": "535",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e000000000000000000000000000000000000000000000000000000000000afc81702000000000000",
+        "hash": "3fd3ae360081e94ccbf1cde9760948ee7cb7a43108f169a6099a86b6d1e36788",
+        "proof": [
+          {
+            "hash": "aae30af9bdd250d75531a4d917974fff0790582986b3e4b65074cc1bc2e5f572",
+            "left": true
+          },
+          {
+            "hash": "14c5483a04ba26bc23a7958f984e87705a4721f01a978747e942b1aae9d054cc",
+            "left": false
+          },
+          {
+            "hash": "391245849c7ef40f31f46305037f501d1819beb44cb9bd3e0dba12dfca893c21",
+            "left": true
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "36VASLSKLFD2KokjXG7V28veZvXEsyHRKefLonPaAKzv",
+        "pointUnits": "46500",
+        "rewardBaseUnits": "553",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000001f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f000000000000000000000000000000000000000000000000000000000000b5a42902000000000000",
+        "hash": "02bbbb2a70604b49ff6f94f4597a4dae22831550899d1eea73ca12d1a98d4508",
+        "proof": [
+          {
+            "hash": "3b19f8268a11f74095f501c92ccf8561b1c45680d40c37aa60b32306924d5005",
+            "left": false
+          },
+          {
+            "hash": "47b68945481d046cc7a028ce561c34539789c02290a7bcac88726679a4649298",
+            "left": true
+          },
+          {
+            "hash": "391245849c7ef40f31f46305037f501d1819beb44cb9bd3e0dba12dfca893c21",
+            "left": true
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "3AQTaduKvYWFTu1ExZSQK1hQp5jSZ2yEt4KzsASAufKd",
+        "pointUnits": "48000",
+        "rewardBaseUnits": "570",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000002020202020202020202020202020202020202020202020202020202020202020000000000000000000000000000000000000000000000000000000000000bb803a02000000000000",
+        "hash": "3b19f8268a11f74095f501c92ccf8561b1c45680d40c37aa60b32306924d5005",
+        "proof": [
+          {
+            "hash": "02bbbb2a70604b49ff6f94f4597a4dae22831550899d1eea73ca12d1a98d4508",
+            "left": true
+          },
+          {
+            "hash": "47b68945481d046cc7a028ce561c34539789c02290a7bcac88726679a4649298",
+            "left": true
+          },
+          {
+            "hash": "391245849c7ef40f31f46305037f501d1819beb44cb9bd3e0dba12dfca893c21",
+            "left": true
+          },
+          {
+            "hash": "8445c1debad22f8f0ed72e631d9dae7cfdf2dbca325c258bcc92094974e7e2b5",
+            "left": true
+          },
+          {
+            "hash": "7e976e5b06d613a26383c2e267d73509d61917b71ef80d35f82cff85c30999bc",
+            "left": true
+          },
+          {
+            "hash": "66448ed5721efa1e98eec04b20cf1cd4744766e8723f36b07ebac1c912a18d15",
+            "left": false
+          }
+        ]
+      },
+      {
+        "wallet": "3EKkiwNLWqoUbzFkPrmKbtUB4EweE6f4STzevYUmezeL",
+        "pointUnits": "49500",
+        "rewardBaseUnits": "588",
+        "preimage": "005941435f4359434c455f5245574152445f56312a000000000000002121212121212121212121212121212121212121212121212121212121212121000000000000000000000000000000000000000000000000000000000000c15c4c02000000000000",
+        "hash": "b7c22f34ade9b7081fb5b249c3b7b35abc330ad079ffd1c5f501ac84c9756c2c",
+        "proof": [
+          {
+            "hash": "b7c22f34ade9b7081fb5b249c3b7b35abc330ad079ffd1c5f501ac84c9756c2c",
+            "left": false
+          },
+          {
+            "hash": "830a7fc71b90f149d2e157c018b0a62218f100005b6ac46af0bfc3f21b978e18",
+            "left": false
+          },
+          {
+            "hash": "25bfb5b9a589bd011da48cc38055bc10cd2f05318b50dabc0cbabebe28fd58c8",
+            "left": false
+          },
+          {
+            "hash": "5d841b22ffb44cc4df2e154a01a7f17766782eb64ac642ff69d61db530fe5011",
+            "left": false
+          },
+          {
+            "hash": "15d77a88ab212f07af830cb052c1a7e1cf72381070835e2635f5a50db1b05b78",
+            "left": false
+          },
+          {
+            "hash": "e33221ab720e6ab75fd3938162a8f91c8a854f35a8eeed9de6976ce9b6e44f48",
+            "left": true
+          }
+        ]
+      }
+    ]
+  }
+]

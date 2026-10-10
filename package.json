@@ -1,0 +1,41 @@
+{
+  "name": "yet-another-cat",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "app",
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/shared.test.ts tests/engine.test.ts tests/mobile-buffer.test.ts tests/accounting.test.ts tests/settlement.test.ts tests/product.test.ts tests/relaunch.test.ts tests/visual.test.ts tests/selected-audio.test.ts tests/mouth.test.ts tests/chamber.test.ts tests/skr.test.ts",
+    "test:program": "tsx --test --test-concurrency=1 tests/program.test.ts tests/program-settlement.test.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "setup": "tsx scripts/setup.ts",
+    "bootstrap": "tsx scripts/bootstrap.ts",
+    "android": "npm run android -w app",
+    "chamber:render": "node scripts/render-chamber-art.mjs",
+    "chamber:render:011a": "node scripts/render-chamber-011a.mjs"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "0.32.1",
+    "@solana/spl-token": "0.4.14",
+    "@solana/web3.js": "1.98.4",
+    "buffer": "6.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "~19.2.0",
+    "esbuild": "0.28.2",
+    "eslint": "^9.39.0",
+    "playwright-core": "1.61.1",
+    "prettier": "^3.6.0",
+    "solana-bankrun": "^0.4.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.45.0"
+  }
+}

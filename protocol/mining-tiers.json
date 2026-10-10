@@ -1,0 +1,24 @@
+[
+  { "id": "DEAD_INSIDE", "minimumBaseUnits": "0", "rateUnits": "0" },
+  { "id": "CALM", "minimumBaseUnits": "1000000000", "rateUnits": "1000" },
+  { "id": "SUSPICIOUS", "minimumBaseUnits": "2500000000", "rateUnits": "1500" },
+  { "id": "ACTIVE", "minimumBaseUnits": "5000000000", "rateUnits": "2000" },
+  { "id": "CONCERNED", "minimumBaseUnits": "10000000000", "rateUnits": "3000" },
+  {
+    "id": "DISTRESSED",
+    "minimumBaseUnits": "25000000000",
+    "rateUnits": "5000"
+  },
+  { "id": "AIRBORNE", "minimumBaseUnits": "50000000000", "rateUnits": "8000" },
+  { "id": "PANIC", "minimumBaseUnits": "100000000000", "rateUnits": "12000" },
+  {
+    "id": "OVERDRIVE",
+    "minimumBaseUnits": "250000000000",
+    "rateUnits": "20000"
+  },
+  {
+    "id": "TRANSCENDENT",
+    "minimumBaseUnits": "500000000000",
+    "rateUnits": "25000"
+  }
+]

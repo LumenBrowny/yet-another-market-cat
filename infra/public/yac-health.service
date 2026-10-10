@@ -1,0 +1,6 @@
+[Unit]
+Description=Yet Another Cat availability and backup freshness check
+After=docker.service
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/yac/infra/public/ops.sh health

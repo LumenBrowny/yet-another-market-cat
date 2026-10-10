@@ -1,0 +1,24 @@
+{
+  "width": 680,
+  "height": 580,
+  "inputs": {
+    "app/src/chamber/ChamberArtwork.tsx": "3bd9300b960c0b5692cb655554903111d98d9cdabe3f42dd53bdad9c161f9d8d",
+    "app/src/chamber/layout.ts": "4cb112e4ed1f960a3e829ae58544631babab1c893f0108719576054e65cd5810",
+    "app/src/chamber/assets.ts": "199f7fa6c301007ffde40695c82b8075fc0fc33e9dce74625abda878f4d96cdf",
+    "packages/cat-shit-engine/src/chamber.ts": "64ff475ef68f452e7377f148aa995c387a84ed173da4e5d5cff3d3956fb7ec0c",
+    "packages/cat-shit-engine/src/math.ts": "f589cde9e76081c5e46f59e69a192da56f773beb5dff20127ebb6f26035d1bcb",
+    "scripts/render-chamber-art.mjs": "88365aac93a685a066b6d9924fb02b2f24883e8ad464ae1780bfdceef5c1eeeb",
+    "app/assets/chamber-v2/room.png": "67dd9426e0ad2a822dc901cab96133485654f75e7ef4b5060ab41575965c6978",
+    "app/assets/chamber-v2/normal.png": "febf3c8f282903ee919a10590674d363aff131f6a819ce1160598a91d71bd670",
+    "app/assets/chamber-v2/notice.png": "85172970a1d377fb94f1485ed1db3d8d68472cbec2ac45c87499b186d96eca2e",
+    "app/assets/chamber-v2/panic.png": "7b5372a29c1fe3de75f7100880969b6d9a499864f1ecffc8569d6a473650a724",
+    "app/assets/chamber-v2/disaster.png": "518abc35b6679505d4c7272cb38eed4bae71909c7914c4e3b66afbea3f8bea7a"
+  },
+  "outputs": {
+    "app/assets/chamber-v2/plates/loaf.png": "3d23681b6a0a66da2b86f842e883ed64caab590eca7af064d935024422809082",
+    "app/assets/chamber-v2/plates/idle.png": "b1505a1413e42ae96ca6459391bcc29951e4ce01e4072fdf38c318fa0aece24b",
+    "app/assets/chamber-v2/plates/notice.png": "ea3b80f28ba8fa7b2a514e2756014035abce609ee79af4c9fe55de84d3fa2f7a",
+    "app/assets/chamber-v2/plates/panic.png": "6fd401a99451189f2c2cc6d602851b9032a04915189f8fe4c82d6f0373414cff",
+    "app/assets/chamber-v2/plates/disaster.png": "b2c0d8c0bead639985e6804c82f0c9aabfd4ecebd80661fce320b1a7de9537c0"
+  }
+}

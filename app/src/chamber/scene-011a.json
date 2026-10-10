@@ -1,0 +1,55 @@
+{
+  "shell": "static-base/shell.png",
+  "desk": {
+    "asset": "furniture/desk.png",
+    "x": 12,
+    "y": 155,
+    "width": 96,
+    "height": 102
+  },
+  "chair": {
+    "asset": "furniture/chair.png",
+    "x": 99,
+    "y": 190,
+    "width": 35,
+    "height": 58
+  },
+  "character": {
+    "IDLE": { "x": 78, "y": 149, "width": 64, "height": 96 },
+    "NOTICE": { "x": 78, "y": 149, "width": 64, "height": 96 },
+    "PANIC": { "x": 91, "y": 145, "width": 56, "height": 106 },
+    "DISASTER": { "x": 57, "y": 223, "width": 116, "height": 44 }
+  },
+  "monitor": { "x": 47, "y": 162, "width": 30, "height": 25 },
+  "indicator": { "x": 293, "y": 127, "width": 25, "height": 61 },
+  "states": {
+    "IDLE": {
+      "characterMs": [3400, 240],
+      "monitorMs": [1800, 1800],
+      "indicatorMs": [2400, 2400],
+      "chair": "seated",
+      "damage": false
+    },
+    "NOTICE": {
+      "characterMs": [1400, 700],
+      "monitorMs": [1100, 1100],
+      "indicatorMs": [1800, 1800],
+      "chair": "seated",
+      "damage": false
+    },
+    "PANIC": {
+      "characterMs": [800, 550],
+      "monitorMs": [800, 1000],
+      "indicatorMs": [1300, 1300],
+      "chair": "empty",
+      "damage": false
+    },
+    "DISASTER": {
+      "characterMs": [650, 550],
+      "monitorMs": [900, 700],
+      "indicatorMs": [1100, 1100],
+      "chair": "shifted",
+      "damage": true
+    }
+  }
+}

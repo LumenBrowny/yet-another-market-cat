@@ -1,0 +1,8 @@
+[Unit]
+Description=Yet Another Cat database, manifest and configuration backup
+After=docker.service
+Requires=docker.service
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/yac/infra/public/ops.sh backup
+UMask=0077

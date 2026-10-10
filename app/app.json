@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Yet Another Market Cat рџ’©",
+    "slug": "yet-another-cat",
+    "version": "0.13.4",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "com.yetanothercat.app",
+      "versionCode": 26,
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+    },
+    "plugins": [
+      "expo-secure-store",
+      "./plugins/with-release.cjs",
+      "./plugins/with-animated-webp.cjs",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ]
+    ],
+    "scheme": "yet-another-cat"
+  }
+}
