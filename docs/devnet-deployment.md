@@ -16,14 +16,14 @@ Public metadata was checked against `/api/config` and `/api/cycles` on 2026-10-1
 
 ## Public release
 
-Android **0.13.4 (26)**, signed devnet demo, verified as an update on a physical phone. Visual demo controls do not alter funds/PP. The public APK and source use the current CC0-based Nine Lives loop. [Release notes](release-0.13.4.md).
+Android **0.13.5 (27)**, signed devnet demo, verified as an update on a physical phone. Visual demo controls do not alter funds/PP. The public APK and source use the current CC0-based Nine Lives loop. [Release notes](release.md).
 
-[Download APK](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.4.apk) · [Release metadata](https://yetanothermarket.cat/downloads/release.json)
+[Download APK](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.5.apk) · [Release metadata](https://yetanothermarket.cat/downloads/release.json)
 
-118,315,611 bytes. SHA-256:
+118,640,253 bytes. SHA-256:
 
 ```text
-00bef67b704165ccc16891bf0d4afb432e34073557410b05f30b9ebd1ad72d00
+05bff465d0e843070470c02300292884c3fe1c3145cb2c365ac4c0b06ca08585
 ```
 
 ## Endpoints

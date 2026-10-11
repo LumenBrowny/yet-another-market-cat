@@ -17,3 +17,6 @@ packages/shared/src/idl.json
 artifacts/cycles
 artifacts/cycle-004-manifest.json
 artifacts/manifests
+
+# Local plans, acceptance notes and submission drafts
+local-notes/

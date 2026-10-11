@@ -1,14 +1,18 @@
 {
   "expo": {
-    "name": "Yet Another Market Cat рџ’©",
+    "name": "Yet Another Market Cat 💩",
     "slug": "yet-another-cat",
-    "version": "0.13.4",
+    "version": "0.13.5",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "android": {
       "package": "com.yetanothercat.app",
-      "versionCode": 26,
-      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+      "versionCode": 27,
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/yamc/front-closed.png",
+        "backgroundColor": "#141910"
+      }
     },
     "plugins": [
       "expo-secure-store",
@@ -24,6 +28,7 @@
         }
       ]
     ],
-    "scheme": "yet-another-cat"
+    "scheme": "yet-another-cat",
+    "icon": "./assets/yamc/front-closed.png"
   }
 }

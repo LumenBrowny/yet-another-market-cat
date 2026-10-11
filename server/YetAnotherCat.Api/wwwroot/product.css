@@ -17,6 +17,7 @@ code { overflow-wrap: anywhere; }
 .split > *, .grid > *, main { min-width: 0; }
 .result h2 { overflow-wrap: anywhere; }
 .number { overflow-wrap: anywhere; }
+.split .grid, #proof .grid { grid-template-columns: minmax(0, 1fr); }
 #form-error:empty { display: none; }
 @media (max-width: 600px) {
   .split .grid, #proof .grid { grid-template-columns: 1fr; }

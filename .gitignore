@@ -50,3 +50,6 @@ docker-compose.override.yml
 compose.override.yaml
 app/assets/chamber-v2/previews/
 app/assets/chamber-v2-1/previews/
+
+# Local plans, acceptance notes and submission drafts
+local-notes/

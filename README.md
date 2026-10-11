@@ -4,7 +4,7 @@
 
 A working **Android / React Native** game with **Solana Mobile Wallet Adapter**, real wallet approvals and independently verifiable **devnet** rewards. Built for Clock In — Solana Mobile Hackathon.
 
-[Website · English](https://yetanothermarket.cat/?lang=en) · [Català](https://yetanothermarket.cat/?lang=ca) · [Android APK 0.13.4](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.4.apk) · [Verify The Shit](https://yetanothermarket.cat/cycles) · [CI](https://github.com/LumenBrowny/yet-another-market-cat/actions)
+[Website · English](https://yetanothermarket.cat/?lang=en) · [Català](https://yetanothermarket.cat/?lang=ca) · [Android APK 0.13.5](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.5.apk) · [Verify The Shit](https://yetanothermarket.cat/cycles) · [CI](https://github.com/LumenBrowny/yet-another-market-cat/actions)
 
 ![Yamc in the Android containment chamber](server/YetAnotherCat.Api/wwwroot/media/chamber-014.webp)
 
@@ -59,6 +59,8 @@ cargo check --workspace
 | `protocol/`, `tests/` | Deterministic vectors and substantive tests                  |
 | `infra/`              | Container deployment templates and generic maintenance       |
 | `docs/`               | Current architecture, protocol and reproduction instructions |
+
+`docs/` is reserved for maintained product, protocol and build documentation. Working plans, submission drafts and acceptance reports belong in the Git-ignored `local-notes/` directory. Build artifacts remain in ignored `artifacts/`; secrets remain outside documentation.
 
 ## SKR / Nine Lives
 

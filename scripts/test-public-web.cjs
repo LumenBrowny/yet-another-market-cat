@@ -1,3 +1,4 @@
+/* global getComputedStyle -- browser evaluation only. */
 const { chromium } = require(
   process.env.PLAYWRIGHT_MODULE || "playwright-core",
 );
@@ -27,6 +28,7 @@ async function main() {
           ? []
           : [
               `/verify/${cycle}?wallet=3Zg792qMq5tWkcjnBWED7vPve2qnixXT6VAysqFD5Hyo`,
+              `/cycles/${cycle}`,
             ]),
         "/shitter/3Zg792qMq5tWkcjnBWED7vPve2qnixXT6VAysqFD5Hyo",
       ]) {
@@ -34,10 +36,29 @@ async function main() {
           base + route + (route.includes("?") ? "&" : "?") + "lang=" + lang,
         );
         await page.locator("h1").first().waitFor();
-        if (route.startsWith("/verify"))
+        if (route.startsWith("/verify") || route.startsWith("/cycles/"))
           await page
             .locator('#verification [data-status="VALID"]')
             .waitFor({ timeout: 30000 });
+        if (route.startsWith("/verify") || route.startsWith("/cycles/")) {
+          for (const width of [390, 768, 1440]) {
+            await page.setViewportSize({ width, height: 1000 });
+            assert(
+              await page.locator(".split .grid").evaluate((grid) => {
+                const oneColumn =
+                  getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/)
+                    .length === 1;
+                const number = grid.querySelector(".number");
+                const original = number.textContent;
+                number.textContent = "999,999,999,999,999,999,999.999";
+                const fits = number.scrollWidth <= number.clientWidth + 1;
+                number.textContent = original;
+                return oneColumn && fits;
+              }),
+              `cycle values overflow or multiple columns: ${route} ${lang} ${width}`,
+            );
+          }
+        }
         assert.equal(await page.locator("html").getAttribute("lang"), lang);
         assert.equal(
           await page

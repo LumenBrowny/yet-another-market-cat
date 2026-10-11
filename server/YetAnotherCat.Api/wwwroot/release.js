@@ -1,6 +1,6 @@
 import { releaseLocales } from "./release-locales.js";
 const source = "https://github.com/LumenBrowny/yet-another-market-cat";
-const apk = "/downloads/yet-another-cat-0.13.4.apk";
+const apk = "/downloads/yet-another-cat-0.13.5.apk";
 const program = "BfNiASrYNqmARu2TQ1eBa1PJ6KgVHTNn44ATk5rJe6zW";
 const mint = "A8viyp5aA6Pw59HzzVWPd5tkgS2gup2cZyd7TPmyAupZ";
 const tiers = [
@@ -25,17 +25,17 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
   const p = (text, cls = "") => `<p class="${cls}">${esc(text)}</p>`;
   const figure = (file, alt, caption, eager = false) =>
     `<figure><img src="/media/${file}" width="880" height="748" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}><figcaption>${esc(caption)}</figcaption></figure>`;
-  document.title = "Yet Another Market Cat В· Proof of Shit on Solana";
+  document.title = "Yet Another Market Cat · Proof of Shit on Solana";
   document.querySelector('meta[name="description"]').content = t.description;
   document.querySelector('meta[property="og:description"]').content =
     t.description;
   app.classList.add("release-page");
   app.innerHTML =
-    `<section class="release-hero"><div><div class="eyebrow">${t.kicker}</div><h1>Yet Another<br>Market Cat <span aria-hidden="true">рџ’©</span></h1><p class="tagline">${esc(t.pitch)}</p>${p(t.intro, "intro")}<div class="actions">${a(apk, t.download, true)}${a(url("/cycles"), "Verify The Shit")}</div><a href="${source}">${t.source} в†—</a></div>${figure("chamber-014.webp", t.sceneAlt, t.sceneCaption, true)}</section><p class="manifesto">${esc(t.closed)}</p>` +
+    `<section class="release-hero"><div><div class="eyebrow">${t.kicker}</div><h1>Yet Another<br>Market Cat <span aria-hidden="true">💩</span></h1><p class="tagline">${esc(t.pitch)}</p>${p(t.intro, "intro")}<div class="actions">${a(apk, t.download, true)}${a(url("/cycles"), "Verify The Shit")}</div><a href="${source}">${t.source} ↗</a></div>${figure("chamber-014.webp", t.sceneAlt, t.sceneCaption, true)}</section><p class="manifesto">${esc(t.closed)}</p>` +
     section(
       "android",
       t.downloadTitle,
-      `<div class="download-strip"><div><strong>Android В· 0.13.4 (26)</strong>${p(t.build)}</div>${a(apk, t.download, true)}</div>${p(t.devnet, "muted")}<details><summary>${t.installDetails}</summary>${p(t.install)}${p(t.demo)}${a("https://faucet.solana.com", common.faucet)}<div id="release-metadata" aria-live="polite">${p(t.loading)}</div></details>`,
+      `<div class="download-strip"><div><strong>Android · 0.13.5 (27)</strong>${p(t.build)}</div>${a(apk, t.download, true)}</div>${p(t.devnet, "muted")}<details><summary>${t.installDetails}</summary>${p(t.install)}${p(t.demo)}${a("https://faucet.solana.com", common.faucet)}<div id="release-metadata" aria-live="polite">${p(t.loading)}</div></details>`,
     ) +
     section(
       "how",
@@ -50,7 +50,7 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
     section(
       "tiers",
       t.tiersTitle,
-      `<div class="table-wrap"><table class="tiers-table"><thead><tr>${t.tierHeads.map((x) => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${tiers.map(([rate, state, amount]) => `<tr><td>Г—${rate.toLocaleString(common.locale)}</td><td>${state}</td><td>${amount ? amount.toLocaleString(common.locale) : "&lt; " + (1000).toLocaleString(common.locale)}</td></tr>`).join("")}</tbody></table></div>`,
+      `<div class="table-wrap"><table class="tiers-table"><thead><tr>${t.tierHeads.map((x) => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${tiers.map(([rate, state, amount]) => `<tr><td>×${rate.toLocaleString(common.locale)}</td><td>${state}</td><td>${amount ? amount.toLocaleString(common.locale) : "&lt; " + (1000).toLocaleString(common.locale)}</td></tr>`).join("")}</tbody></table></div>`,
     ) +
     section(
       "economics",
@@ -80,7 +80,7 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
     section(
       "nine-lives",
       t.skrTitle,
-      `<div class="club-grid"><div><span class="nine-heart">9в™Ґ</span>${p(t.skr)}${p(t.cosmetic, "muted")}</div>${figure("nine-lives-014.webp", t.clubAlt, t.clubCaption)}</div>`,
+      `<div class="club-grid"><div><span class="nine-heart">9♥</span>${p(t.skr)}${p(t.cosmetic, "muted")}</div>${figure("nine-lives-014.webp", t.clubAlt, t.clubCaption)}</div>`,
     ) +
     section(
       "resources",
@@ -128,8 +128,8 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
   json("/downloads/release.json")
     .then((r) => {
       if (
-        r.version !== "0.13.4" ||
-        r.versionCode !== 26 ||
+        r.version !== "0.13.5" ||
+        r.versionCode !== 27 ||
         !/^[a-f0-9]{64}$/i.test(r.sha256) ||
         r.filename !== apk.split("/").pop()
       )
@@ -239,7 +239,7 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
         stats?.stale ||
         !stats?.finalizedThroughTime ||
         Date.now() / 1000 - stats.finalizedThroughTime > 180;
-      target.innerHTML = `${stale ? p(t.stale, "error") : ""}<div class="grid status-grid">${values.map((v, i) => `<div class="card"><div class="label">${t.statusLabels[i]}</div><strong>${esc(v)}</strong></div>`).join("")}</div>${samePublication ? `<div class="actions">${a(url("/verify/" + latest.cycleId), "Verify The Shit В· #" + latest.cycleId)}</div>` : ""}<p class="muted">${t.observed}: ${esc(new Date().toLocaleString(common.locale))}<br>${t.chainTime}: ${esc(stats?.finalizedThroughTime ? date(stats.finalizedThroughTime) : unavailable)}${report?.verifiedAt ? "<br>Verify The Shit: " + esc(date(report.verifiedAt)) : ""}</p>`;
+      target.innerHTML = `${stale ? p(t.stale, "error") : ""}<div class="grid status-grid">${values.map((v, i) => `<div class="card"><div class="label">${t.statusLabels[i]}</div><strong>${esc(v)}</strong></div>`).join("")}</div>${samePublication ? `<div class="actions">${a(url("/verify/" + latest.cycleId), "Verify The Shit · #" + latest.cycleId)}</div>` : ""}<p class="muted">${t.observed}: ${esc(new Date().toLocaleString(common.locale))}<br>${t.chainTime}: ${esc(stats?.finalizedThroughTime ? date(stats.finalizedThroughTime) : unavailable)}${report?.verifiedAt ? "<br>Verify The Shit: " + esc(date(report.verifiedAt)) : ""}</p>`;
     } catch {
       target.innerHTML = p(t.unavailable, "error");
     } finally {

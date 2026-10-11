@@ -79,6 +79,20 @@ async function main() {
         () => !document.querySelector("#refresh-status").disabled,
       );
       assert.equal(await page.locator("html").getAttribute("lang"), lang);
+      assert.equal(
+        await page.locator(".release-hero h1 span").textContent(),
+        "💩",
+      );
+      assert.equal(await page.locator(".nine-heart").textContent(), "9♥");
+      assert(
+        (
+          await page.locator(".tiers-table tbody td").first().textContent()
+        ).startsWith("×"),
+      );
+      assert(
+        !/[\u0400-\u04ff\ufffd]/u.test(await page.locator("body").innerText()),
+        "Unexpected mojibake in EN/CA page",
+      );
       assert.equal(await page.locator(".tiers-table tbody tr").count(), 10);
       assert.equal(await page.locator(".status-grid .card").count(), 10);
       await page.locator("#nine-lives").scrollIntoViewIfNeeded();
@@ -98,7 +112,7 @@ async function main() {
         await page
           .locator("#release-metadata")
           .textContent()
-          .then((t) => t.includes("00bef67b704165ccc1")),
+          .then((t) => /[0-9a-f]{64}/i.test(t)),
       );
       assert(
         !(await page.locator("#live-status").innerText()).includes(
@@ -153,7 +167,7 @@ async function main() {
       );
       assert.equal(
         await page
-          .locator('a[href="/downloads/yet-another-cat-0.13.4.apk"]')
+          .locator('a[href^="/downloads/yet-another-cat-"][href$=".apk"]')
           .count(),
         2,
       );

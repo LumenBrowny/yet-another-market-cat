@@ -16,6 +16,6 @@ Read-only ownership detection uses the connected wallet’s real mainnet SKR bal
 
 ## Media and licensing
 
-No license has yet been selected for original project code, and no blanket license is granted for bundled art/audio. The developer supplied the cat assets and confirmed permission to use them. The current Nine Lives loop combines two CC0 samples by Snapper4298. See [music attribution](../app/assets/room-skr-club/MUSIC-CREDITS.md) for source links and processing details. The public 0.13.4 APK and clean release source both use this loop.
+No license has yet been selected for original project code, and no blanket license is granted for bundled art/audio. The developer supplied the cat assets and confirmed permission to use them. The current Nine Lives loop combines two CC0 samples by Snapper4298. See [music attribution](../app/assets/room-skr-club/MUSIC-CREDITS.md) for source links and processing details. The public 0.13.5 APK and clean release source both use this loop.
 
 Third-party library licenses remain with their respective packages. No existing attribution/license files were removed. This repository does not claim ownership of third-party meme characters or recordings.

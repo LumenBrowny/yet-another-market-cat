@@ -10,6 +10,7 @@ export default ts.config(
       "dist/**",
       ".dev/**",
       "temp/**",
+      "local-notes/**",
     ],
   },
   js.configs.recommended,

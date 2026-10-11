@@ -7,3 +7,6 @@ target
 app
 artifacts
 .git
+
+# Local plans, acceptance notes and submission drafts
+local-notes/
