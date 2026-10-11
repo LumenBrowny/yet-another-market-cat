@@ -2,12 +2,12 @@
   "expo": {
     "name": "Yet Another Market Cat 💩",
     "slug": "yet-another-cat",
-    "version": "0.13.5",
+    "version": "0.13.6",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "android": {
       "package": "com.yetanothercat.app",
-      "versionCode": 27,
+      "versionCode": 28,
       "blockedPermissions": ["android.permission.RECORD_AUDIO"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/yamc/front-closed.png",
@@ -26,7 +26,8 @@
           "enableBackgroundPlayback": false,
           "enableBackgroundRecording": false
         }
-      ]
+      ],
+      "./plugins/with-stable-svg-images.cjs"
     ],
     "scheme": "yet-another-cat",
     "icon": "./assets/yamc/front-closed.png"

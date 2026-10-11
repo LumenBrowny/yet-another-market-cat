@@ -1,10 +1,12 @@
 # Current Android release
 
-**Yet Another Market Cat 0.13.5 (27) · Solana devnet · 2026-10-11**
+**Yet Another Market Cat 0.13.6 (28) · Solana devnet · 2026-10-11**
 
-[Download APK](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.5.apk) · [Source](https://github.com/LumenBrowny/yet-another-market-cat) · [Checksums and build metadata](https://yetanothermarket.cat/downloads/release.json)
+[Download APK](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.6.apk) · [Source](https://github.com/LumenBrowny/yet-another-market-cat) · [Checksums and build metadata](https://yetanothermarket.cat/downloads/release.json)
 
-The launcher now uses the existing Yamc artwork for both regular and adaptive Android icons, with a dark background. The application name's emoji is repaired. The public site fixes damaged Unicode symbols in both languages and uses a single column for cycle detail totals so large values remain readable.
+Grounded tiers (×1, ×1.5 and ×2) now consistently face sideways on startup and after returning from faster tiers. Android SVG images retain their last decoded frame while a replacement PNG loads, avoiding a blank cat during sprite changes. The prior Yamc launcher icon and Unicode/layout repairs are retained.
+
+The bitmap retention fix is applied reproducibly during Expo prebuild; it holds one previous image per SVG image view and releases it on replacement/detach. Review the guarded patch when upgrading react-native-svg.
 
 This release retains the accepted CC0 Nine Lives loop, nine-tap entrance and explicit visual demo controls. Mining, stake, rewards, wallet flows and on-chain deployment are unchanged. Installing the signed update preserves application data and the connected wallet.
 

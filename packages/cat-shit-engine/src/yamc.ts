@@ -106,7 +106,12 @@ export class YamcSelector {
       Math.sin(angle - current),
       Math.cos(angle - current),
     );
+    // Grounded working poses must not inherit a front/back heading from a
+    // previous demo tier (or the selector's cold-start heading).
+    const grounded = ["CALM", "SUSPICIOUS", "ACTIVE"].includes(state);
+    if (grounded) this.direction = "right";
     if (
+      !grounded &&
       Math.hypot(this.filtered.x, this.filtered.z) > 0.12 &&
       Math.abs(delta) > Math.PI / 8 + 0.14 &&
       this.held >= 0.22

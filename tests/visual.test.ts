@@ -145,7 +145,7 @@ test("eight directions settle, tolerate boundary noise, and hold at rest", () =>
     for (let t = 0; t < 120; t++)
       result = selector.update(
         { x: Math.sin(a), y: 0, z: Math.cos(a) },
-        "ACTIVE",
+        "CONCERNED",
         false,
         1 / 60,
       );
@@ -153,7 +153,7 @@ test("eight directions settle, tolerate boundary noise, and hold at rest", () =>
     for (let t = 0; t < 120; t++)
       result = selector.update(
         { x: 0.001 * Math.sin(t), y: 0, z: 0 },
-        "ACTIVE",
+        "CONCERNED",
         false,
         1 / 60,
       );
@@ -165,7 +165,7 @@ test("eight directions settle, tolerate boundary noise, and hold at rest", () =>
     assert.equal(
       selector.update(
         { x: Math.sin(a), y: 0, z: Math.cos(a) },
-        "CALM",
+        "CONCERNED",
         false,
         1 / 60,
       ).direction,
@@ -359,4 +359,24 @@ test("finished native clips replay; mute/dispose cancel pending seek without lat
   assert(Object.values(players).every((p) => p.removes === 1));
   pool.dispose();
   assert(Object.values(players).every((p) => p.removes === 1));
+});
+
+test("grounded tiers face sideways on cold start and after a fast tier", () => {
+  for (const tier of ["CALM", "SUSPICIOUS", "ACTIVE"] as const) {
+    const selector = new YamcSelector();
+    assert.equal(
+      selector.update({ x: 0, y: 0, z: 0 }, tier, false, 1).spriteId,
+      "right",
+    );
+    for (let i = 0; i < 120; i++)
+      selector.update({ x: 0, y: 0, z: -2 }, "AIRBORNE", false, 1 / 60);
+    assert.equal(
+      selector.update({ x: 0, y: 0, z: -2 }, tier, false, 1).spriteId,
+      "right",
+    );
+    assert.equal(
+      selector.update({ x: 0, y: 0, z: 0 }, tier, true, 1).spriteId,
+      "bonk-impact",
+    );
+  }
 });
