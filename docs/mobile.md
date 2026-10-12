@@ -2,6 +2,18 @@
 
 The Android app uses React Native, Mobile Wallet Adapter, native sound/haptics and bundled PNG/WebP media. It is not a PWA/WebView wrapper. Cat Shit Engine uses deterministic fixed-step 2.5D pseudo-physics, collisions, thrust and squash/stretch. PP comes from finalized chain accounting; device animation or uptime cannot increase rewards.
 
+## Physical-device coverage
+
+Physical-device coverage reported by the project author:
+
+| Device            | Wallet / environment                             |
+| ----------------- | ------------------------------------------------ |
+| Solana Seeker     | Android / Solflare / Phantom / Seed Vault Wallet |
+| Xiaomi Mi 10T Pro | Android / Solflare / Phantom                     |
+| UBS1              | Android / Solflare                               |
+
+Tested flows across these devices include wallet connection through Mobile Wallet Adapter, faucet, lock, claim, close/reopen accounting, chamber animation, audio, haptics, SKR detection and Nine Lives.
+
 ## Current assets
 
 The canonical chamber is defined by `app/src/chamber/exported-layout.ts` and its literal bundled PNG imports. Source pixels map to the 340 × 290 logical scene. Sprite and emission anchors live in `packages/cat-shit-engine/src/yamc-manifest.json`; purring anchors and open/closed mouth variants are separate. Selected sound timing/capacity is in `selected-audio.json` and the production controller.
