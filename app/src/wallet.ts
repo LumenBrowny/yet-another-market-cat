@@ -15,8 +15,13 @@ import { appConfig } from "./config";
 export const connection = new Connection(appConfig.rpcUrl, "confirmed");
 export const cluster = appConfig.cluster;
 const storageKey = `yac-wallet-${cluster}`;
-const identity = { name: appConfig.identity };
-type Session = { authToken: string; address: string };
+const identity = {
+  name: appConfig.identity,
+  uri: "https://yetanothermarket.cat",
+  icon: "media/favicon-014.png",
+};
+const identityKey = JSON.stringify(identity);
+type Session = { authToken: string; address: string; identity?: string };
 async function readSession(): Promise<Session | null> {
   const stored = await SecureStore.getItemAsync(storageKey);
   if (!stored) return null;
@@ -41,7 +46,10 @@ async function authorize(wallet: Web3MobileWallet) {
   const result = await wallet.authorize({
     identity,
     chain: cluster === "localnet" ? "solana:localnet" : "solana:devnet",
-    auth_token: previous?.authToken,
+    // Old grants may keep the former display name/site in wallet UI. Request
+    // fresh consent once after branding changes, without clearing the address.
+    auth_token:
+      previous?.identity === identityKey ? previous.authToken : undefined,
   });
   if (!result.accounts[0]) throw new Error("Wallet returned no account");
   const owner = new PublicKey(
@@ -52,6 +60,7 @@ async function authorize(wallet: Web3MobileWallet) {
     JSON.stringify({
       authToken: result.auth_token,
       address: owner.toBase58(),
+      identity: identityKey,
     } satisfies Session),
   );
   return owner;

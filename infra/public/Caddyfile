@@ -13,9 +13,10 @@
     }
     @releaseMetadata path /downloads/release.json
     header @releaseMetadata Cache-Control "no-cache"
-    redir /downloads/yet-another-cat-0.13.3.apk /downloads/yet-another-cat-0.13.6.apk 302
-    redir /downloads/yet-another-cat-0.13.4.apk /downloads/yet-another-cat-0.13.6.apk 302
-    redir /downloads/yet-another-cat-0.13.5.apk /downloads/yet-another-cat-0.13.6.apk 302
+    redir /downloads/yet-another-cat-0.13.3.apk /downloads/yet-another-cat-0.13.7.apk 302
+    redir /downloads/yet-another-cat-0.13.4.apk /downloads/yet-another-cat-0.13.7.apk 302
+    redir /downloads/yet-another-cat-0.13.5.apk /downloads/yet-another-cat-0.13.7.apk 302
+    redir /downloads/yet-another-cat-0.13.6.apk /downloads/yet-another-cat-0.13.7.apk 302
     handle_path /downloads/* {
         root * /srv/downloads
         file_server

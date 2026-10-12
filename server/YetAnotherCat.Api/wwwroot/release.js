@@ -1,6 +1,6 @@
 import { releaseLocales } from "./release-locales.js";
 const source = "https://github.com/LumenBrowny/yet-another-market-cat";
-const apk = "/downloads/yet-another-cat-0.13.6.apk";
+const apk = "/downloads/yet-another-cat-0.13.7.apk";
 const program = "BfNiASrYNqmARu2TQ1eBa1PJ6KgVHTNn44ATk5rJe6zW";
 const mint = "A8viyp5aA6Pw59HzzVWPd5tkgS2gup2cZyd7TPmyAupZ";
 const tiers = [
@@ -35,7 +35,7 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
     section(
       "android",
       t.downloadTitle,
-      `<div class="download-strip"><div><strong>Android · 0.13.6 (28)</strong>${p(t.build)}</div>${a(apk, t.download, true)}</div>${p(t.devnet, "muted")}<details><summary>${t.installDetails}</summary>${p(t.install)}${p(t.demo)}${a("https://faucet.solana.com", common.faucet)}<div id="release-metadata" aria-live="polite">${p(t.loading)}</div></details>`,
+      `<div class="download-strip"><div><strong>Android · 0.13.7 (29)</strong>${p(t.build)}</div>${a(apk, t.download, true)}</div>${p(t.devnet, "muted")}<details><summary>${t.installDetails}</summary>${p(t.install)}${p(t.demo)}${a("https://faucet.solana.com", common.faucet)}<div id="release-metadata" aria-live="polite">${p(t.loading)}</div></details>`,
     ) +
     section(
       "how",
@@ -128,8 +128,8 @@ export function releasePage({ app, lang, esc, url, units, date, t: common }) {
   json("/downloads/release.json")
     .then((r) => {
       if (
-        r.version !== "0.13.6" ||
-        r.versionCode !== 28 ||
+        r.version !== "0.13.7" ||
+        r.versionCode !== 29 ||
         !/^[a-f0-9]{64}$/i.test(r.sha256) ||
         r.filename !== apk.split("/").pop()
       )

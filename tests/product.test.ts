@@ -16,6 +16,7 @@ test("Standalone profiles reject emulator, credentials, mainnet and insecure sta
     standalone: true,
   };
   assert.equal(parseAppConfiguration(base).cluster, "localnet");
+  assert.equal(parseAppConfiguration(base).identity, "Yet Another Market Cat 💩");
   for (const change of [
     { rpcUrl: "http://10.0.2.2:9099" },
     { apiUrl: "http://localhost:5080" },

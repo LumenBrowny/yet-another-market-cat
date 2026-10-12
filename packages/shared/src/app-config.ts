@@ -55,7 +55,7 @@ export function parseAppConfiguration(input: {
     cluster: cluster as AppConfiguration["cluster"],
     rpcUrl,
     apiUrl: apiUrl.replace(/\/$/, ""),
-    identity: input.identity ?? "Yet Another Cat 💩",
+    identity: input.identity ?? "Yet Another Market Cat 💩",
     demoControls: input.demoControls === "true",
   };
 }

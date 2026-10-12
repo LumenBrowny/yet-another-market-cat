@@ -4,7 +4,7 @@
 
 A working **Android / React Native** game with **Solana Mobile Wallet Adapter**, real wallet approvals and independently verifiable **devnet** rewards. Built for Clock In — Solana Mobile Hackathon.
 
-[Website · English](https://yetanothermarket.cat/?lang=en) · [Català](https://yetanothermarket.cat/?lang=ca) · [Android APK 0.13.6](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.6.apk) · [Verify The Shit](https://yetanothermarket.cat/cycles) · [CI](https://github.com/LumenBrowny/yet-another-market-cat/actions)
+[Website · English](https://yetanothermarket.cat/?lang=en) · [Català](https://yetanothermarket.cat/?lang=ca) · [Android APK 0.13.7](https://yetanothermarket.cat/downloads/yet-another-cat-0.13.7.apk) · [Verify The Shit](https://yetanothermarket.cat/cycles) · [CI](https://github.com/LumenBrowny/yet-another-market-cat/actions)
 
 ![Yamc in the Android containment chamber](server/YetAnotherCat.Api/wwwroot/media/chamber-014.webp)
 
@@ -69,3 +69,9 @@ The detector reads the connected wallet’s real **mainnet SKR** balance. Find *
 ## License and media
 
 No open-source license has been selected for the original code. Do not assume a blanket license for bundled media. Third-party dependency licenses remain applicable. The source uses a CC0-based Nine Lives loop; [media and licensing](docs/mobile.md#media-and-licensing) distinguishes it from the older hosted APK and Git history.
+
+## Submission and security evidence
+
+[Project deck (PDF)](docs/pitch-deck.pdf) · [Scoped security review](docs/security-review.md)
+
+The project remains a devnet prototype. The review records open dependency advisories and explicit trust assumptions; it is not an external audit.

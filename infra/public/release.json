@@ -1,13 +1,13 @@
 {
-  "version": "0.13.6",
-  "versionCode": 28,
-  "bytes": 118640313,
-  "sha256": "0f9cf1c8de2479ed0085b816a9a562465b23a38e3c2261af1db45f6bf9e0d797",
+  "version": "0.13.7",
+  "versionCode": 29,
+  "bytes": 118636081,
+  "sha256": "80d00bd2b2d376f138c2bf7de642e472196c7a491aee4e217a68501c7c2c14ed",
   "certificateSha256": "58256a313d800ebf0b9b68e2f415eaeb77ad4dd6a418440e0b62eac506d1ab36",
   "demo": true,
-  "builtAt": "2026-10-11T10:44:29.9957640+00:00",
-  "filename": "yet-another-cat-0.13.6.apk",
-  "url": "/downloads/yet-another-cat-0.13.6.apk",
+  "builtAt": "2026-10-12T11:02:58.8314058+00:00",
+  "filename": "yet-another-cat-0.13.7.apk",
+  "url": "/downloads/yet-another-cat-0.13.7.apk",
   "network": "devnet",
   "buildType": "release"
 }

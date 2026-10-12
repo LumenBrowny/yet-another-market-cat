@@ -5,7 +5,6 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from "react-native";
 import Svg, {
@@ -19,10 +18,8 @@ import Svg, {
 import * as Haptics from "expo-haptics";
 import {
   CatEngine,
-  createBody,
   project,
   type CatRenderState,
-  PROFILES,
   spriteScale,
   anchorWorld,
   YAMC_VIEW,
@@ -117,27 +114,20 @@ export function CatScene({
   const skr = useSkrRoom(wallet, walletRevision);
   const [engine] = useState(() => new CatEngine({ seed: 12345 }));
   const renderCost = useRef({ total: 0, count: 0 });
-  const freezeNextImpact = useRef(false);
   const [override, setOverride] = useState<CatState | null>(null);
   const [debug, setDebug] = useState(false);
   const [paused, setPaused] = useState(false);
-  const [legacyRoom, setLegacyRoom] = useState(false);
+  const legacyRoom = false;
   const [haptics, setHaptics] = useState(true);
   const [muted, setMuted] = useState(true);
-  const [anchors, setAnchors] = useState(false);
-  const [roomArt, setRoomArt] = useState(true);
+  const anchors = false;
+  const roomArt = true;
   const [sceneWidth, setSceneWidth] = useState<number>(W);
-  const [shadowOffset, setShadowOffset] = useState(0);
-  const [shadowOffsetText, setShadowOffsetText] = useState("0");
-  const changeShadowOffset = (value: number) => {
-    const next = Math.round(Math.max(-60, Math.min(60, value)) * 10) / 10;
-    setShadowOffset(next);
-    setShadowOffsetText(String(next));
-  };
+  const shadowOffset = 0;
   const audio = useRef<YamcAudioPlayer | null>(null);
   const [mouth] = useState(() => new MeowMouth());
-  const [purrSide, setPurrSide] = useState<"left" | "right">("right");
-  const [coin, setCoin] = useState<"128" | "64" | "svg">("64");
+  const purrSide: "left" | "right" = "right";
+  const coin: "128" | "64" | "svg" = "64";
   useEffect(() => {
     const player = new YamcAudioPlayer(() =>
       mouth.start(performance.now() / 1000),
@@ -155,8 +145,6 @@ export function CatScene({
     }
   }, [muted, paused, mouth]);
   const [frame, setFrame] = useState(() => engine.snapshot());
-  const [debugFrame, setDebugFrame] = useState(() => engine.snapshot());
-  const [metrics, setMetrics] = useState("Measuring…");
   const flags = useRef({ haptics, debug, paused, muted, roomArt, legacyRoom });
   flags.current = { haptics, debug, paused, muted, roomArt, legacyRoom };
   const visualState = demoEnabled && override ? override : state;
@@ -165,15 +153,13 @@ export function CatScene({
   useEffect(() => {
     engine.setState(visualState);
     mouth.reset();
-    setMetrics("Measuring…");
     setFrame(engine.snapshot());
   }, [engine, visualState, mouth]);
   useEffect(() => {
     let request = 0,
       last: number | undefined,
       active = AppState.currentState === "active",
-      lastHaptic = -10000,
-      lastDebug = -10000;
+      lastHaptic = -10000;
     let samples: number[] = [],
       costs: number[] = [],
       since: number | undefined;
@@ -186,10 +172,6 @@ export function CatScene({
       if (!flags.current.paused) {
         const next = engine.advance(delta);
         setFrame(next);
-        if (demoEnabled && flags.current.debug && time - lastDebug >= 250) {
-          setDebugFrame(next);
-          lastDebug = time;
-        }
         const events = engine.drainEvents();
         audio.current?.configure(visualState, !flags.current.muted);
         if (
@@ -199,15 +181,6 @@ export function CatScene({
         )
           audio.current?.bonk();
         for (const e of events) {
-          if (
-            demoEnabled &&
-            e.type === "FRONT_IMPACT" &&
-            freezeNextImpact.current
-          ) {
-            freezeNextImpact.current = false;
-            flags.current.paused = true;
-            setPaused(true);
-          }
           const strong =
             e.type === "SHIT_PRESSURE_CRITICAL" || e.type === "CAT_ORBIT";
           const impact = e.type === "FRONT_IMPACT" && e.impactStrength >= 0.3;
@@ -247,7 +220,6 @@ export function CatScene({
           const render = renderCost.current;
           const line = `${visualState} RAF ${(1000 / mean).toFixed(1)} fps · p95 ${sorted[Math.floor(sorted.length * 0.95)].toFixed(1)}ms · engine ${(costs.reduce((a, b) => a + b, 0) / costs.length).toFixed(2)}ms · SVG React ${(render.total / Math.max(1, render.count)).toFixed(2)}ms`;
           renderCost.current = { total: 0, count: 0 };
-          setMetrics(line);
           console.info(
             "[YAC perf]",
             `${line} · room ${flags.current.roomArt ? (flags.current.legacyRoom ? "v2 baseline" : "v2.1 loops") : "wireframe"}`,
@@ -311,23 +283,10 @@ export function CatScene({
       <Text style={styles.control}>{label}</Text>
     </Pressable>
   );
-  const bonk = () => {
-    if (visualState === "DEAD_INSIDE") {
-      setOverride("CALM");
-      engine.setState("CALM");
-    }
-    const body = createBody();
-    body.position = { x: 0, y: 0, z: 0.84 };
-    body.velocity = { x: 0, y: 0, z: 6 };
-    engine.setBody(body);
-    setPaused(false);
-  };
   return (
     <View>
       {demoEnabled && override && (
-        <Text style={styles.debugLabel}>
-          DEBUG VISUAL PREVIEW · stake unchanged
-        </Text>
+        <Text style={styles.debugLabel}>VISUAL PREVIEW · stake unchanged</Text>
       )}
       {demoEnabled && paused && (
         <Text style={styles.debugLabel}>
@@ -509,9 +468,10 @@ export function CatScene({
           setMuted(!muted);
         })}
         {demoEnabled &&
-          control(debug ? "HIDE DEBUG" : "DEMO / PHYSICS", () =>
-            setDebug(!debug),
-          )}
+          control(debug ? "CLOSE DEMO" : "DEMO / PHYSICS", () => {
+            if (debug) setOverride(null);
+            setDebug(!debug);
+          })}
       </View>
       {demoEnabled && debug && (
         <View style={styles.debug}>
@@ -521,19 +481,10 @@ export function CatScene({
           <Text style={styles.debugLabel}>
             ROOM: {roomForTier(visualState).id}
           </Text>
-          {control(`ROOM ART ${roomArt ? "ON" : "OFF"}`, () =>
-            setRoomArt(!roomArt),
-          )}
-          {control(
-            legacyRoom
-              ? "ROOM VERSION: v2 BASELINE"
-              : "ROOM VERSION: v2.1 LOOPS",
-            () => setLegacyRoom(!legacyRoom),
-          )}
           <View style={styles.row}>
             {(
               [
-                ["ROOM IDLE / x0", "DEAD_INSIDE"],
+                ["ROOM IDLE", "DEAD_INSIDE"],
                 ["ROOM NOTICE", "CONCERNED"],
                 ["ROOM PANIC", "AIRBORNE"],
                 ["ROOM DISASTER", "TRANSCENDENT"],
@@ -548,99 +499,15 @@ export function CatScene({
             ))}
           </View>
           <Text style={styles.note}>
-            SHADOW OFFSET · + toward screen / - toward back wall
+            Preview only · stake and rewards unchanged. Close demo to return to
+            your real tier.
           </Text>
-          <View style={styles.row}>
-            {control("-1", () => changeShadowOffset(shadowOffset - 1))}
-            <TextInput
-              accessibilityLabel="Shadow offset in scene units"
-              style={styles.shadowInput}
-              value={shadowOffsetText}
-              keyboardType="numbers-and-punctuation"
-              selectTextOnFocus
-              maxLength={7}
-              onChangeText={(text) => {
-                setShadowOffsetText(text);
-                const normalized = text.trim().replace(",", ".");
-                if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized)) return;
-                const value = Number(normalized);
-                setShadowOffset(
-                  Math.round(Math.max(-60, Math.min(60, value)) * 10) / 10,
-                );
-              }}
-              onBlur={() => changeShadowOffset(shadowOffset)}
-              onSubmitEditing={() => changeShadowOffset(shadowOffset)}
-            />
-            {control("+1", () => changeShadowOffset(shadowOffset + 1))}
-            {control("RESET SHADOW", () => changeShadowOffset(0))}
-          </View>
-          <Text style={styles.note}>
-            {`Applied: ${shadowOffset > 0 ? "+" : ""}${shadowOffset} · range -60…60 · resets on app restart`}
-          </Text>
-          <View style={styles.row}>
-            {(
-              ["CALM", "CONCERNED", "AIRBORNE", "TRANSCENDENT"] as CatState[]
-            ).map((id) => (
-              <React.Fragment key={id}>
-                {control(id === "CONCERNED" ? "BOOSTED" : id, () => {
-                  setPaused(false);
-                  setOverride(id);
-                })}
-              </React.Fragment>
-            ))}
-            {control(anchors ? "HIDE ANCHORS" : "SHOW ANCHORS", () =>
-              setAnchors(!anchors),
-            )}
-          </View>
-          <View style={styles.row}>
-            {control("PREV TIER", () => {
-              const i = MINING_TIERS.findIndex((t) => t.id === visualState);
-              setOverride(MINING_TIERS[(i + 9) % 10].id);
-            })}
-            {control("NEXT TIER", () => {
-              const i = MINING_TIERS.findIndex((t) => t.id === visualState);
-              setOverride(MINING_TIERS[(i + 1) % 10].id);
-            })}
-            {control("USE CHAIN", () => setOverride(null))}
-            {control(`PURR ${purrSide.toUpperCase()}`, () =>
-              setPurrSide(purrSide === "right" ? "left" : "right"),
-            )}
-            {control(`PARTICLES ${coin.toUpperCase()}`, () =>
-              setCoin(coin === "128" ? "64" : coin === "64" ? "svg" : "128"),
-            )}
-          </View>
-          <View style={styles.row}>
-            {control("TRIGGER BONK", bonk)}
-            {control("FREEZE BONK", () => {
-              freezeNextImpact.current = true;
-              bonk();
-            })}
-            {control("PRESSURE", () =>
-              engine.triggerSpecial("SHIT_PRESSURE_CRITICAL"),
-            )}
-            {control("ORBIT", () => engine.triggerSpecial("CAT_ORBIT"))}
-            {control(paused ? "RESUME" : "PAUSE", () => setPaused(!paused))}
-          </View>
-          <Text
-            style={styles.readout}
-          >{`xyz ${debugFrame.body.position.x.toFixed(2)} ${debugFrame.body.position.y.toFixed(2)} ${debugFrame.body.position.z.toFixed(2)}\nv ${debugFrame.body.velocity.x.toFixed(2)} ${debugFrame.body.velocity.y.toFixed(2)} ${debugFrame.body.velocity.z.toFixed(2)} speed ${Math.hypot(debugFrame.body.velocity.x, debugFrame.body.velocity.y, debugFrame.body.velocity.z).toFixed(2)}\nrotation ${debugFrame.body.rotation.toFixed(2)} angular ${debugFrame.body.angularVelocity.toFixed(2)}\npressure ${PROFILES[visualState].pressure.toFixed(1)} rate ${PROFILES[visualState].poopRate}\nparticles ${debugFrame.particles.length}/120 splats ${debugFrame.splats.length}/10\n${debugFrame.specialState?.kind ?? "NORMAL"}\n${metrics}`}</Text>
         </View>
       )}
     </View>
   );
 }
 const styles = StyleSheet.create({
-  shadowInput: {
-    color: "#eef3df",
-    backgroundColor: "#151e1a",
-    borderColor: "#78917b",
-    borderWidth: 1,
-    borderRadius: 6,
-    minWidth: 70,
-    minHeight: 44,
-    textAlign: "center",
-    paddingHorizontal: 8,
-  },
   chamber: { overflow: "hidden", borderRadius: 15 },
   row: {
     flexDirection: "row",
@@ -663,10 +530,4 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   debugLabel: { color: "#f4c47a", fontSize: 10, marginBottom: 6 },
-  readout: {
-    color: "#a5c3ae",
-    fontSize: 10,
-    fontFamily: "monospace",
-    marginTop: 8,
-  },
 });
