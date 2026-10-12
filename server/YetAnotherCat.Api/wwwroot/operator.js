@@ -222,7 +222,7 @@ async function operator() {
         ]
           .map(
             ([n, v]) =>
-              `<div class="card"><div class="label">${n}</div><div class="number">${v}</div></div>`,
+              `<div class="card"><div class="label">${esc(n)}</div><div class="number">${esc(v)}</div></div>`,
           )
           .join(
             "",

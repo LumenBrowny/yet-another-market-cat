@@ -1,6 +1,6 @@
 # Scoped security review — 12 October 2026
 
-This is an internal, assistant-assisted source and configuration review for Android **0.13.7 (29)**. It is not an independent audit, a penetration test or a security certification. The submission platform's one-shot audit has not been used. Review baseline: `c62a4a1`, plus the wallet identity, demo-panel and release changes in the commit containing this document. The on-chain program and backend executable were not changed by this release.
+This is an internal, assistant-assisted source and configuration review for Android **0.13.7 (29)**. It is not an independent audit, a penetration test or a security certification. At the time of this initial review, the submission platform's one-shot audit had not been used. It has since completed with partial coverage; see the [external finding triage](security-triage.md) for reachability analysis and targeted hardening. Review baseline: `c62a4a1`, plus the wallet identity, demo-panel and release changes in the commit containing this document. The on-chain program and backend executable were not changed by this release.
 
 No owner-check bypass, duplicate-claim bypass or user-input-to-shell execution was confirmed in the paths examined. This is a scoped negative finding, not proof that the application has no vulnerabilities. Dependency findings below remain open; do not describe this release as having a clean audit.
 

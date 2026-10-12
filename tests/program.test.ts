@@ -253,6 +253,25 @@ test(
       );
     });
     const keys = ownerAccounts(owner.publicKey, mint.publicKey);
+    await t.test(
+      "Faucet rejects source/destination alias before transfer",
+      async () => {
+        await fails(
+          [
+            instruction("claimFaucet", {
+              ...keys,
+              ownerTokens: faucetVaultAddress,
+            }),
+          ],
+          /ConstraintTokenOwner|ConstraintAssociated|ConstraintToken/,
+        );
+        assert.equal(await tokenBalance(faucetVaultAddress), FAUCET_GLOBAL_CAP);
+        assert.equal(
+          await bank.getAccount(pda("faucet", owner.publicKey)),
+          null,
+        );
+      },
+    );
     await t.test("Faucet claim is atomic and once per wallet", async () => {
       await ok([
         ensureAta(owner.publicKey, mint.publicKey),
@@ -284,6 +303,23 @@ test(
         ).owner.equals(keys.position),
       );
     });
+    await t.test(
+      "Deposit rejects source/destination alias without accounting credit",
+      async () => {
+        await fails(
+          [
+            instruction(
+              "deposit",
+              { ...keys, ownerTokens: keys.vault },
+              MIN_LOCK,
+            ),
+          ],
+          /ConstraintTokenOwner|ConstraintAssociated|ConstraintToken/,
+        );
+        assert.equal((await position()).lockedAmount.toString(), "0");
+        assert.equal(await tokenBalance(keys.vault), 0n);
+      },
+    );
     await t.test("Deposit transfers custody and derives CALM", async () => {
       const result = await ok([instruction("deposit", keys, MIN_LOCK)]);
       assert.ok(

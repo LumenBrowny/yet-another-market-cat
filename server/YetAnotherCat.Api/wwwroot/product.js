@@ -1,5 +1,6 @@
 import { locales } from "./locales.js";
 import { releasePage } from "./release.js";
+import { safeHref } from "./safe-href.js";
 const query = new URLSearchParams(location.search);
 let saved;
 try {
@@ -80,7 +81,10 @@ function explorer(kind, id, label) {
     config.cluster === "devnet"
       ? "?cluster=devnet"
       : "?cluster=custom&customUrl=" + encodeURIComponent(config.explorerRpc);
-  return `<a target="_blank" rel="noopener noreferrer" href="${esc(config.explorerBase)}/${kind === "transaction" ? "tx" : "address"}/${encodeURIComponent(id)}${esc(q)}">${esc(label ?? short(id))} ↗</a>`;
+  const href = safeHref(
+    `${config.explorerBase}/${kind === "transaction" ? "tx" : "address"}/${encodeURIComponent(id)}${q}`,
+  );
+  return `<a target="_blank" rel="noopener noreferrer" href="${esc(href)}">${esc(label ?? short(id))} ↗</a>`;
 }
 function shell() {
   document.querySelector("header").innerHTML =
@@ -147,7 +151,7 @@ async function cycles() {
     t.columns,
     data.items.map(
       (c) =>
-        `<tr><td><a href="${url("/cycles/" + c.cycleId)}">#${esc(c.cycleId)}</a><br><small>${date(c.endTime)}</small></td><td>${c.minerCount}</td><td>${units(c.totalPointUnits, 3)}</td><td>${units(c.totalAllocatedBaseUnits)}</td><td>${c.claimCount} / ${c.leafCount}</td><td>${badge(c.verification)}</td></tr>`,
+        `<tr><td><a href="${esc(url("/cycles/" + encodeURIComponent(c.cycleId)))}">#${esc(c.cycleId)}</a><br><small>${date(c.endTime)}</small></td><td>${esc(c.minerCount)}</td><td>${units(c.totalPointUnits, 3)}</td><td>${units(c.totalAllocatedBaseUnits)}</td><td>${esc(c.claimCount)} / ${esc(c.leafCount)}</td><td>${badge(c.verification)}</td></tr>`,
     ),
   )}${!data.items.length ? `<p>${t.empty}</p>` : ""}<div class="actions">${offset ? link("/cycles?offset=" + Math.max(0, offset - 12), t.newer) : ""}${data.nextOffset != null ? link("/cycles?offset=" + data.nextOffset, t.older) : ""}</div><section class="panel"><h2>${t.inspectTitle}</h2>${form()}</section><p class="muted">${t.cached}</p>`;
   wire();
@@ -186,13 +190,13 @@ async function cyclePage(id) {
   const direct = config.manifestPublicBaseUrl
     ? `${config.manifestPublicBaseUrl}/cycles/${c.genesisHash}/${id}/manifest.json`
     : c.manifestUrl;
-  app.innerHTML = `<section class="hero"><div class="eyebrow">${t.record}</div><h1>Shit Cycle #${esc(c.cycleId)}</h1>${badge(c.status)} <span>${date(c.startTime)} → ${date(c.endTime)}</span></section><div class="split"><section><div id="verification" class="panel">${t.loading}</div><div class="actions">${link("/verify/" + id, "VERIFY THE SHIT", true)}<a class="action" href="${esc(direct)}">${t.manifest}</a><a class="action" href="/api/cycles/${id}/verification" download="cycle-${id}-verifier-report.json">${t.report}</a></div><p class="muted">${t.consistency}</p></section><section class="panel"><div class="label">${t.budget}</div><h1>${units(c.rewardBudgetBaseUnits)}</h1><p>${t.reserve}</p>${cards(t.totals.map((s, i) => [s, [units(c.totalPointUnits, 3), c.minerCount, units(c.claimedBaseUnits), units(c.remainingBaseUnits)][i]]))}<p>${t.publication} · ${c.publishedSlot || "—"}</p>${explorer("transaction", c.publicationSignature)}</section></div>${technical(c)}<section class="panel"><h2>${t.inspectTitle}</h2>${form(id, wallet ?? "")}<div id="proof"></div></section><h2>${t.claims}</h2>${
+  app.innerHTML = `<section class="hero"><div class="eyebrow">${t.record}</div><h1>Shit Cycle #${esc(c.cycleId)}</h1>${badge(c.status)} <span>${date(c.startTime)} → ${date(c.endTime)}</span></section><div class="split"><section><div id="verification" class="panel">${t.loading}</div><div class="actions">${link("/verify/" + id, "VERIFY THE SHIT", true)}<a class="action" href="${esc(safeHref(direct))}">${t.manifest}</a><a class="action" href="/api/cycles/${id}/verification" download="cycle-${id}-verifier-report.json">${t.report}</a></div><p class="muted">${t.consistency}</p></section><section class="panel"><div class="label">${t.budget}</div><h1>${units(c.rewardBudgetBaseUnits)}</h1><p>${t.reserve}</p>${cards(t.totals.map((s, i) => [s, [units(c.totalPointUnits, 3), c.minerCount, units(c.claimedBaseUnits), units(c.remainingBaseUnits)][i]]))}<p>${t.publication} · ${esc(c.publishedSlot || "—")}</p>${explorer("transaction", c.publicationSignature)}</section></div>${technical(c)}<section class="panel"><h2>${t.inspectTitle}</h2>${form(id, wallet ?? "")}<div id="proof"></div></section><h2>${t.claims}</h2>${
     c.claims.length
       ? table(
           t.claimColumns,
           c.claims.map(
             (r) =>
-              `<tr><td><a href="${url("/shitter/" + r.wallet)}">${short(r.wallet)}</a></td><td>${units(r.rewardBaseUnits)}</td><td>${date(r.timestamp)}</td><td>${explorer("transaction", r.signature)}</td></tr>`,
+              `<tr><td><a href="${esc(url("/shitter/" + encodeURIComponent(r.wallet)))}">${esc(short(r.wallet))}</a></td><td>${units(r.rewardBaseUnits)}</td><td>${date(r.timestamp)}</td><td>${explorer("transaction", r.signature)}</td></tr>`,
           ),
         )
       : `<p>${t.noClaims}</p>`
@@ -237,7 +241,7 @@ async function walletPage(wallet) {
     [t.columns[0], "PP", t.rewardColumn, t.claimColumn],
     data.items.map(
       (c) =>
-        `<tr><td><a href="${url("/verify/" + c.cycleId + "?wallet=" + encodeURIComponent(wallet))}">#${c.cycleId}</a></td><td>${units(c.wallet?.pointUnits ?? "0", 3)}</td><td>${units(c.wallet?.rewardBaseUnits ?? "0")}</td><td>${c.wallet?.claimed ? t.claimed : c.wallet && c.wallet.rewardBaseUnits !== "0" ? t.claimInApp : t.noShit}</td></tr>`,
+        `<tr><td><a href="${esc(url("/verify/" + encodeURIComponent(c.cycleId) + "?wallet=" + encodeURIComponent(wallet)))}">#${esc(c.cycleId)}</a></td><td>${units(c.wallet?.pointUnits ?? "0", 3)}</td><td>${units(c.wallet?.rewardBaseUnits ?? "0")}</td><td>${c.wallet?.claimed ? t.claimed : c.wallet && c.wallet.rewardBaseUnits !== "0" ? t.claimInApp : t.noShit}</td></tr>`,
     ),
   )}`;
   wire();

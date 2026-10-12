@@ -477,6 +477,11 @@ test(
       async () => {
         for (const [expected, replacement] of [
           [rewardVaultPda, faucetVaultAddress],
+          // C48: same account cannot satisfy vault authority and owner ATA constraints.
+          [
+            ownerAccounts(alice.publicKey, mint.publicKey).ownerTokens,
+            rewardVaultPda,
+          ],
           [mint.publicKey, adminAta],
           [
             ownerAccounts(alice.publicKey, mint.publicKey).ownerTokens,
@@ -494,6 +499,11 @@ test(
           k.pubkey.equals(alice.publicKey) ? { ...k, isSigner: false } : k,
         );
         await fail([noSignature], [attacker]);
+        assert.equal(
+          await bank.getAccount(deriveClaimReceiptPda(0n, alice.publicKey)),
+          null,
+        );
+        assert.equal(await balance(rewardVaultPda), reserve);
       },
     );
     await t.test(
