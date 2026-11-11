@@ -32,3 +32,19 @@ export function reconcilePointDisplay(
     largeCorrection: false,
   };
 }
+
+// A lifecycle horizon is authoritative for display, including delayed publication.
+export function cappedAccrualElapsed(
+  now: number,
+  finalizedThrough: number,
+  horizon?: number | null,
+) {
+  return Math.max(
+    0,
+    Math.min(
+      90,
+      now - finalizedThrough,
+      horizon == null ? Infinity : horizon - finalizedThrough,
+    ),
+  );
+}

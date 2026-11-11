@@ -5,7 +5,7 @@ Yet Another Market Cat is a native React Native Android app, a Solana Anchor pro
 ```mermaid
 flowchart TD
   App[Android / Cat Shit Engine] --> MWA[Mobile Wallet Adapter]
-  MWA --> Chain[Solana devnet custody and claims]
+  MWA --> Chain[Solana custody and claims / deployment-specific]
   Chain --> Index[Finalized event indexer]
   Index --> DB[Immutable normalized events and projections]
   DB --> Accounting[Integer PP and cycle allocation]

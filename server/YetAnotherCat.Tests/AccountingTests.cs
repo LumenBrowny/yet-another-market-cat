@@ -20,6 +20,58 @@ public sealed class AccountingTests
     }
     [Fact] public void LongDurationDoesNotOverflow() => Assert.Equal((BigInteger)long.MaxValue * 25000, Points.CalculatePoints([new(0, 500_000_000_000, 1, 0, 0)], 0, long.MaxValue));
     [Fact]
+    public async Task LaunchHorizonFreezesLifetimeDespitePublicationDelayAndWithdrawals()
+    {
+        await using var db = await Open(TemporaryDatabase());
+        var clock = new CurrentCycleClock { Configuration = new("mint", "publisher", "100", "100", "250000000000", "0", "0", true, "100", "0", "98750000000000") };
+        var snapshots = new Snapshots(db, clock);
+        async Task<JsonElement> Read() => JsonSerializer.SerializeToElement(await snapshots.Miner("wallet", true, 10));
+        await Store(db).Ingest(Batch(3, 500, Event(1, 100, "positionCreated"), Event(2, 100, "deposited", "1000000000", "1000000000"), Event(3, 400, "withdrawRequested", "1000000000", "0")));
+        var pending = await Read();
+        Assert.Equal("100000", pending.GetProperty("pointUnits").GetString());
+        Assert.Equal("FINALIZING", pending.GetProperty("distributionStatus").GetString());
+        Assert.Equal(200, pending.GetProperty("ppAccrualEnd").GetInt64());
+        clock.Configuration = clock.Configuration with { NextCycle="1", PpCutoff="200", TotalAllocated="99000000000000" };
+        var final = await Read();
+        Assert.Equal("100000", final.GetProperty("pointUnits").GetString());
+        Assert.Equal("0", final.GetProperty("ratePointUnitsPerSecond").GetString());
+        Assert.True(final.GetProperty("pointsFinal").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, final.GetProperty("currentCycleId").ValueKind);
+        await Store(db).Ingest(Batch(4, 90000, Event(4, 90000, "withdrawExecuted", "1000000000", "0")));
+        Assert.Equal("100000", (await Read()).GetProperty("pointUnits").GetString());
+        clock.Configuration = clock.Configuration with { ActivatedAt="0", Genesis="0", PpCutoff="0", NextCycle="0" };
+        Assert.Equal("0", (await Read()).GetProperty("pointUnits").GetString());
+    }
+    [Fact]
+    public async Task PrelockHasNoPointsUntilScheduledMiningGenesis()
+    {
+        await using var db = await Open(TemporaryDatabase());
+        var clock = new CurrentCycleClock { Configuration = new("mint", "publisher", "300", "86400", "250000000000", "0", "0", true, "300", "0", "0", "100", "200") };
+        var snapshots = new Snapshots(db, clock);
+        await Store(db).Ingest(Batch(2, 150, Event(1, 100, "positionCreated"), Event(2, 100, "deposited", "1000000000", "1000000000")));
+        var before = JsonSerializer.SerializeToElement(await snapshots.Miner("wallet", true, 2));
+        Assert.Equal("0", before.GetProperty("pointUnits").GetString());
+        Assert.Equal("0", before.GetProperty("ratePointUnitsPerSecond").GetString());
+        Assert.Equal("PREPARED", before.GetProperty("distributionStatus").GetString());
+        await Store(db).Ingest(Batch(3, 310));
+        var after = JsonSerializer.SerializeToElement(await snapshots.Miner("wallet", true, 3));
+        Assert.Equal("10000", after.GetProperty("pointUnits").GetString());
+        Assert.Equal("ACTIVE", after.GetProperty("distributionStatus").GetString());
+    }
+    [Fact]
+    public void LifecycleRejectsNewCyclesButPreservesHistoricalReconstruction()
+    {
+        var r = new RewardConfiguration("mint","publisher","100","100","250000000000","1","397",true,"100","39800","99000000000000");
+        RewardLifecycle.RequireBuild(r,396);
+        Assert.Throws<InvalidOperationException>(()=>RewardLifecycle.RequireBuild(r,397));
+        Assert.Throws<InvalidOperationException>(()=>RewardLifecycle.RequireBuild(r with { ActivatedAt="0" },0));
+        Assert.Equal(39800, RewardLifecycle.Horizon(r));
+        var active=r with { PpCutoff="0", NextCycle="0", TotalAllocated="0" };
+        Assert.Equal(39700,RewardLifecycle.Horizon(active));
+        Assert.Equal(39800,RewardLifecycle.Horizon(active with { NextCycle="1" })); // empty cycle
+        Assert.Equal(39700,RewardLifecycle.Horizon(active with { NextCycle="1", TotalAllocated="250000000000" }));
+    }
+    [Fact]
     public void InvalidRangesRejected()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => Points.CalculatePoints([], 10, 9));
@@ -147,6 +199,22 @@ public sealed class AccountingTests
         db.ChangeTracker.Clear();
         await Store(db).Ingest(Batch(3, 10, Event(1, 0, "positionCreated")));
         await Assert.ThrowsAsync<InvalidOperationException>(() => Store(db).Ingest(Batch(4, 20, Event(2, 10, "deposited", "1000000000", "1000000000"))));
+    }
+    [Theory]
+    [InlineData("rewardsActivated")]
+    [InlineData("publisherRotated")]
+    [InlineData("faucetIssuerRotated")]
+    public async Task AdministrativeEventIsRecordedWithoutCreatingMinerAndSurvivesRebuild(string eventType)
+    {
+        await using var db = await Open(TemporaryDatabase());
+        await Store(db).Ingest(Batch(1, 100, Event(1, 100, eventType)));
+        Assert.Empty(await db.Projections.ToListAsync());
+        Assert.Equal(eventType, (await db.Events.SingleAsync()).EventType);
+        Assert.Equal(1, (await db.Checkpoints.SingleAsync()).ThroughSlot);
+        await Store(db).Ingest(Batch(3, 150, Event(2, 120, "positionCreated"), Event(3, 150, "deposited", "1000000000", "1000000000")));
+        await Store(db).Rebuild();
+        Assert.Single(await db.Projections.ToListAsync());
+        Assert.Equal(3, await db.Events.CountAsync());
     }
     [Fact]
     public async Task FaucetDoesNotMineAndSourceIsAppendOnly()

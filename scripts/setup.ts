@@ -32,9 +32,17 @@ import {
 async function main() {
   const endpoint = process.env.RPC_URL ?? "http://127.0.0.1:8899";
   if (/mainnet/i.test(endpoint)) throw new Error("Development setup only");
+  const launchMode = process.env.YAC_LAUNCH_MODE === "1";
+  if (
+    launchMode &&
+    !["127.0.0.1", "localhost", "[::1]"].includes(new URL(endpoint).hostname)
+  )
+    throw new Error(
+      "Experimental launch mode is localnet-only until admission/security review",
+    );
   const connection = new Connection(endpoint, "confirmed");
   const totalSupply =
-    process.env.YAC_SETTLEMENT_BOOTSTRAP === "1"
+    launchMode || process.env.YAC_SETTLEMENT_BOOTSTRAP === "1"
       ? 100_000_000n * 1_000_000n
       : FAUCET_GLOBAL_CAP;
   const walletPath =
@@ -93,7 +101,7 @@ async function main() {
       AuthorityType.MintTokens,
       null,
     ),
-    instruction("initializeConfig", {
+    instruction(launchMode ? "initializeLaunchConfig" : "initializeConfig", {
       admin: payer.publicKey,
       program: PROGRAM_ID,
       programData,
@@ -128,7 +136,7 @@ async function main() {
   );
   console.log(deployment);
   console.log(
-    "Faucet ready: 1,000,000 CATSHIT; 2,000 per wallet; mint authority revoked. Wallets need dev SOL for fees/rent.",
+    `Faucet prepared: 1,000,000 CATSHIT; ${launchMode ? "1,000 per admitted wallet after opening" : "2,000 per wallet"}; mint authority revoked. Wallets need test SOL for fees/rent.`,
   );
 }
 main().catch((error) => {

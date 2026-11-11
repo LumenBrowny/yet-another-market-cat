@@ -47,7 +47,9 @@ function explorer(kind, id) {
   const query =
     config.cluster === "devnet"
       ? "?cluster=devnet"
-      : "?cluster=custom&customUrl=" + encodeURIComponent(config.explorerRpc);
+      : config.cluster === "mainnet-beta"
+        ? ""
+        : "?cluster=custom&customUrl=" + encodeURIComponent(config.explorerRpc);
   return `<a rel="noopener noreferrer" target="_blank" href="${esc(config.explorerBase)}/${kind === "transaction" ? "tx" : "address"}/${encodeURIComponent(id)}${esc(query)}">${esc(short(id))} ↗</a>`;
 }
 function technical(c) {

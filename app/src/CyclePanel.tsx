@@ -23,7 +23,6 @@ import {
 } from "@yac/shared/src/settlement";
 import { Buffer } from "buffer";
 import { connection } from "./wallet";
-
 type Cycle = {
   cycleId: string;
   status: string;
@@ -39,6 +38,7 @@ type Response = {
   } | null;
   cycles: Cycle[];
   nextBefore: string | null;
+  distributionStatus?: string;
   config: { nextCycle: string };
   finalizedChainTime: number;
   stale: boolean;
@@ -230,10 +230,21 @@ export function CyclePanel({
   return (
     <View style={styles.panel}>
       <Text style={styles.heading}>SHIT CYCLES</Text>
+      {data?.distributionStatus === "COMPLETE" && (
+        <Text style={styles.note}>
+          DISTRIBUTION COMPLETE - Historical rewards remain claimable.
+        </Text>
+      )}
+      {data?.distributionStatus === "PREPARED" && (
+        <Text style={styles.note}>WAITING FOR ACTIVATION</Text>
+      )}
       {data?.current && (
         <>
           <Text style={styles.text}>
-            ACCRUING NOW · #{data.current.cycleId}
+            {data.distributionStatus === "FINALIZING"
+              ? "FINALIZING"
+              : "ACCRUING NOW"}{" "}
+            / #{data.current.cycleId}
           </Text>
           <Text style={styles.text}>
             Your PP: {pp(data.current.currentCyclePointUnits)}

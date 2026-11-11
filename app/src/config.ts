@@ -7,4 +7,7 @@ export const appConfig = parseAppConfiguration({
   identity: process.env.EXPO_PUBLIC_APP_IDENTITY,
   demoControls: process.env.EXPO_PUBLIC_DEMO_CONTROLS,
   standalone: !__DEV__,
+  rehearsalGenesis: process.env.EXPO_PUBLIC_REHEARSAL_GENESIS,
+  programId: process.env.EXPO_PUBLIC_PROGRAM_ID,
+  tokenMint: process.env.EXPO_PUBLIC_TOKEN_MINT,
 });

@@ -16,14 +16,17 @@ public static class CycleEndpoints
             var state = health.State;
             var cp = await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync(ct);
             if (state == null || cp == null) return Results.Json(new { error = "Settlement initializing" }, statusCode: 503);
-            var id = Settlement.CycleId(long.Parse(state.Config.Genesis), long.Parse(state.Config.Duration), cp.ThroughTime);
+            var accrualTime = Math.Min(cp.ThroughTime, RewardLifecycle.Horizon(state.Config) ?? cp.ThroughTime);
+            var horizon = RewardLifecycle.Horizon(state.Config);
+            var cycleTime = horizon is > 0 && accrualTime >= horizon ? horizon.Value - 1 : accrualTime;
+            var id = Settlement.CycleId(long.Parse(state.Config.Genesis), long.Parse(state.Config.Duration), cycleTime);
             object? current = null;
-            if (id != null)
+            if (id != null && !RewardLifecycle.Prepared(state.Config) && !RewardLifecycle.Complete(state.Config))
             {
                 var bounds = Settlement.Bounds(long.Parse(state.Config.Genesis), long.Parse(state.Config.Duration), id.Value);
                 var events = wallet == null ? [] : await db.Events.AsNoTracking().Where(e => e.Wallet == wallet).ToListAsync(ct);
-                var points = CycleService.Calculate(events, bounds.Start, Math.Min(bounds.End, cp.ThroughTime)).FirstOrDefault()?.PointUnits ?? "0";
-                current = new { cycleId = id.ToString(), startTime = bounds.Start.ToString(), endTime = bounds.End.ToString(), status = "OPEN", currentCyclePointUnits = points, rewardBudgetBaseUnits = state.Config.Emission };
+                var points = CycleService.Calculate(events, bounds.Start, Math.Min(bounds.End, accrualTime)).FirstOrDefault()?.PointUnits ?? "0";
+                current = new { cycleId = id.ToString(), startTime = bounds.Start.ToString(), endTime = bounds.End.ToString(), status = RewardLifecycle.Status(state.Config, cp.ThroughTime) == "FINALIZING" ? "FINALIZING" : "OPEN", currentCyclePointUnits = points, rewardBudgetBaseUnits = state.Config.Emission };
             }
             var query = db.Cycles.AsNoTracking();
             if (before != null) {
@@ -35,7 +38,7 @@ public static class CycleEndpoints
             var hasMore = records.Count > 20;
             if (hasMore) records.RemoveAt(20);
             var cycles = new List<object>(); foreach (var record in records) cycles.Add(await service.Detail(record, ct));
-            return Results.Ok(new { current, cycles, nextBefore = hasMore ? records[^1].CycleId : null, finalizedChainTime = cp.ThroughTime, stale = !health.Healthy, publisherHealthy = health.Healthy, config = state.Config });
+            return Results.Ok(new { distributionStatus = RewardLifecycle.Status(state.Config, cp.ThroughTime), current, cycles, nextBefore = hasMore ? records[^1].CycleId : null, finalizedChainTime = cp.ThroughTime, stale = !health.Healthy, publisherHealthy = health.Healthy, config = state.Config });
         });
         app.MapGet("/api/cycles/{id}", async (string id, AccountingDb db, CycleService service, CancellationToken ct) =>
         {

@@ -24,7 +24,7 @@ The original room comparison and fallback textures remain because the shipped de
 
 ## SKR / Nine Lives
 
-Read-only ownership detection uses the connected wallet’s real mainnet SKR balance. With positive eligibility, **9♥ / nine taps within four seconds** enters or exits Nine Lives. No SKR transaction is requested. This is cosmetic only; CATSHIT remains devnet and rewards are unchanged. Pause/background handling suspends animation and sound appropriately.
+Read-only ownership detection uses the connected wallet’s real mainnet SKR balance. With positive eligibility, **9♥ / nine taps within four seconds** enters or exits Nine Lives. No SKR transaction is requested. This is cosmetic only; CATSHIT uses the selected deployment; cosmetic access does not affect rewards. Mainnet is currently PRE-LAUNCH. Pause/background handling suspends animation and sound appropriately.
 
 ## Media and licensing
 

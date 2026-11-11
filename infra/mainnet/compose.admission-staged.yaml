@@ -1,0 +1,27 @@
+# Prepared overlay only. Do not start until issuer assignment and DB backup are verified.
+# Usage after provisioning: docker compose -f compose.yaml -f compose.admission.yaml --profile admission ...
+services:
+  admission:
+    profiles: [admission]
+    image: sha256:56ff4844d27dc1ffe8b1fec4fdcd7aa99e04ae82beeb355994fe1e9bfde34ce7
+    init: true
+    restart: "no"
+    network_mode: service:api
+    depends_on: [api]
+    environment:
+      EXPO_PUBLIC_BUILD_PROFILE: mainnet
+      YAC_ADMISSION_ENABLED: "false"
+      YAC_ADMISSION_CONFIG: /run/secrets/admission.json
+    volumes:
+      - ./secrets/admission.json:/run/secrets/admission.json:ro
+      - ./secrets/issuer.json:/run/secrets/issuer.json:ro
+      - mainnet-admission-data:/data
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m,mode=1777"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 384m
+    pids_limit: 64
+volumes:
+  mainnet-admission-data:
+    name: yamc-mainnet-admission-data

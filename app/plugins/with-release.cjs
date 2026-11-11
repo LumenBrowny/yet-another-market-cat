@@ -73,6 +73,18 @@ tasks.matching { it.name == 'createBundleReleaseJsAndAssets' }.configureEach {
     }
 }
 `;
+    s = s.replace(
+      "'EXPO_PUBLIC_APP_IDENTITY'].each",
+      "'EXPO_PUBLIC_APP_IDENTITY','EXPO_PUBLIC_ADMISSION_LAB'].each",
+    );
+    s = s.replace(
+      "'EXPO_PUBLIC_ADMISSION_LAB'].each",
+      "'EXPO_PUBLIC_ADMISSION_LAB','EXPO_PUBLIC_REHEARSAL_GENESIS'].each",
+    );
+    s = s.replace(
+      "'EXPO_PUBLIC_REHEARSAL_GENESIS'].each",
+      "'EXPO_PUBLIC_REHEARSAL_GENESIS','EXPO_PUBLIC_PROGRAM_ID','EXPO_PUBLIC_TOKEN_MINT'].each",
+    );
     c.modResults.contents = s;
     return c;
   });

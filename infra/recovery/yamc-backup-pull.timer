@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily YAMC off-host encrypted backup pull
+
+[Timer]
+OnCalendar=*-*-* 04:00:00 UTC
+OnBootSec=5min
+RandomizedDelaySec=5min
+Persistent=true
+Unit=yamc-backup-pull.service
+
+[Install]
+WantedBy=timers.target

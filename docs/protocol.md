@@ -1,6 +1,6 @@
 # Protocol
 
-The [canonical deployment](devnet-deployment.md) uses Solana devnet and one-hour cycles. Compatibility package/YAC identifiers remain unchanged.
+The [mainnet deployment](mainnet-deployment.md) is initialized but not activated. It uses daily cycles. The [historical devnet deployment](devnet-deployment.md) uses different identities, a 2,000-token faucet and one-hour/100,000-token cycles. Compatibility package/YAC identifiers remain unchanged.
 
 ## Custody and Poop Points
 
@@ -23,9 +23,11 @@ PP use integer milli-points (1 PP = 1,000 units). Each effective-stake interval 
 
 ## Supply and settlement
 
-Fixed total supply: 100,000,000 CATSHIT (six decimals). Mint and freeze authorities are disabled. Initial faucet reserve: 1,000,000; allowance: 2,000 per wallet once. Initial reward reserve: 99,000,000.
+Fixed total supply: 100,000,000 CATSHIT (six decimals). Mint and freeze authorities are disabled. Initial faucet reserve: 1,000,000; mainnet allowance: 1,000 per eligible wallet once, with an additional one-use SGT receipt in Wave 1. Initial reward reserve: 99,000,000. Admission uses a server issuer signature; it does not prove one person per wallet.
 
-Each nonempty hourly Shit Cycle allocates 100,000 existing CATSHIT. Empty cycles allocate zero and advance the sequence. Each wallet’s ideal share is cycle budget × its PP / total PP. Integer largest-remainder allocation resolves rounding deterministically; raw wallet bytes break ties. See `protocol/settlement-vectors.json` and `packages/shared/src/settlement.ts` for exact encoding/vectors.
+Each nonempty mainnet daily Shit Cycle allocates 250,000 existing CATSHIT. Empty cycles allocate zero and advance the sequence. Each wallet’s ideal share is cycle budget × its PP / total PP. Integer largest-remainder allocation resolves rounding deterministically; raw wallet bytes break ties. See `protocol/settlement-vectors.json` and `packages/shared/src/settlement.ts` for exact encoding/vectors.
+
+One-time activation sets the admission and mining timestamps. Pre-lock does not accrue PP before mining start. After the final funded period, new PP and emission stop; historical claim and withdrawal instructions remain supported. Mainnet admission and publication are currently disabled.
 
 The canonical JSON manifest commits cycle inputs, PP and allocations. SHA-256 manifest hash and Merkle root are independently checked before the configured publisher commits a cycle on chain. Publication is sequential and must fit the available finite reserve after existing unclaimed commitments.
 

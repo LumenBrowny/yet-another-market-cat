@@ -1,4 +1,16 @@
-# Current Android release
+# Android release status
+
+## Mainnet candidate — not publicly released
+
+**1.0.2 (3)** · `cat.yetanothermarket.app` · PRE-LAUNCH, separate package and signing identity from devnet. Wallet connection and waiting state were exercised on physical devices. No activation date is set; no public download or Solana dApp Store listing is announced.
+
+APK SHA256: `d4f6d7873bd95e78ceb6d632368dfac325b614778b1e1a8f49b791b1b45fb5fe`.
+
+Signing certificate SHA256: `c0a9a3151711f3db0eee449c7dd720c85375b4abe0ce4bf698407564c2f0ac5d`.
+
+Mainnet excludes demo/rehearsal controls and uses a restricted public mobile RPC gateway. Admission is not open. Candidate testing is not a claim that live mainnet faucet/lock/claim has been exercised. See [mainnet status](mainnet-deployment.md).
+
+## Historical public devnet release
 
 **Yet Another Market Cat 0.13.7 (29) · Solana devnet · 2026-10-12**
 

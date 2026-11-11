@@ -3,7 +3,11 @@ use anchor_spl::{
     associated_token::AssociatedToken,
     token::{self, Mint, Token, TokenAccount, TransferChecked},
 };
+pub mod admission;
+pub mod roles;
+pub use roles::*;
 pub mod settlement;
+pub use admission::*;
 pub use settlement::*;
 
 declare_id!("BfNiASrYNqmARu2TQ1eBa1PJ6KgVHTNn44ATk5rJe6zW");
@@ -18,6 +22,38 @@ pub const FAUCET_AMOUNT_PER_WALLET: u64 = 2_000_000_000;
 #[program]
 pub mod cat_shit_mining {
     use super::*;
+    pub fn rotate_publisher(ctx: Context<RotatePublisher>) -> Result<()> {
+        roles::replace_publisher(ctx)
+    }
+    pub fn rotate_faucet_issuer(ctx: Context<RotateFaucetIssuer>) -> Result<()> {
+        roles::replace_issuer(ctx)
+    }
+    /// Fresh deployment only; admission policy is added before any mainnet release.
+    pub fn initialize_launch_config(ctx: Context<InitializeConfig>) -> Result<()> {
+        require!(
+            ctx.accounts.token_mint.supply == TOTAL_SUPPLY,
+            MiningError::InvalidMint
+        );
+        ctx.accounts.config.launch_mode = true;
+        initialize_config(ctx)
+    }
+    pub fn activate_rewards(
+        ctx: Context<ActivateRewards>,
+        faucet_opens_at: i64,
+        wave_two_at: i64,
+        mining_starts_at: i64,
+        issuer: Pubkey,
+    ) -> Result<()> {
+        settlement::activate(ctx, faucet_opens_at, wave_two_at, mining_starts_at, issuer)
+    }
+    pub fn claim_admitted_faucet(
+        ctx: Context<ClaimAdmittedFaucet>,
+        wave: u8,
+        subject: Pubkey,
+        expires_at: i64,
+    ) -> Result<()> {
+        admission::claim_admitted(ctx, wave, subject, expires_at)
+    }
     pub fn initialize_rewards(
         ctx: Context<InitializeRewards>,
         genesis: i64,
@@ -90,6 +126,7 @@ pub mod cat_shit_mining {
         Ok(())
     }
     pub fn deposit(ctx: Context<MoveTokens>, amount: u64) -> Result<()> {
+        ctx.accounts.config.require_deposit_open()?;
         require!(amount > 0, MiningError::ZeroAmount);
         let p = &mut ctx.accounts.position;
         let next = p
@@ -183,9 +220,15 @@ pub mod cat_shit_mining {
     /// Dev bootstrap distribution. Fixed inventory, no mint authority, one permanent receipt per owner.
     pub fn claim_faucet(ctx: Context<ClaimFaucet>) -> Result<()> {
         let c = &ctx.accounts.config;
+        require!(!c.launch_mode, SettlementError::AdmissionRequired);
+        let grant = if c.launch_mode {
+            1_000_000_000
+        } else {
+            FAUCET_AMOUNT_PER_WALLET
+        };
         let next = c
             .faucet_distributed
-            .checked_add(FAUCET_AMOUNT_PER_WALLET)
+            .checked_add(grant)
             .ok_or(MiningError::Overflow)?;
         require!(next <= FAUCET_GLOBAL_CAP, MiningError::FaucetExhausted);
         let bump = [c.bump];
@@ -201,14 +244,14 @@ pub mod cat_shit_mining {
                 },
                 &[seeds],
             ),
-            FAUCET_AMOUNT_PER_WALLET,
+            grant,
             CATSHIT_DECIMALS,
         )?;
         ctx.accounts.config.faucet_distributed = next;
         ctx.accounts.receipt.owner = ctx.accounts.owner.key();
         emit!(FaucetClaimed {
             owner: ctx.accounts.owner.key(),
-            amount: FAUCET_AMOUNT_PER_WALLET,
+            amount: grant,
             timestamp: Clock::get()?.unix_timestamp
         });
         Ok(())
@@ -298,6 +341,36 @@ pub struct Config {
     pub unlock_cooldown_seconds: i64,
     pub bump: u8,
     pub faucet_distributed: u64,
+    pub launch_mode: bool,
+    pub activated_at: i64,
+    pub pp_cutoff: i64,
+    pub total_allocated: u64,
+    pub faucet_opens_at: i64,
+    pub wave_two_at: i64,
+    pub faucet_issuer: Pubkey,
+}
+impl Config {
+    pub fn require_deposit_open(&self) -> Result<()> {
+        if self.launch_mode {
+            require!(
+                self.faucet_opens_at > 0 && Clock::get()?.unix_timestamp >= self.faucet_opens_at,
+                SettlementError::NotActivated
+            );
+            require!(self.pp_cutoff == 0, SettlementError::DistributionComplete);
+        }
+        Ok(())
+    }
+    pub fn require_mining_active(&self) -> Result<()> {
+        if self.launch_mode {
+            require!(self.activated_at > 0, SettlementError::NotActivated);
+            require!(
+                Clock::get()?.unix_timestamp >= self.activated_at,
+                SettlementError::NotActivated
+            );
+            require!(self.pp_cutoff == 0, SettlementError::DistributionComplete);
+        }
+        Ok(())
+    }
 }
 #[account]
 #[derive(InitSpace)]

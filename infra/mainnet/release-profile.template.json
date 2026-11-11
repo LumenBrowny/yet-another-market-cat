@@ -1,0 +1,57 @@
+{
+  "schema": "yamc-production-preflight-v1",
+  "purpose": "Read-only release review; not runtime configuration or transaction authorization",
+  "cluster": "mainnet-beta",
+  "genesis": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+  "deployAutomatically": false,
+  "activateAutomatically": false,
+  "deploymentMethod": "offline-buffer-acceptance-then-direct-deploy",
+  "addresses": {
+    "program": null,
+    "mint": null,
+    "admin": null,
+    "initialUpgradeAuthority": null,
+    "payer": null,
+    "publisher": null,
+    "faucetIssuer": null
+  },
+  "economics": {
+    "decimals": 6,
+    "supplyTokens": "100000000",
+    "faucetReserveTokens": "1000000",
+    "faucetGrantTokens": "1000",
+    "rewardReserveTokens": "99000000",
+    "emissionTokens": "250000",
+    "cycleSeconds": 86400,
+    "withdrawalCooldownSeconds": 86400
+  },
+  "release": {
+    "sourceCommit": null,
+    "programBinarySha256": null,
+    "normalizedIdlSha256": null,
+    "apkSha256": null,
+    "androidCertificateSha256": null,
+    "apiImage": null,
+    "admissionImage": null
+  },
+  "serviceIsolation": {
+    "accountingDatabase": null,
+    "admissionDatabase": null,
+    "manifestPrefix": null
+  },
+  "evidence": {
+    "independentBuildVerification": null,
+    "currentReleaseSecurityReview": null,
+    "mainnetArchivalReplay": null,
+    "productionRestoreDrill": null,
+    "offlineKeyBackupVerification": null,
+    "androidSigningDecision": null,
+    "operatorLegalIdentityReview": null
+  },
+  "storeListingUrl": null,
+  "schedule": {
+    "faucetOpensAt": null,
+    "waveTwoAt": null,
+    "miningStartsAt": null
+  }
+}

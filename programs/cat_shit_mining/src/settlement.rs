@@ -101,8 +101,14 @@ pub fn initialize(
     emission: u64,
     publisher: Pubkey,
 ) -> Result<()> {
+    if ctx.accounts.config.launch_mode {
+        require!(
+            genesis == 0 && duration == DEFAULT_CYCLE_DURATION && emission == 250_000_000_000,
+            SettlementError::InvalidMetadata
+        );
+    }
     require!(
-        genesis >= Clock::get()?.unix_timestamp
+        (ctx.accounts.config.launch_mode || genesis >= Clock::get()?.unix_timestamp)
             && duration > 0
             && duration <= DEFAULT_CYCLE_DURATION
             && emission > 0
@@ -141,6 +147,7 @@ pub fn publish(
     total_allocated: u64,
     leaf_count: u32,
 ) -> Result<()> {
+    ctx.accounts.config.require_mining_active()?;
     let r = &mut ctx.accounts.rewards;
     require!(cycle_id == r.next_cycle, SettlementError::NonSequential);
     let (start, end) = bounds(r, cycle_id)?;
@@ -171,6 +178,20 @@ pub fn publish(
         .checked_sub(r.committed_unclaimed)
         .ok_or(SettlementError::Insolvent)?;
     require!(total_allocated <= available, SettlementError::Insolvent);
+    let config = &mut ctx.accounts.config;
+    config.total_allocated = config
+        .total_allocated
+        .checked_add(total_allocated)
+        .ok_or(MiningError::Overflow)?;
+    if config.launch_mode {
+        require!(
+            config.total_allocated <= REWARD_RESERVE,
+            SettlementError::Insolvent
+        );
+        if config.total_allocated == REWARD_RESERVE {
+            config.pp_cutoff = end;
+        }
+    }
     r.committed_unclaimed = r
         .committed_unclaimed
         .checked_add(total_allocated)
@@ -268,6 +289,65 @@ pub fn claim(
     });
     Ok(())
 }
+pub fn activate(
+    ctx: Context<ActivateRewards>,
+    faucet_opens_at: i64,
+    wave_two_at: i64,
+    mining_starts_at: i64,
+    issuer: Pubkey,
+) -> Result<()> {
+    let c = &mut ctx.accounts.config;
+    require!(
+        c.launch_mode && c.activated_at == 0,
+        SettlementError::AlreadyActivated
+    );
+    let r = &mut ctx.accounts.rewards;
+    require!(
+        r.next_cycle == 0
+            && r.genesis == 0
+            && r.committed_unclaimed == 0
+            && c.total_allocated == 0
+            && c.pp_cutoff == 0,
+        SettlementError::InvalidMetadata
+    );
+    require!(
+        ctx.accounts.reward_vault.amount >= REWARD_RESERVE,
+        SettlementError::Insolvent
+    );
+    let now = Clock::get()?.unix_timestamp;
+    require!(now > 0, SettlementError::InvalidMetadata);
+    require!(
+        faucet_opens_at >= now
+            && faucet_opens_at < wave_two_at
+            && wave_two_at < mining_starts_at
+            && issuer != Pubkey::default(),
+        SettlementError::InvalidMetadata
+    );
+    c.faucet_opens_at = faucet_opens_at;
+    c.wave_two_at = wave_two_at;
+    c.faucet_issuer = issuer;
+    c.activated_at = mining_starts_at;
+    r.genesis = mining_starts_at;
+    emit!(RewardsActivated {
+        genesis: mining_starts_at
+    });
+    Ok(())
+}
+#[derive(Accounts)]
+pub struct ActivateRewards<'info> {
+    pub admin: Signer<'info>,
+    #[account(mut, seeds=[b"config"], bump=config.bump, has_one=admin,
+        constraint=config.token_mint == rewards.token_mint)]
+    pub config: Account<'info, Config>,
+    #[account(mut, seeds=[b"rewards"], bump=rewards.bump)]
+    pub rewards: Account<'info, RewardConfig>,
+    #[account(seeds=[b"reward_vault"], bump, token::mint=rewards.token_mint, token::authority=rewards)]
+    pub reward_vault: Account<'info, TokenAccount>,
+}
+#[event]
+pub struct RewardsActivated {
+    pub genesis: i64,
+}
 #[derive(Accounts)]
 pub struct InitializeRewards<'info> {
     #[account(mut)]
@@ -288,6 +368,8 @@ pub struct InitializeRewards<'info> {
 #[derive(Accounts)]
 #[instruction(cycle_id: u64)]
 pub struct PublishCycle<'info> {
+    #[account(mut, seeds=[b"config"], bump=config.bump, constraint=config.token_mint == rewards.token_mint)]
+    pub config: Account<'info, Config>,
     #[account(mut)]
     pub publisher: Signer<'info>,
     #[account(mut, seeds=[b"rewards"], bump=rewards.bump, has_one=publisher)]
@@ -346,6 +428,16 @@ pub enum SettlementError {
     Insolvent,
     #[msg("Invalid reward proof")]
     InvalidProof,
+    #[msg("Rewards have not been activated")]
+    NotActivated,
+    #[msg("Activation is one-time and requires launch mode")]
+    AlreadyActivated,
+    #[msg("Reward distribution is complete")]
+    DistributionComplete,
+    #[msg("Signed admission required")]
+    AdmissionRequired,
+    #[msg("Wrong faucet wave or expired admission")]
+    InvalidAdmission,
 }
 
 #[cfg(test)]

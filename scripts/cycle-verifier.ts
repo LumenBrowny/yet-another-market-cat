@@ -1,4 +1,4 @@
-import { PROGRAM_ID } from "../packages/shared/src/client";
+import { PROGRAM_ID, readConfig } from "../packages/shared/src/client";
 import { Connection } from "@solana/web3.js";
 import {
   canonicalManifest,
@@ -196,12 +196,26 @@ async function verifyWithHistory(
   }
   const c = new Connection(endpoint, "finalized");
   try {
-    const [config, cycle, genesis] = await Promise.all([
+    const [config, cycle, genesis, mining] = await Promise.all([
       fetchRewards(c),
       fetchCycle(c, BigInt(m.cycleId)),
       c.getGenesisHash(),
+      readConfig(c, "finalized"),
     ]);
-    if (!config) throw new Error("Reward configuration unavailable");
+    if (!config || !mining) throw new Error("Reward configuration unavailable");
+    if (
+      mining.launchMode &&
+      !check(
+        "lifecycle",
+        "Activated deployment and funded-cycle boundary",
+        mining.activatedAt > 0n &&
+          mining.activatedAt === BigInt(config.genesis) &&
+          (mining.ppCutoff === 0n || BigInt(m.endTime) <= mining.ppCutoff),
+      )
+    ) {
+      r.result = "INVALID";
+      return r;
+    }
     if (
       !check(
         "identity",

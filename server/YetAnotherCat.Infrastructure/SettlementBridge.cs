@@ -5,7 +5,7 @@ using YetAnotherCat.Accounting;
 
 namespace YetAnotherCat.Infrastructure;
 
-public sealed record RewardConfiguration(string TokenMint, string Publisher, string Genesis, string Duration, string Emission, string CommittedUnclaimed, string NextCycle);
+public sealed record RewardConfiguration(string TokenMint, string Publisher, string Genesis, string Duration, string Emission, string CommittedUnclaimed, string NextCycle, bool LaunchMode = false, string ActivatedAt = "0", string PpCutoff = "0", string TotalAllocated = "0", string FaucetOpensAt = "0", string WaveTwoAt = "0");
 public sealed record PublishedCycle(string CycleId, string Start, string End, byte[] Root, byte[] ManifestHash, byte[] TotalPoints, string Budget, string TotalAllocated, string ClaimedAmount, int LeafCount, string PublishedAt, string Publisher, string Address);
 // JS emits byte arrays as arrays, whereas System.Text.Json treats byte[] as base64.
 public sealed record SettlementChainState(RewardConfiguration Config, string GenesisHash, string ProgramId, string VaultBalance, JsonElement[] Cycles, long LatestFinalizedSlot = 0, long? FinalizedTime = null, double RpcLatencyMs = 0, string? UpgradeAuthority = null, string? FaucetDistributed = null);

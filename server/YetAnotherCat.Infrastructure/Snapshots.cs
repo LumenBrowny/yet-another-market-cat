@@ -10,23 +10,38 @@ public sealed class Snapshots(AccountingDb db, CurrentCycleClock? clock = null)
         // Projection and finalized watermark must be read from the same DB snapshot.
         await using var tx = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, ct);
         var cp = await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync(ct);
-        if (cp == null) return null;
+        if (cp == null || clock != null && clock.Configuration == null) return null;
         var p = await db.Projections.AsNoTracking().SingleOrDefaultAsync(p => p.Wallet == wallet, ct);
         var units = p == null ? 0 : Points.Integer(p.Units) + Points.Accrue(Points.Integer(p.Rate), p.LastAccrualTime, cp.ThroughTime);
         long? cycleStart = null, cycleEnd = null;
         string? cycleId = null, cycleUnits = null;
-        if (clock?.Configuration is { } rewards) {
-            var id = Settlement.CycleId(long.Parse(rewards.Genesis), long.Parse(rewards.Duration), cp.ThroughTime);
+        var lifecycle = clock?.Configuration;
+        var horizon = lifecycle == null ? null : RewardLifecycle.Horizon(lifecycle);
+        var accrualTime = Math.Min(cp.ThroughTime, horizon ?? cp.ThroughTime);
+        var status = lifecycle == null ? "ACTIVE" : RewardLifecycle.Status(lifecycle, cp.ThroughTime);
+        if (status == "COMPLETE" && cp.ThroughTime < horizon) status = "FINALIZING";
+        if (lifecycle?.LaunchMode == true) {
+            var history = await db.Events.AsNoTracking().Where(e => e.Wallet == wallet).ToListAsync(ct);
+            units = RewardLifecycle.Prepared(lifecycle) ? 0 : Points.Integer(CycleService.Calculate(history,
+                long.Parse(lifecycle.Genesis), Math.Max(long.Parse(lifecycle.Genesis), accrualTime)).SingleOrDefault()?.PointUnits ?? "0");
+        }
+        if (lifecycle is { } rewards && !RewardLifecycle.Prepared(rewards) && !RewardLifecycle.Complete(rewards)) {
+            var cycleTime = horizon is > 0 && accrualTime >= horizon ? horizon.Value - 1 : accrualTime;
+            var id = Settlement.CycleId(long.Parse(rewards.Genesis), long.Parse(rewards.Duration), cycleTime);
             if (id != null) {
                 var bounds = Settlement.Bounds(long.Parse(rewards.Genesis), long.Parse(rewards.Duration), id.Value);
                 var events = await db.Events.AsNoTracking().Where(e => e.Wallet == wallet).ToListAsync(ct);
-                cycleUnits = CycleService.Calculate(events, bounds.Start, cp.ThroughTime).SingleOrDefault()?.PointUnits ?? "0";
+                cycleUnits = CycleService.Calculate(events, bounds.Start, accrualTime).SingleOrDefault()?.PointUnits ?? "0";
                 cycleId = id.ToString(); cycleStart = bounds.Start; cycleEnd = bounds.End;
             }
         }
         return new
         {
             wallet,
+            distributionStatus = status,
+            ppAccrualEnd = horizon,
+            ppCutoff = lifecycle?.PpCutoff,
+            pointsFinal = status == "COMPLETE" && cp.ThroughTime >= horizon,
             position = p?.Position,
             effectiveLockedBaseUnits = p?.Locked ?? "0",
             effectiveLockedCatshit = Points.Format(Points.Integer(p?.Locked ?? "0"), 6),
@@ -39,12 +54,12 @@ public sealed class Snapshots(AccountingDb db, CurrentCycleClock? clock = null)
             currentCycleStart = cycleStart,
             currentCycleEnd = cycleEnd,
             poopPoints = Points.Format(units),
-            ratePointUnitsPerSecond = p?.Rate ?? "0",
+            ratePointUnitsPerSecond = lifecycle != null && (status == "PREPARED" || RewardLifecycle.Complete(lifecycle)) ? "0" : p?.Rate ?? "0",
             storedPointUnits = p?.Units ?? "0",
             lastAccrualTimestamp = p?.LastAccrualTime,
             lastProcessedSlot = p?.LastProcessedSlot,
             lastFinalizedChainTime = cp.ThroughTime,
-            accountingFinalizedThroughTime = cp.ThroughTime,
+            accountingFinalizedThroughTime = accrualTime,
             accountingFinalizedThroughSlot = cp.ThroughSlot,
             indexerLagSlots = Math.Max(0, latestSlot - cp.ThroughSlot),
             stale = !healthy || latestSlot > cp.ThroughSlot + 250,

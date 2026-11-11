@@ -1,6 +1,8 @@
 // Cosmetic mainnet read only. Never use the devnet wallet connection here.
 export const SKR_MINT = "SKRbvo6Gf7GondiT3BbTfuRDPqLWei4j2Qy2NPGZhW3";
-export const SKR_RPC = "https://api.mainnet-beta.solana.com";
+export const SKR_RPC = process.env.EXPO_PUBLIC_BUILD_PROFILE === "mainnet"
+  ? "https://yetanothermarket.cat/mobile-rpc"
+  : "https://api.mainnet-beta.solana.com";
 export const SKR_TTL = 5 * 60_000;
 export type Detection = {
   status: "found" | "absent" | "unavailable";

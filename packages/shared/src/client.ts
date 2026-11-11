@@ -19,9 +19,12 @@ import {
 } from "@solana/spl-token";
 import { Buffer } from "buffer";
 import idlJson from "./idl.json";
+import mainnetIdlJson from "./idl.mainnet.json";
 import { assertAmount } from "./index";
 
-export const IDL = idlJson as Idl;
+export const IDL = (process.env.EXPO_PUBLIC_BUILD_PROFILE === "mainnet"
+  ? mainnetIdlJson
+  : idlJson) as Idl;
 export const PROGRAM_ID = new PublicKey(IDL.address);
 const coder = new BorshInstructionCoder(IDL);
 const accountsCoder = new BorshAccountsCoder(IDL);
@@ -45,7 +48,26 @@ export type Config = {
   minLockAmount: bigint;
   unlockCooldownSeconds: bigint;
   faucetDistributed: bigint;
+  launchMode: boolean;
+  activatedAt: bigint;
+  ppCutoff: bigint;
+  totalAllocated: bigint;
+  faucetOpensAt: bigint;
+  waveTwoAt: bigint;
+  faucetIssuer: PublicKey;
 };
+// Legacy devnet Config is exactly 97 bytes. Only that known layout gets zero defaults.
+export function decodeConfig(data: Buffer) {
+  if (![97, 122, 170].includes(data.length))
+    throw new Error("Unsupported Config layout");
+  return accountsCoder.decode(
+    "config",
+    data.length === 170
+      ? data
+      : Buffer.concat([data, Buffer.alloc(170 - data.length)]),
+  );
+}
+
 function bigintFields<T>(raw: Record<string, unknown>): T {
   return Object.fromEntries(
     Object.entries(raw).map(([k, v]) => [
@@ -58,17 +80,24 @@ async function readAccount<T>(
   connection: Connection,
   address: PublicKey,
   name: string,
+  commitment: "confirmed" | "finalized" = "confirmed",
 ): Promise<T | null> {
-  const info = await connection.getAccountInfo(address, "confirmed");
+  const info = await connection.getAccountInfo(address, commitment);
   if (!info) return null;
   if (!info.owner.equals(PROGRAM_ID))
     throw new Error(`Unexpected owner for ${name}`);
-  return bigintFields<T>(accountsCoder.decode(name, info.data));
+  return bigintFields<T>(
+    name === "config"
+      ? decodeConfig(info.data)
+      : accountsCoder.decode(name, info.data),
+  );
 }
 export const readPosition = (c: Connection, owner: PublicKey) =>
   readAccount<Position>(c, pda("position", owner), "miningPosition");
-export const readConfig = (c: Connection) =>
-  readAccount<Config>(c, configAddress, "config");
+export const readConfig = (
+  c: Connection,
+  commitment: "confirmed" | "finalized" = "confirmed",
+) => readAccount<Config>(c, configAddress, "config", commitment);
 
 // One confirmed bank snapshot, without a second request for the same ATA balance.
 export async function readWalletSnapshot(
@@ -122,6 +151,7 @@ export function instruction(
         throw new Error("Nested accounts not supported");
       const pubkey =
         keys[account.name] ??
+        (account.name === "config" ? configAddress : undefined) ??
         (account.address ? new PublicKey(account.address) : undefined);
       if (!pubkey) throw new Error(`Missing account ${account.name}`);
       return {

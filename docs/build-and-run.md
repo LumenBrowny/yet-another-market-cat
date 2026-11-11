@@ -19,6 +19,8 @@ The lockfiles, migrations, protocol vectors, IDL and referenced artwork are comm
 
 ## Android
 
+The wrapper below builds the historical devnet release. For mainnet, use `scripts/build-release.ps1 -Profile mainnet` with explicit public API/RPC URLs and private `YAC_ANDROID_*` signing settings. The validator rejects lab/rehearsal settings and hackathon signing. Mainnet is a separate package; see [release status](release.md). Never embed a private provider credential in an `EXPO_PUBLIC_*` value.
+
 Windows release scripts require PowerShell 7, **JDK 17**, Android SDK platform 36, build-tools 36.0.0, platform-tools and the NDK/CMake versions selected by Expo/Gradle. Set `JAVA_HOME` and `ANDROID_HOME` to your installations. Run `npm ci` before building.
 
 ```powershell

@@ -16,6 +16,7 @@ public sealed class CycleService(AccountingDb db, SettlementBridge bridge, ILogg
     public async Task<SettlementChainState> State(CancellationToken ct = default) => (await bridge.Call("state", ct: ct)).Deserialize<SettlementChainState>(HistoryReader.Json)!;
     public async Task<CycleRecord> Build(ulong id, SettlementChainState state, CancellationToken ct = default, bool persist = true)
     {
+        RewardLifecycle.RequireBuild(state.Config, id);
         var bounds = Settlement.Bounds(long.Parse(state.Config.Genesis), long.Parse(state.Config.Duration), id);
         await using var tx = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, ct);
         var cp = await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync(ct) ?? throw new InvalidOperationException("Accounting not initialized");

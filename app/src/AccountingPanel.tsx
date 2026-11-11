@@ -2,14 +2,16 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AppState, Pressable, StyleSheet, Text, View } from "react-native";
 import { PROGRAM_ID } from "@yac/shared/src/client";
 import { connection } from "./wallet";
-import { reconcilePointDisplay } from "./ppDisplay";
-
+import { reconcilePointDisplay, cappedAccrualElapsed } from "./ppDisplay";
 type AccountingSnapshot = {
   wallet: string;
   position: string | null;
   effectiveLockedBaseUnits: string;
   tier: string;
   multiplier: string;
+  distributionStatus?: "PREPARED" | "ACTIVE" | "FINALIZING" | "COMPLETE";
+  ppAccrualEnd?: number | null;
+  pointsFinal?: boolean;
   pointUnits: string;
   pointScale: string;
   poopPoints: string;
@@ -29,7 +31,6 @@ type AccountingSnapshot = {
   currentCycleEnd: number | null;
 };
 const apiUrl = process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "");
-
 export function AccountingPanel({
   wallet,
   mint,
@@ -120,6 +121,7 @@ export function AccountingPanel({
   const catchingUp =
     unavailable ||
     snapshot?.stale ||
+    snapshot?.distributionStatus === "FINALIZING" ||
     (snapshot &&
       locked !== null &&
       snapshot.effectiveLockedBaseUnits !== locked);
@@ -131,7 +133,11 @@ export function AccountingPanel({
       const age = now / 1000 - snapshot.accountingFinalizedThroughTime;
       // Short outages/stake transitions keep the last known rate animating.
       // Never extrapolate indefinitely when authoritative updates stop.
-      const elapsed = Math.max(0, Math.min(90, age));
+      const elapsed = cappedAccrualElapsed(
+        now / 1000,
+        snapshot.accountingFinalizedThroughTime,
+        snapshot.ppAccrualEnd,
+      );
       const rate = Number(snapshot.ratePointUnitsPerSecond) / 1000;
       const target = Number(snapshot.pointUnits) / 1000 + elapsed * rate;
       const cycleElapsed =
@@ -156,7 +162,8 @@ export function AccountingPanel({
         rate,
         prior.ready,
         !!catchingUp,
-        false,
+        snapshot.distributionStatus === "COMPLETE" ||
+          snapshot.distributionStatus === "PREPARED",
         dt,
       );
       if (reconciled.largeCorrection)
@@ -181,7 +188,15 @@ export function AccountingPanel({
         cycleId,
         updatedAt: now,
       };
-      setDisplay({ lifetime, cycle, paused: age >= 90 });
+      setDisplay({
+        lifetime,
+        cycle,
+        paused:
+          (age >= 90 && snapshot.distributionStatus !== "COMPLETE") ||
+          (snapshot.ppAccrualEnd != null &&
+            now / 1000 >= snapshot.ppAccrualEnd &&
+            snapshot.distributionStatus !== "COMPLETE"),
+      });
     };
     tick();
     const timer = setInterval(tick, 100);
@@ -195,7 +210,13 @@ export function AccountingPanel({
       </Text>
       <Text style={styles.rate}>
         {snapshot
-          ? `+${snapshot.multiplier} PP/sec`
+          ? snapshot.distributionStatus === "COMPLETE"
+            ? "DISTRIBUTION COMPLETE - PP FROZEN"
+            : snapshot.distributionStatus === "PREPARED"
+              ? "WAITING FOR ACTIVATION"
+              : snapshot.distributionStatus === "FINALIZING"
+                ? "FINALIZING POINTS"
+                : `+${snapshot.multiplier} PP/sec`
           : wallet
             ? unavailable
               ? "ACCOUNTING UNAVAILABLE"
@@ -212,7 +233,9 @@ export function AccountingPanel({
           : "— PP"}
       </Text>
       <Text style={styles.status}>
-        LIVE ESTIMATE · FINALIZED ACCOUNTING BELOW
+        {snapshot?.pointsFinal
+          ? "FINAL LIFETIME PP"
+          : "LIVE ESTIMATE / FINALIZED ACCOUNTING BELOW"}
       </Text>
       <Text style={styles.rate}>
         {snapshot ? `${snapshot.poopPoints} PP finalized` : ""}

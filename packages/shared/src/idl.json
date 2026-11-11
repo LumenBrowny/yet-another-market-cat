@@ -7,6 +7,322 @@
   },
   "instructions": [
     {
+      "name": "activateRewards",
+      "discriminator": [
+        147,
+        65,
+        75,
+        79,
+        120,
+        2,
+        186,
+        180
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  119,
+                  97,
+                  114,
+                  100,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewardVault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  119,
+                  97,
+                  114,
+                  100,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "faucetOpensAt",
+          "type": "i64"
+        },
+        {
+          "name": "waveTwoAt",
+          "type": "i64"
+        },
+        {
+          "name": "miningStartsAt",
+          "type": "i64"
+        },
+        {
+          "name": "issuer",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "claimAdmittedFaucet",
+      "discriminator": [
+        246,
+        134,
+        148,
+        199,
+        115,
+        188,
+        253,
+        168
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "issuer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tokenMint",
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "receipt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  117,
+                  99,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "admissionReceipt",
+          "writable": true
+        },
+        {
+          "name": "faucetVault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  117,
+                  99,
+                  101,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ownerTokens",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tokenMint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "wave",
+          "type": "u8"
+        },
+        {
+          "name": "subject",
+          "type": "pubkey"
+        },
+        {
+          "name": "expiresAt",
+          "type": "i64"
+        }
+      ]
+    },
+    {
       "name": "claimCycle",
       "discriminator": [
         54,
@@ -1106,6 +1422,186 @@
       "args": []
     },
     {
+      "name": "initializeLaunchConfig",
+      "docs": [
+        "Fresh deployment only; admission policy is added before any mainnet release."
+      ],
+      "discriminator": [
+        106,
+        231,
+        35,
+        15,
+        25,
+        104,
+        160,
+        153
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "program",
+          "address": "BfNiASrYNqmARu2TQ1eBa1PJ6KgVHTNn44ATk5rJe6zW"
+        },
+        {
+          "name": "programData"
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tokenMint"
+        },
+        {
+          "name": "adminTokens",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "admin"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tokenMint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "faucetVault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  97,
+                  117,
+                  99,
+                  101,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
       "name": "initializeRewards",
       "discriminator": [
         91,
@@ -1327,6 +1823,25 @@
       ],
       "accounts": [
         {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
           "name": "publisher",
           "writable": true,
           "signer": true,
@@ -1499,9 +2014,133 @@
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "rotateFaucetIssuer",
+      "discriminator": [
+        250,
+        161,
+        183,
+        175,
+        25,
+        25,
+        172,
+        192
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "newIssuer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "rotatePublisher",
+      "discriminator": [
+        44,
+        237,
+        68,
+        164,
+        90,
+        22,
+        129,
+        6
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "newPublisher",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  119,
+                  97,
+                  114,
+                  100,
+                  115
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
+    {
+      "name": "admissionReceipt",
+      "discriminator": [
+        36,
+        239,
+        169,
+        107,
+        63,
+        212,
+        212,
+        171
+      ]
+    },
     {
       "name": "claimReceipt",
       "discriminator": [
@@ -1635,6 +2274,19 @@
       ]
     },
     {
+      "name": "faucetIssuerRotated",
+      "discriminator": [
+        51,
+        239,
+        99,
+        233,
+        92,
+        252,
+        226,
+        233
+      ]
+    },
+    {
       "name": "positionCreated",
       "discriminator": [
         63,
@@ -1645,6 +2297,32 @@
         22,
         31,
         221
+      ]
+    },
+    {
+      "name": "publisherRotated",
+      "discriminator": [
+        172,
+        3,
+        155,
+        134,
+        158,
+        242,
+        73,
+        164
+      ]
+    },
+    {
+      "name": "rewardsActivated",
+      "discriminator": [
+        203,
+        228,
+        14,
+        213,
+        67,
+        162,
+        125,
+        168
       ]
     },
     {
@@ -1677,51 +2355,76 @@
   "errors": [
     {
       "code": 6000,
-      "name": "zeroAmount",
-      "msg": "Amount must be greater than zero"
+      "name": "invalidMetadata",
+      "msg": "Invalid immutable cycle metadata"
     },
     {
       "code": 6001,
-      "name": "overflow",
-      "msg": "Arithmetic overflow"
+      "name": "nonSequential",
+      "msg": "Cycles must be published sequentially"
     },
     {
       "code": 6002,
-      "name": "withdrawalPending",
-      "msg": "A withdrawal is already pending"
+      "name": "cycleOpen",
+      "msg": "Cycle has not ended"
     },
     {
       "code": 6003,
-      "name": "insufficientLocked",
-      "msg": "Amount exceeds effective locked balance"
+      "name": "insolvent",
+      "msg": "Reward reserve or cycle allocation would be overdrawn"
     },
     {
       "code": 6004,
-      "name": "noWithdrawal",
-      "msg": "No pending withdrawal"
+      "name": "invalidProof",
+      "msg": "Invalid reward proof"
     },
     {
       "code": 6005,
-      "name": "cooldown",
-      "msg": "Withdrawal cooldown has not elapsed (24 hours)"
+      "name": "notActivated",
+      "msg": "Rewards have not been activated"
     },
     {
       "code": 6006,
-      "name": "faucetExhausted",
-      "msg": "Dev faucet allocation is exhausted"
+      "name": "alreadyActivated",
+      "msg": "Activation is one-time and requires launch mode"
     },
     {
       "code": 6007,
-      "name": "unauthorized",
-      "msg": "Only the program upgrade authority can initialize"
+      "name": "distributionComplete",
+      "msg": "Reward distribution is complete"
     },
     {
       "code": 6008,
-      "name": "invalidMint",
-      "msg": "Dev mint must have 6 decimals, fixed capped supply, and no mint/freeze authority"
+      "name": "admissionRequired",
+      "msg": "Signed admission required"
+    },
+    {
+      "code": 6009,
+      "name": "invalidAdmission",
+      "msg": "Wrong faucet wave or expired admission"
     }
   ],
   "types": [
+    {
+      "name": "admissionReceipt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "subject",
+            "type": "pubkey"
+          },
+          {
+            "name": "wave",
+            "type": "u8"
+          }
+        ]
+      }
+    },
     {
       "name": "claimReceipt",
       "type": {
@@ -1778,6 +2481,34 @@
           {
             "name": "faucetDistributed",
             "type": "u64"
+          },
+          {
+            "name": "launchMode",
+            "type": "bool"
+          },
+          {
+            "name": "activatedAt",
+            "type": "i64"
+          },
+          {
+            "name": "ppCutoff",
+            "type": "i64"
+          },
+          {
+            "name": "totalAllocated",
+            "type": "u64"
+          },
+          {
+            "name": "faucetOpensAt",
+            "type": "i64"
+          },
+          {
+            "name": "waveTwoAt",
+            "type": "i64"
+          },
+          {
+            "name": "faucetIssuer",
+            "type": "pubkey"
           }
         ]
       }
@@ -1897,6 +2628,26 @@
       }
     },
     {
+      "name": "faucetIssuerRotated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "old",
+            "type": "pubkey"
+          },
+          {
+            "name": "new",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "faucetReceipt",
       "type": {
         "kind": "struct",
@@ -1984,6 +2735,26 @@
       }
     },
     {
+      "name": "publisherRotated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "old",
+            "type": "pubkey"
+          },
+          {
+            "name": "new",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "rewardConfig",
       "type": {
         "kind": "struct",
@@ -2019,6 +2790,18 @@
           {
             "name": "bump",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "rewardsActivated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "genesis",
+            "type": "i64"
           }
         ]
       }

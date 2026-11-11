@@ -1,0 +1,38 @@
+name: yamc-admission-rehearsal
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: infra/public/Dockerfile
+    image: yamc-api:admission-rehearsal
+    init: true
+    ports: ["127.0.0.1:5191:8080"]
+    env_file: ../../.dev/admission-compose/api.env
+    environment:
+      SOLANA_PROGRAM_ID: "BfNiASrYNqmARu2TQ1eBa1PJ6KgVHTNn44ATk5rJe6zW"
+      SOLANA_START_SLOT: "0"
+      YAC_RPC_PRIMARY: http://127.0.0.1:1
+      YAC_SETTLEMENT_ENABLED: "false"
+      YAC_PUBLISHER_ENABLED: "false"
+      YAC_ADMISSION_ENABLED: "true"
+    volumes: ["api-data:/yac/.dev"]
+    mem_limit: 768m
+  admission:
+    build:
+      context: ../..
+      dockerfile: infra/admission/Dockerfile
+      target: rehearsal
+    image: yamc-admission:transport-rehearsal
+    init: true
+    network_mode: service:api
+    depends_on: [api]
+    volumes:
+      - ../../.dev/admission-compose/admission.json:/run/secrets/admission.json:ro
+      - admission-data:/data
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m,mode=1777"]
+    cap_drop: [ALL]
+    mem_limit: 384m
+volumes:
+  api-data:
+  admission-data:

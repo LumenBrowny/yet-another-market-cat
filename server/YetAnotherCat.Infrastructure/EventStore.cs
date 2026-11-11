@@ -45,7 +45,7 @@ public sealed class EventStore(AccountingDb db, ILogger<EventStore> logger)
     }
     private async Task Fold(ChainEvent e, CancellationToken ct)
     {
-        if (e.EventType is "faucetClaimed" or "cyclePublished" or "cycleClaimed") return;
+        if (e.EventType is "faucetClaimed" or "cyclePublished" or "cycleClaimed" or "rewardsActivated" or "publisherRotated" or "faucetIssuerRotated") return;
         var p = await db.Projections.FindAsync([e.Wallet], ct);
         if (p == null)
         {

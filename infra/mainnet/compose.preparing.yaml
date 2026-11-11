@@ -1,0 +1,59 @@
+name: yamc-mainnet
+services:
+  mobile-rpc:
+    image: sha256:7fac95725eca3b692cfba92ef505832129a8e7c64024173dcbd304a03c74214b
+    restart: unless-stopped
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    env_file: ./secrets/mobile-rpc.env
+    environment:
+      RPC_TRANSACTIONS_ENABLED: "true"
+    mem_limit: 96m
+    pids_limit: 32
+    networks:
+      public:
+        aliases: [yamc-mobile-rpc]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8080/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  api:
+    image: ${YAMC_API_IMAGE:?required}
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 45s
+    env_file: ./secrets/backend.env
+    environment:
+      YAC_ROOT: /yac
+      YAC_TRUSTED_PROXY: 172.29.6.254
+      YAC_SETTLEMENT_ENABLED: "false"
+      YAC_PUBLISHER_ENABLED: "false"
+      YAC_ADMISSION_ENABLED: "false"
+      YAC_RECOVERY_MODE: "true"
+      YAC_READ_ONLY_STATE: "true"
+      YAC_RPC_METRICS: "true"
+      YAC_FINALIZED_BLOCK_CACHE: /yac/.dev/finalized-block-cache
+      DOTNET_GCHeapHardLimit: "0x10000000"
+    volumes:
+      - ./secrets/deployment.json:/run/yac-mainnet/deployment.json:ro
+      - mainnet-api-data:/yac/.dev
+    mem_limit: 512m
+    ports: ["127.0.0.1:5089:8080"]
+    networks:
+      public:
+        aliases: [yamc-mainnet-api]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8080/api/live').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 120s
+      retries: 3
+networks:
+  public:
+    external: true
+    name: yac_default
+volumes:
+  mainnet-api-data:

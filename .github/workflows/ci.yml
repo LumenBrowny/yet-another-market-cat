@@ -19,10 +19,12 @@ jobs:
           components: rustfmt
       - run: npm ci
       - run: npm test
+      - run: npm run test:service-transfer
       - run: npm run typecheck
       - run: npm run lint
       - run: npx playwright-core install --with-deps chromium
       - run: node scripts/test-web-security.cjs
+      - run: node scripts/test-mainnet-web.cjs
       - run: dotnet test server/YetAnotherCat.Tests -m:1
       - run: dotnet publish server/YetAnotherCat.Api -c Release -o /tmp/yac-publish -m:1
       - run: cargo fmt --all -- --check

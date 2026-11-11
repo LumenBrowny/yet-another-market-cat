@@ -1,0 +1,10 @@
+[Unit]
+Description=YAMC Telegram notifier through wgmina
+After=snap.docker.dockerd.service yamc-backup-monitor.service
+Requires=snap.docker.dockerd.service
+[Service]
+Type=oneshot
+WorkingDirectory=/var/snap/docker/common/yamc-notifier
+ExecStartPre=/snap/bin/docker inspect wgmina --format={{.State.Running}}
+ExecStart=/snap/bin/docker compose -p yamc-notifier -f compose.yaml run --rm --no-deps notifier
+TimeoutStartSec=90

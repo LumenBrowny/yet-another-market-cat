@@ -125,7 +125,14 @@ public static class ProductApi
         });
         app.MapGet("/api/stats",async(AccountingDb db,SettlementHealth health,CancellationToken ct)=> {
             var cp=await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync(ct);var ps=await db.Projections.AsNoTracking().ToArrayAsync(ct);var claims=await db.Events.AsNoTracking().Where(e=>e.EventType=="cycleClaimed").ToArrayAsync(ct);
-            return new{activeMiners=ps.Count(p=>p.Rate!="0"),lockedBaseUnits=ps.Aggregate(BigInteger.Zero,(s,p)=>s+BigInteger.Parse(p.Locked)).ToString(),lifetimePointUnits=ps.Aggregate(BigInteger.Zero,(s,p)=>s+BigInteger.Parse(p.Units)+Points.Accrue(BigInteger.Parse(p.Rate),p.LastAccrualTime,cp?.ThroughTime??p.LastAccrualTime)).ToString(),publishedCycles=await db.Cycles.CountAsync(c=>c.Status=="PUBLISHED",ct),distributedBaseUnits=claims.Aggregate(BigInteger.Zero,(s,e)=>s+BigInteger.Parse(e.Amount)).ToString(),rewardReserveBaseUnits=health.State?.VaultBalance,finalizedThroughTime=cp?.ThroughTime,stale=!health.Healthy};
+            var lifetime=ps.Aggregate(BigInteger.Zero,(s,p)=>s+BigInteger.Parse(p.Units)+Points.Accrue(BigInteger.Parse(p.Rate),p.LastAccrualTime,cp?.ThroughTime??p.LastAccrualTime));
+            var lifecycle=health.State?.Config;
+            if(lifecycle?.LaunchMode==true){
+                var end=Math.Min(cp?.ThroughTime??0,RewardLifecycle.Horizon(lifecycle)??0);
+                var events=await db.Events.AsNoTracking().ToArrayAsync(ct);
+                lifetime=RewardLifecycle.Prepared(lifecycle)?BigInteger.Zero:CycleService.Calculate(events,long.Parse(lifecycle.Genesis),Math.Max(long.Parse(lifecycle.Genesis),end)).Aggregate(BigInteger.Zero,(sum,p)=>sum+Points.Integer(p.PointUnits));
+            }
+            return new{distributionStatus=lifecycle==null?"UNKNOWN":RewardLifecycle.Status(lifecycle,cp?.ThroughTime??0),activeMiners=ps.Count(p=>p.Rate!="0"),lockedBaseUnits=ps.Aggregate(BigInteger.Zero,(s,p)=>s+BigInteger.Parse(p.Locked)).ToString(),lifetimePointUnits=lifetime.ToString(),publishedCycles=await db.Cycles.CountAsync(c=>c.Status=="PUBLISHED",ct),distributedBaseUnits=claims.Aggregate(BigInteger.Zero,(s,e)=>s+BigInteger.Parse(e.Amount)).ToString(),rewardReserveBaseUnits=health.State?.VaultBalance,finalizedThroughTime=cp?.ThroughTime,stale=!health.Healthy};
         });
         app.MapGet("/api/operator/status",(OperationsState state)=>state.Snapshot==null?Results.Json(new{status="degraded",error="Operational checks initializing"},statusCode:503):Results.Ok(new{state.Status,state.UpdatedAt,snapshot=state.Snapshot}));
         app.MapPost("/api/operator/cycles/{id}/verify",async(string id,AccountingDb db,CycleVerification verifier,CancellationToken ct)=> {

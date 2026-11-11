@@ -16,7 +16,7 @@ export default ts.config(
   js.configs.recommended,
   ...ts.configs.recommended,
   {
-    files: ["server/**/wwwroot/*.js"],
+    files: ["server/**/wwwroot/*.js", "web/**/*.js"],
     languageOptions: {
       globals: {
         document: "readonly",
@@ -28,9 +28,17 @@ export default ts.config(
         URLSearchParams: "readonly",
         URL: "readonly",
         localStorage: "readonly",
+        history: "readonly",
         setTimeout: "readonly",
       },
     },
+  },
+  {
+    files: ["infra/mobile-rpc/*.mjs"],
+    languageOptions: { globals: {
+      Buffer: "readonly", URL: "readonly", fetch: "readonly",
+      AbortSignal: "readonly", process: "readonly",
+    } },
   },
   {
     files: ["**/*.js", "**/*.cjs"],

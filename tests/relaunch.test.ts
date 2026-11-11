@@ -8,12 +8,16 @@ import {
   IDL,
   PROGRAM_ID,
   readWalletSnapshot,
+  decodeConfig,
 } from "../packages/shared/src/client";
 import {
   deriveCyclePda,
   fetchPublishedCycles,
 } from "../packages/shared/src/cycles";
-import { reconcilePointDisplay } from "../app/src/ppDisplay";
+import {
+  reconcilePointDisplay,
+  cappedAccrualElapsed,
+} from "../app/src/ppDisplay";
 
 for (const count of [10n, 100n, 1000n, 5000n])
   test(`warm discovery at ${count} cycles makes zero RPC`, async () => {
@@ -211,4 +215,38 @@ test("wallet snapshot decodes exact token balance and rejects mismatched account
     position: null,
     claimed: false,
   });
+});
+
+test("lifecycle display never accrues past the funded boundary, including offline restart", () => {
+  assert.equal(cappedAccrualElapsed(10000, 190, 200), 10);
+  assert.equal(cappedAccrualElapsed(201, 200, 200), 0);
+  assert.equal(cappedAccrualElapsed(99, 100, 200), 0);
+  assert.equal(cappedAccrualElapsed(10000, 190), 90);
+  assert.equal(
+    reconcilePointDisplay(1000, 900, 0, true, false, true).value,
+    900,
+  );
+});
+test("legacy devnet Config gets explicit zero lifecycle defaults", async () => {
+  const coder = new BorshAccountsCoder(IDL);
+  const encoded = await coder.encode("config", {
+    admin: PROGRAM_ID,
+    tokenMint: PROGRAM_ID,
+    minLockAmount: new BN(1000),
+    unlockCooldownSeconds: new BN(86400),
+    bump: 1,
+    faucetDistributed: new BN(0),
+    launchMode: true,
+    activatedAt: new BN(100),
+    ppCutoff: new BN(200),
+    totalAllocated: new BN(5),
+    faucetOpensAt: new BN(50),
+    waveTwoAt: new BN(75),
+    faucetIssuer: PROGRAM_ID,
+  });
+  const legacy = decodeConfig(encoded.subarray(0, 97));
+  assert.equal(legacy.launchMode, false);
+  assert.equal(legacy.ppCutoff.toString(), "0");
+  assert.equal(decodeConfig(encoded).ppCutoff.toString(), "200");
+  assert.throws(() => decodeConfig(encoded.subarray(0, 100)));
 });

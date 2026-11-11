@@ -1,0 +1,10 @@
+[Unit]
+Description=Publish restricted YAMC backup telemetry
+[Service]
+Type=oneshot
+UMask=0077
+ExecStart=/usr/bin/python3 /opt/yamc-recovery/export_health.py
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/srv/yac-backup-export

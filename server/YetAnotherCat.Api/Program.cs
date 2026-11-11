@@ -49,12 +49,15 @@ if (command == null)
 {
     builder.Services.AddHostedService<Indexer>();
     builder.Services.AddHostedService<ProgramNotifications>();
+    if (builder.Configuration["YAC_SETTLEMENT_ENABLED"] != "true" && builder.Configuration["YAC_READ_ONLY_STATE"] == "true")
+        builder.Services.AddHostedService<ReadOnlySettlementState>();
     if (builder.Configuration["YAC_SETTLEMENT_ENABLED"] == "true") { builder.Services.AddHostedService<CyclePublisher>(); builder.Services.AddHostedService<OperationsMonitor>(); if(builder.Configuration["YAC_RECOVERY_MODE"]!="true")builder.Services.AddHostedService<VerificationWorker>(); }
 }
 builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
 var app = builder.Build();
 app.UseForwardedHeaders();
 app.UseProductSecurity();
+app.MapAdmission();
 await using (var scope = app.Services.CreateAsyncScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AccountingDb>();
@@ -89,6 +92,13 @@ await using (var scope = app.Services.CreateAsyncScope())
     }
 }
 app.MapGet("/api/live", () => Results.Ok(new {status="alive"}));
+app.MapGet("/api/deployment", async (AccountingDb db, IConfiguration config) => {
+    var identity = DeploymentIdentity.FromCheckpoint(config["YAC_CLUSTER"] ?? "localnet", programId,
+        await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync());
+    return identity == null
+        ? Results.Json(new {error="Deployment identity unavailable or inconsistent"}, statusCode:503)
+        : Results.Ok(identity);
+});
 app.MapGet("/api/config", async (AccountingDb db) => new { programId, pointScale = "1000", commitment = "finalized", tiers = Points.Tiers, chain = await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync() });
 app.MapGet("/api/indexer/status", async (AccountingDb db, IndexerHealth health) =>
 {
@@ -96,6 +106,14 @@ app.MapGet("/api/indexer/status", async (AccountingDb db, IndexerHealth health) 
     return new { healthy = health.Healthy, latestRpcFinalizedSlot = health.State.LatestSlot, lastProcessedSlot = cp?.ThroughSlot, lagSlots = cp == null ? (long?)null : Math.Max(0, health.State.LatestSlot - cp.ThroughSlot), lastProcessedBlockTime = cp?.ThroughTime, health.State.LastSuccess, health.State.Error };
 });
 app.MapGet("/api/health", (IndexerHealth indexer,SettlementHealth settlement,OperationsState operations) => {
+    if (builder.Configuration["YAC_READ_ONLY_STATE"] == "true" && builder.Configuration["YAC_SETTLEMENT_ENABLED"] != "true")
+    {
+        var healthy = indexer.Healthy && settlement.Enabled && settlement.Healthy;
+        return Results.Json(new { status = healthy ? "healthy" : "degraded", mode = "read-only",
+            apiAlive = true, indexerHealthy = indexer.Healthy, chainStateHealthy = settlement.Healthy,
+            settlementEnabled = false, publisherEnabled = false,
+            admissionEnabled = builder.Configuration["YAC_ADMISSION_ENABLED"] == "true" }, statusCode: healthy ? 200 : 503);
+    }
     var fresh=operations.UpdatedAt>DateTimeOffset.UtcNow.AddSeconds(-75).ToUnixTimeSeconds();
     var status=!fresh?"degraded":operations.Status;
     return Results.Json(new {status,apiAlive=true,indexerHealthy=indexer.Healthy,cyclePublisherHealthy=settlement.Healthy,components=fresh?operations.Components:new {status="degraded",detail="Operational checks unavailable or stale"}},statusCode:status=="healthy"?200:503);

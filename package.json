@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/shared.test.ts tests/engine.test.ts tests/mobile-buffer.test.ts tests/accounting.test.ts tests/settlement.test.ts tests/product.test.ts tests/relaunch.test.ts tests/visual.test.ts tests/selected-audio.test.ts tests/mouth.test.ts tests/chamber.test.ts tests/skr.test.ts",
-    "test:program": "tsx --test --test-concurrency=1 tests/program.test.ts tests/program-settlement.test.ts",
+    "test": "tsx --test tests/admission.test.ts tests/shared.test.ts tests/engine.test.ts tests/mobile-buffer.test.ts tests/accounting.test.ts tests/settlement.test.ts tests/product.test.ts tests/relaunch.test.ts tests/visual.test.ts tests/selected-audio.test.ts tests/mouth.test.ts tests/chamber.test.ts tests/skr.test.ts tests/offline-launch.test.ts tests/offline-upgrade.test.ts tests/offline-direct.test.ts tests/release-profile.test.ts tests/mainnet-deployment-policy.test.ts tests/mainnet-deployment-state.test.ts tests/service-key-custody.test.ts tests/mainnet-offline-signing.test.ts tests/mainnet-online-review.test.ts tests/submission-store.test.ts tests/mainnet-upload.test.ts tests/mainnet-initialization.test.ts tests/mainnet-initialization-online.test.ts tools/offline-key-custody/transfer.test.mjs && npm run test:mobile-rpc",
+    "test:program": "tsx --test --test-concurrency=1 tests/program.test.ts tests/program-settlement.test.ts tests/program-lifecycle.test.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
@@ -17,11 +17,17 @@
     "bootstrap": "tsx scripts/bootstrap.ts",
     "android": "npm run android -w app",
     "chamber:render": "node scripts/render-chamber-art.mjs",
-    "chamber:render:011a": "node scripts/render-chamber-011a.mjs"
+    "chamber:render:011a": "node scripts/render-chamber-011a.mjs",
+    "test:mobile-rpc": "node --test infra/mobile-rpc/policy.test.mjs infra/mobile-rpc/server.test.mjs && tsx --test tests/transaction-transport.test.ts",
+    "test:issuer-transfer": "node --test tools/offline-key-custody/issuer-transfer.test.mjs",
+    "test:service-transfer": "node --test tools/offline-key-custody/issuer-transfer.test.mjs tools/offline-key-custody/publisher-transfer.test.mjs"
   },
   "dependencies": {
     "@coral-xyz/anchor": "0.32.1",
+    "@solana-mobile/skr-genesis-token": "1.0.1",
+    "@solana/kit": "7.1.1",
     "@solana/spl-token": "0.4.14",
+    "@solana/wallet-standard-util": "1.1.4",
     "@solana/web3.js": "1.98.4",
     "buffer": "6.0.3"
   },

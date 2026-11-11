@@ -46,6 +46,13 @@ async function main() {
   }
   const config = await readConfig(connection);
   if (!config) throw new Error("Initialize custody/faucet first");
+  if (
+    config.launchMode &&
+    !["127.0.0.1", "localhost", "[::1]"].includes(
+      new URL(connection.rpcEndpoint).hostname,
+    )
+  )
+    throw new Error("Experimental launch mode is localnet-only");
   const publisherFile =
     process.env.YAC_PUBLISHER_KEY ?? ".dev/cycle-publisher-004.json";
   let publisher: Keypair;
@@ -62,9 +69,13 @@ async function main() {
     await connection.getSlot("finalized"),
   );
   if (!time) throw new Error("Missing chain time");
-  const genesis = time + Number(process.env.YAC_CYCLE_START_DELAY ?? "180");
-  const duration = Number(process.env.YAC_CYCLE_DURATION ?? "86400");
-  const emission = 100_000_000_000n;
+  const genesis = config.launchMode
+    ? 0
+    : time + Number(process.env.YAC_CYCLE_START_DELAY ?? "180");
+  const duration = config.launchMode
+    ? 86400
+    : Number(process.env.YAC_CYCLE_DURATION ?? "86400");
+  const emission = config.launchMode ? 250_000_000_000n : 100_000_000_000n;
   const signature = await sendAndConfirmTransaction(
     connection,
     new Transaction().add(

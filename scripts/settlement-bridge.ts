@@ -13,10 +13,13 @@ import {
   PROGRAM_ID,
   instruction,
   configAddress,
+  decodeConfig,
   IDL,
 } from "../packages/shared/src/client";
 import {
   fetchRewards,
+  publicValue,
+  type RewardConfig,
   fetchCycle,
   fetchPublishedCycles,
   deriveCyclePda,
@@ -73,7 +76,7 @@ async function main() {
       BigInt(input.toCycle!),
       BigInt(input.fromCycle!),
     );
-  const config = await fetchRewards(connection);
+  let config = await fetchRewards(connection);
   if (!config) throw new Error("Reward config unavailable");
   const shared = input.command === "state" ? input.operationalTip : undefined;
   if (
@@ -91,17 +94,26 @@ async function main() {
     const finalizedTime =
       shared?.blockTime ?? (await connection.getBlockTime(latestFinalizedSlot));
     const rpcLatencyMs = Date.now() - began;
-    const [program, vaultInfo, miningInfo] =
+    const [program, vaultInfo, miningInfo, rewardsInfo] =
       await connection.getMultipleAccountsInfo(
-        [PROGRAM_ID, rewardVaultPda, configAddress],
+        [PROGRAM_ID, rewardVaultPda, configAddress, rewardsPda],
         "finalized",
       );
     if (!miningInfo || !miningInfo.owner.equals(PROGRAM_ID))
       throw new Error("Mining config owner mismatch");
-    const miningConfig = new BorshAccountsCoder(IDL).decode(
-      "config",
-      miningInfo.data,
-    );
+    if (!rewardsInfo || !rewardsInfo.owner.equals(PROGRAM_ID))
+      throw new Error("Reward config owner mismatch");
+    config = publicValue(
+      new BorshAccountsCoder(IDL).decode("rewardConfig", rewardsInfo.data),
+    ) as RewardConfig;
+    const miningConfig = decodeConfig(miningInfo.data);
+    if (
+      miningConfig.launchMode &&
+      miningConfig.activatedAt.toString() !== config.genesis
+    )
+      throw new Error(
+        "Lifecycle snapshot changed during read; retry finalized state",
+      );
     const vault = unpackAccount(rewardVaultPda, vaultInfo);
     const programData =
       program?.data.length === 36
@@ -117,7 +129,15 @@ async function main() {
     // Historical accounts are discovered separately and persisted by the backend.
     const cycles: unknown[] = [];
     return {
-      config,
+      config: {
+        ...config,
+        launchMode: miningConfig.launchMode,
+        faucetOpensAt: miningConfig.faucetOpensAt.toString(),
+        waveTwoAt: miningConfig.waveTwoAt.toString(),
+        activatedAt: miningConfig.activatedAt.toString(),
+        ppCutoff: miningConfig.ppCutoff.toString(),
+        totalAllocated: miningConfig.totalAllocated.toString(),
+      },
       genesisHash,
       programId: PROGRAM_ID.toBase58(),
       vaultBalance: vault.amount.toString(),

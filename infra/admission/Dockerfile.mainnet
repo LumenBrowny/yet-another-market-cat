@@ -1,0 +1,3 @@
+# Mainnet IDL/profile overlay; no secrets in build context or image layers.
+FROM yamc-admission:production-20261111
+ENV EXPO_PUBLIC_BUILD_PROFILE=mainnet

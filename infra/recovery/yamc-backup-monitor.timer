@@ -1,0 +1,8 @@
+[Unit]
+Description=Check YAMC backup health every fifteen minutes
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=15min
+RandomizedDelaySec=60s
+[Install]
+WantedBy=timers.target

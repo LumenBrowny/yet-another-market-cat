@@ -25,7 +25,6 @@ import {
   ensureAta,
   instruction,
   ownerAccounts,
-  readConfig,
   readWalletSnapshot,
   readPosition,
   type Config,
@@ -35,6 +34,10 @@ import { CatScene } from "./CatScene";
 import { AccountingPanel } from "./AccountingPanel";
 import { ProductNavigation } from "./ProductNavigation";
 import { CyclePanel } from "./CyclePanel";
+import { claimAdmitted } from "./admission";
+import { admissionStatus } from "./admissionStatus";
+import { appConfig } from "./config";
+import { readChainCheckedConfig } from "@yac/shared/src/deployment-guard";
 import {
   cluster,
   connection,
@@ -79,12 +82,12 @@ export default function App() {
   };
   const refresh = useCallback(async (wallet = ownerRef.current) => {
     const sequence = ++refreshSequence.current;
-    const c = await readConfig(connection);
+    const c = await readChainCheckedConfig(connection, appConfig);
     if (sequence !== refreshSequence.current) return;
     setConfig(c);
     if (!c)
       throw new Error(
-        "Program config is missing. Run the dev setup script on this cluster.",
+        "Program configuration is unavailable on the selected network.",
       );
     if (!wallet) return;
     const next = await readWalletSnapshot(connection, wallet, c.tokenMint);
@@ -119,7 +122,7 @@ export default function App() {
         if (alive)
           setRefreshError(
             limited
-              ? "Devnet RPC is rate limited. Showing the last loaded balance; retrying in one minute."
+              ? "RPC is rate limited. Showing the last loaded balance; retrying in one minute."
               : "Could not refresh on-chain balances. Check your connection; retrying shortly.",
           );
       } finally {
@@ -179,7 +182,9 @@ export default function App() {
     if (!owner) throw new Error("Connect a wallet first");
     if ((await connection.getBalance(owner, "confirmed")) < 5000)
       throw new Error(
-        "You need devnet SOL for fees and account rent. Use GET DEVNET SOL below, then retry. CATSHIT alone cannot pay transaction fees.",
+        appConfig.rehearsalGenesis
+          ? "Local test SOL is needed for fees and account rent. Ask the rehearsal operator to fund this wallet on the local validator."
+          : "You need SOL on the selected network for fees and account rent. CATSHIT alone cannot pay transaction fees.",
       );
     setMessage("Approve in your wallet…");
     await sendInstructions(owner, ixs, (sig) => {
@@ -228,6 +233,14 @@ export default function App() {
           (config?.unlockCooldownSeconds ?? UNLOCK_COOLDOWN),
       ) * 1000
     : 0;
+  const admission = config?.launchMode
+    ? admissionStatus(
+        config,
+        BigInt(Math.floor(now / 1000)),
+        !!snapshot?.claimed,
+      )
+    : null;
+  const launchBlocked = admission?.locksClosed ?? false;
   const accounts =
     owner && config ? ownerAccounts(owner, config.tokenMint) : null;
   const ready = !!accounts && !!snapshot && !busy;
@@ -264,10 +277,18 @@ export default function App() {
         >
           <View style={styles.top}>
             <Text style={styles.eyebrow}>CLOCK IN. ZONE OUT.</Text>
-            <Text style={styles.badge}>{cluster.toUpperCase()}</Text>
+            <Text style={styles.badge}>
+              {appConfig.rehearsalGenesis
+                ? "LOCAL TEST"
+                : cluster.toUpperCase()}
+            </Text>
           </View>
           <Text style={styles.title}>Yet Another Market Cat 💩</Text>
-          <Text style={styles.note}>CANONICAL DEVNET · 1-HOUR SHIT CYCLES</Text>
+          <Text style={styles.note}>
+            {config?.launchMode
+              ? "SCHEDULED LAUNCH · DAILY SHIT CYCLES"
+              : "CANONICAL DEVNET · 1-HOUR SHIT CYCLES"}
+          </Text>
           <Text style={styles.subtitle}>Powered by PoS™ — Proof of Shit</Text>
           <ProductNavigation
             wallet={owner?.toBase58()}
@@ -302,13 +323,15 @@ export default function App() {
               <Text style={styles.active}>
                 {owner && !snapshot
                   ? "LOADING POSITION…"
-                  : locked >= MIN_LOCK
-                    ? "● MINING ACTIVE"
-                    : "○ MINING INACTIVE"}
+                  : admission?.mining
+                    ? admission.mining
+                    : locked >= MIN_LOCK
+                      ? "● MINING ACTIVE"
+                      : "○ MINING INACTIVE"}
               </Text>
             </View>
             <CatScene
-              state={tier.catState}
+              state={admission?.miningPending ? "DEAD_INSIDE" : tier.catState}
               wallet={owner?.toBase58() ?? null}
               walletRevision={walletRevision}
             />
@@ -344,32 +367,63 @@ export default function App() {
               ? `Next: ${next.displayMultiplier} ${next.id} · ${formatTokens(next.minimumLocked - locked)} more CATSHIT`
               : "Highest tier reached"}
           </Text>
+          {admission && (
+            <View style={styles.panel}>
+              <Text style={styles.eyebrow}>{admission.title}</Text>
+              <Text style={styles.note}>{admission.detail}</Text>
+              {admission.schedule && (
+                <Text style={styles.note}>{admission.schedule}</Text>
+              )}
+              <Text style={styles.note}>
+                1,000 CATSHIT per allocation. Signing in or completing CAPTCHA
+                does not reserve tokens. SOL is needed for fees and account
+                rent.
+              </Text>
+            </View>
+          )}
           {button(
-            snapshot?.claimed ? "YOU MISSED IT. ALREADY." : "I MISSED THE CAT",
+            admission?.label ??
+              (snapshot?.claimed
+                ? "YOU MISSED IT. ALREADY."
+                : "I MISSED THE CAT"),
             async () => {
+              if (owner && config?.launchMode) {
+                await claimAdmitted(owner, setMessage, setSignature);
+                setMessage("+1,000 CATSHIT");
+                await refresh(owner);
+                return;
+              }
               if (accounts && owner && config)
                 await transact(
                   [
                     ensureAta(owner, config.tokenMint),
                     instruction("claimFaucet", accounts),
                   ],
-                  "YOU MISSED IT.\nAGAIN.\n+2,000 CATSHIT",
+                  config.launchMode
+                    ? "+1,000 CATSHIT"
+                    : "YOU MISSED IT.\nAGAIN.\n+2,000 CATSHIT",
                 );
             },
-            !ready || !!snapshot?.claimed,
+            !ready || !!admission?.disabled || !!snapshot?.claimed,
             true,
           )}
-          <Text style={styles.note}>
-            I MISSED THE CAT gives 2,000 test CATSHIT once per wallet while the
-            faucet reserve lasts. You also need devnet SOL for fees and account
-            rent.
-          </Text>
-          <Pressable
-            accessibilityRole="link"
-            onPress={() => void Linking.openURL("https://faucet.solana.com")}
-          >
-            <Text style={styles.note}>GET DEVNET SOL ↗ · free test tokens</Text>
-          </Pressable>
+          {appConfig.profile !== "mainnet" && !config?.launchMode && (
+            <Text style={styles.note}>
+              I MISSED THE CAT gives 2,000 test CATSHIT once per wallet while
+              the faucet reserve lasts. You also need devnet SOL for fees and
+              account rent.
+            </Text>
+          )}
+          {cluster === "devnet" && !appConfig.rehearsalGenesis && (
+            <Pressable
+              accessibilityRole="link"
+              onPress={() => void Linking.openURL("https://faucet.solana.com")}
+            >
+              <Text style={styles.note}>
+                GET DEVNET SOL ↗ · free test tokens
+              </Text>
+            </Pressable>
+          )}
           <Text style={styles.sectionLabel}>PUT THE CAT TO WORK</Text>
           <View style={styles.presets}>
             {["1000", "2500", "5000", "MAX"].map((value) => (
@@ -422,7 +476,7 @@ export default function App() {
                 "LOCKED. Your cat has a job now.",
               );
             },
-            !ready,
+            !ready || launchBlocked,
           )}
           <Text style={styles.note}>
             Custody release requires a 24-hour cooldown.
@@ -499,7 +553,7 @@ export default function App() {
             </Text>
           )}
           {owner && (
-            <View>
+            <View style={styles.sessionActions}>
               {button(
                 "REFRESH",
                 async () => {
@@ -510,7 +564,7 @@ export default function App() {
                 true,
               )}
               {button(
-                "DISCONNECT / RESET SESSION",
+                "DISCONNECT WALLET",
                 async () => {
                   selectOwner(null);
                   await disconnectWallet();
@@ -521,7 +575,11 @@ export default function App() {
             </View>
           )}
           <Text style={styles.footer}>
-            Not audited. Hackathon/dev software.{"\n"}Test network only.
+            {appConfig.rehearsalGenesis
+              ? "LOCAL REHEARSAL · Test tokens only.\nTransactions stay on the local validator. Wallet sign-in and SGT checks use mainnet."
+              : appConfig.profile === "mainnet"
+                ? "MAINNET · Transactions use real SOL.\nExperimental software. Verify before signing."
+                : "TEST NETWORK · Test tokens only.\nExperimental software. Not a mainnet release."}
           </Text>
         </ScrollView>
       </SafeAreaView>
@@ -602,6 +660,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#222b1c",
     borderWidth: 1,
     borderColor: "#3f4b34",
+  },
+  sessionActions: {
+    gap: 16,
+    marginTop: 8,
+    paddingTop: 18,
+    borderTopWidth: 1,
+    borderTopColor: "#333f29",
   },
   disabled: { opacity: 0.4 },
   buttonText: {

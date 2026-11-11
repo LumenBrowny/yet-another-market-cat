@@ -1,0 +1,17 @@
+[Unit]
+Description=Check off-host YAMC backups and notify on incidents
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=oneshot
+User=yamc-backup
+Group=yamc-backup
+UMask=0077
+ExecStart=/usr/bin/python3 /opt/yamc-recovery/backup_monitor.py --send
+TimeoutStartSec=2min
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/yamc-backup
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

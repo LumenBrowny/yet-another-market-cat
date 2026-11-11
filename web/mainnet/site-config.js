@@ -1,0 +1,1 @@
+export const siteConfig = {"release": {"stage": "preparing", "storeUrl": null, "apkUrl": null}, "mainnet": {"deployment": {"program": "GUyqmcRPYWxjdM3mXZDT89JAtxBtEWs31BNEKQ6KUT5H", "mint": "BcExYqanw2XzVAAsos1FdMCMX952FmaU7v7sqKm3QxAT"}, "activation": null}};

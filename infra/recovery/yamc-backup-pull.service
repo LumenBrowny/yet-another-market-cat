@@ -1,0 +1,19 @@
+[Unit]
+Description=Pull encrypted YAMC backups from restricted VPS export
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=yamc-backup
+Group=yamc-backup
+UMask=0077
+ExecStart=/usr/bin/python3 /opt/yamc-recovery/pull_backups.py --config /var/lib/yamc-backup/pull.json
+ExecStartPost=/usr/bin/touch /var/lib/yamc-backup/last-pull-success
+TimeoutStartSec=15min
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/yamc-backup
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

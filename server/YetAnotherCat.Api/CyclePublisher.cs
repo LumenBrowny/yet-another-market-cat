@@ -34,8 +34,8 @@ public sealed class CyclePublisher(IServiceScopeFactory scopes, IConfiguration c
                 var cp = await db.Checkpoints.AsNoTracking().SingleOrDefaultAsync(stoppingToken);
                 var next = ulong.Parse(state.Config.NextCycle);
                 var plan = SettlementSchedule.Plan(long.Parse(state.Config.Genesis), long.Parse(state.Config.Duration), next, state.FinalizedTime ?? DateTimeOffset.UtcNow.ToUnixTimeSeconds(), cp?.ThroughTime);
-                scheduledDelay = plan.DelayMilliseconds;
-                if (plan.CanSettle)
+                scheduledDelay = RewardLifecycle.Prepared(state.Config) || RewardLifecycle.Complete(state.Config) ? 30_000 : plan.DelayMilliseconds;
+                if (plan.CanSettle && !RewardLifecycle.Prepared(state.Config) && !RewardLifecycle.Complete(state.Config))
                 {
                     var key = configuration["YAC_PUBLISHER_KEY"];
                     if (configuration["YAC_PUBLISHER_ENABLED"] == "true" && !string.IsNullOrWhiteSpace(key)) {

@@ -1,0 +1,20 @@
+
+#app{--line:#d1cdbd;--paper:#f6f3e9;--muted:#625f52;color:#24271e;min-width:0}
+#app .hero{display:block;min-height:0;padding:24px 0;grid-template-columns:none}
+#app h1{font-family:Arial,sans-serif;letter-spacing:-.5px;line-height:1.15;font-size:clamp(30px,5vw,54px);overflow-wrap:anywhere}#app h2{font-size:24px}#app h3{font-size:18px}
+#app .panel,#app .card,#app .result{border:1px solid var(--line);background:var(--paper);padding:24px;border-radius:12px;margin-block:18px;min-width:0}
+#app .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+#app .split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px}
+#app .label,#app .muted,#app small{color:var(--muted)}#app .number{font-size:26px;font-weight:700;overflow-wrap:anywhere}
+#app .table-wrap{overflow:auto;max-width:100%;border:1px solid var(--line);border-radius:10px}
+#app table{min-width:640px;width:100%;border-collapse:collapse}#app td,#app th{padding:16px;text-align:left;border-bottom:1px solid var(--line)}
+#app .action,#app button{display:inline-flex;align-items:center;min-height:44px;padding:12px 18px;border:1px solid var(--line);border-radius:8px;background:#e4edc7;color:#24271e;font:inherit;cursor:pointer}
+#app .actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+#app input{width:100%;min-height:46px;padding:12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:white;color:#24271e}
+#app label{display:block;margin:12px 0 6px}#app .inline-form{display:flex;gap:12px;align-items:end}#app .inline-form>div{flex:1;min-width:0}
+#app code,#app pre,#app dd{overflow-wrap:anywhere;white-space:pre-wrap}#app dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px}#app dd{margin:0}
+#app .badge{display:inline-block;border:1px solid var(--line);padding:6px 10px;border-radius:12px}
+#app .invalid,#app .error{color:#9e2720}#app .valid{color:#28622c}#app .unverifiable{color:#805508}
+#app .check{padding:12px 0;border-bottom:1px solid var(--line)}#app .check strong,#app .check small{display:block}
+#app .empty{padding:30px 12px}#app details{padding:16px;border:1px solid var(--line);border-radius:10px}
+@media(max-width:720px){#app .split,#app dl{grid-template-columns:minmax(0,1fr)}#app .inline-form{display:block}#app .panel,#app .card{padding:16px}}

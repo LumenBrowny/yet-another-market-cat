@@ -6,6 +6,8 @@ The independent TypeScript verifier (`scripts/cycle-verifier.ts`) replays finali
 
 ## Run locally
 
+The examples below are for the **historical devnet** deployment. Mainnet is PRE-LAUNCH with no published cycles yet; use its separate identities, runtime IDL and initialization slot `467943217` for future mainnet replay. See [mainnet status](mainnet-deployment.md). The devnet archive is at `/devnet/cycles`; `/cycles` now displays mainnet.
+
 After `npm ci`, download a manifest from a cycle page to a local file. For full replay, use an RPC with complete required devnet history and start slot 504431875 for the canonical deployment:
 
 ```sh

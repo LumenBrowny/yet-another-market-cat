@@ -80,13 +80,20 @@ function explorer(kind, id, label) {
   const q =
     config.cluster === "devnet"
       ? "?cluster=devnet"
-      : "?cluster=custom&customUrl=" + encodeURIComponent(config.explorerRpc);
+      : config.cluster === "mainnet-beta"
+        ? ""
+        : "?cluster=custom&customUrl=" + encodeURIComponent(config.explorerRpc);
   const href = safeHref(
     `${config.explorerBase}/${kind === "transaction" ? "tx" : "address"}/${encodeURIComponent(id)}${q}`,
   );
   return `<a target="_blank" rel="noopener noreferrer" href="${esc(href)}">${esc(label ?? short(id))} ↗</a>`;
 }
 function shell() {
+  // The new website can supply navigation while retaining this read-only explorer.
+  if (app.dataset.shell === "external") {
+    app.innerHTML = `<p role="status">${esc(t.loading)}</p>`;
+    return;
+  }
   document.querySelector("header").innerHTML =
     `<a class="brand" href="${url("/")}"><span class="cat" aria-hidden="true">/ᐠ ·ᴥ· ᐟ\\</span><span>Yet Another Market Cat 💩<small>POWERED BY PoS™ — PROOF OF SHIT</small></span></a><span id="network" class="badge">DEVNET · ${t.test}</span>`;
   document.querySelector("nav").innerHTML =
@@ -260,8 +267,14 @@ async function main() {
     return releasePage({ app, lang, esc, url, units, date, t });
   }
   config = await api("/api/explorer/config");
+  if (
+    app.dataset.expectedCluster &&
+    config.cluster !== app.dataset.expectedCluster
+  )
+    throw new Error(t.error);
   document.querySelector("#network").textContent =
-    config.cluster.toUpperCase() + " · " + t.test;
+    config.cluster.toUpperCase() +
+    (config.cluster === "mainnet-beta" ? "" : " · " + t.test);
   if (p[0] === "shitter") return walletPage(p[1]);
   if ((p[0] === "cycles" || p[0] === "verify") && p[1]) return cyclePage(p[1]);
   return cycles();
